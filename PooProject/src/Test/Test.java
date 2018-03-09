@@ -17,7 +17,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		System.out.println("Salut loris");
+		System.out.println("Salut bg2");
 		
 		
 	}
