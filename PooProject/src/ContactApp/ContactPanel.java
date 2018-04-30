@@ -32,7 +32,7 @@ public class ContactPanel extends JPanel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setBackground(Color.decode("#EFEFEF")); 
 		
-		//On affiche titre H1 dans le panel UP
+		//On affiche titre H1 dans le panel UP s
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
 		this.add(listepanel);

@@ -19,7 +19,7 @@ public class MenuH1Panel extends JPanel{
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 	public MenuH1Panel(String titre)
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stube
 		{
 			titrePanel = new JLabel(titre);
 			titrePanel.setFont(globalFont);

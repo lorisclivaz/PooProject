@@ -16,7 +16,7 @@ public class ListePanel extends JPanel{
 	
 	
 	public ListePanel() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stube
 		this.setPreferredSize(new Dimension(480, 78));
 		this.setBackground(Color.decode("#FFFFFF"));
 //		this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
