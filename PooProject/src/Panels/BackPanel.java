@@ -25,7 +25,7 @@ public class BackPanel extends JPanel
 	public BackPanel() 
 	{
 
-	this.setPreferredSize(new Dimension(480, 40));
+	this.setPreferredSize(new Dimension(480, 80));
 	this.setBackground(Color.BLACK);
 		
 	}
