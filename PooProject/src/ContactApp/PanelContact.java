@@ -13,6 +13,7 @@ package ContactApp;
  * @author Loris_Clivaz
  *
  */
-public class PanelContact {
+public class PanelContact 
+{
 
 }
