@@ -43,7 +43,8 @@ public class MainPanel extends JPanel
 	IconBase iconfacebook = new IconBase("images/icones/facebook.png");
 	IconBase iconinstagram = new IconBase("images/icones/instagram.png");
 	IconBase iconagenda = new IconBase("images/icones/agenda.png");
-	
+	IconBase iconphoto = new IconBase("images/icones/photo.png");
+	IconBase iconhorloge = new IconBase("images/icones/horloge.png");
 
 
 	public MainPanel() 
@@ -69,6 +70,8 @@ public class MainPanel extends JPanel
 		imagefond.add(iconfacebook);
 		imagefond.add(iconinstagram);		
 		imagefond.add(iconagenda);
-
+		imagefond.add(iconphoto);
+		imagefond.add(iconhorloge);
+		
 	}
 }
