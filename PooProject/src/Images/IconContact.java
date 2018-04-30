@@ -9,32 +9,34 @@
  */
 package Images;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.JButton;
 
 /**
  * @author Loris_Clivaz
  *
  */
-public class ImageFond extends JPanel
+public class IconContact extends JButton
 {
-	/**
-	 * 
-	 */
-	public ImageFond() {
 
+	
+	public IconContact() {
+
+		setPreferredSize(new Dimension(100, 100));
+		
 	}
-
+	
 public void paintComponent(Graphics g){
 		
 		try {
 	    	
-	        Image img = ImageIO.read(new File("images/background/imagefond.jpg"));
+	        Image img = ImageIO.read(new File("images/icones/contact.png"));
 	        g.drawImage(img, 0, 0, this);
 	        g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 	        
@@ -42,5 +44,5 @@ public void paintComponent(Graphics g){
 	        e.printStackTrace();
 	      }                
 	    
-	  }    
+	  }   
 }
