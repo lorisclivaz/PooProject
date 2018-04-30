@@ -18,4 +18,15 @@ import javax.swing.JFrame;
 public class Frame extends JFrame
 {
 
+	
+	
+	public Frame() 
+	{
+
+		this.setSize(480, 860);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setUndecorated(true);
+		this.setLocationRelativeTo(null);
+	}
+	
 }
