@@ -10,16 +10,21 @@
 package Panels;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import Images.IconBase;
 import Images.ImageFond;
+import MainFrame.Frame;
 
 
 
@@ -46,9 +51,14 @@ public class MainPanel extends JPanel
 	IconBase iconphoto = new IconBase("images/icones/photo.png");
 	IconBase iconhorloge = new IconBase("images/icones/horloge.png");
 
+	
+	
+
+	
 
 	public MainPanel() 
 	{
+		
 
 		this.setLayout(new BorderLayout());
 
@@ -72,6 +82,28 @@ public class MainPanel extends JPanel
 		imagefond.add(iconagenda);
 		imagefond.add(iconphoto);
 		imagefond.add(iconhorloge);
+		
+		
+		
+		icongallery.addActionListener(new ClickGallery());
+		
+		
+		
+	}
+	
+	
+	//Quand on clique sur l'icon gallery
+	
+	class ClickGallery implements ActionListener{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) 
+		{			
+			
+			Frame.cardLayout.show(Frame.triPanel, "gallerypanel");
+			
+		}
 		
 	}
 }
