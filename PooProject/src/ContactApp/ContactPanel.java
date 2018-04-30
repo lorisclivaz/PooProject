@@ -12,7 +12,12 @@ package ContactApp;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 import Panels.MenuH1Panel;
 
@@ -23,9 +28,9 @@ import Panels.MenuH1Panel;
 public class ContactPanel extends JPanel
 {
 	private String titre = "Contacts";
-	MenuH1Panel menuh1panel = new MenuH1Panel(titre);
-	ListePanel listepanel = new ListePanel();
-	
+	private MenuH1Panel menuh1panel = new MenuH1Panel(titre);
+	private ListePanel listepanel = new ListePanel();
+	private JScrollPane scrollPane = new JScrollPane(listepanel);
 	
 	public ContactPanel() {
 		// TODO Auto-generated constructor stub
@@ -35,7 +40,17 @@ public class ContactPanel extends JPanel
 		//On affiche titre H1 dans le panel UP s
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
-		this.add(listepanel);
+		
+		//On affiche la liste de contact
+//		listepanel.setLayout(new BoxLayout(listepanel, BoxLayout.Y_AXIS));
+//		this.add(listepanel, BorderLayout.CENTER);
+		listepanel.setLayout(new FlowLayout());
+		add(listepanel, BorderLayout.CENTER);
+		scrollPane.setPreferredSize(new Dimension(30, 10));
+	
+		this.add(scrollPane,BorderLayout.EAST);
+		
+		
 		
 	}
 }
