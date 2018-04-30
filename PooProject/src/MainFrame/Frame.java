@@ -10,16 +10,14 @@
 package MainFrame;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
+import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ContactApp.ContactPanel;
 import Panels.BackPanel;
 import Panels.MainPanel;
-import Panels.PanelAccueil;
 import Panels.UpPanel;
 
 /**
@@ -29,17 +27,10 @@ import Panels.UpPanel;
 public class Frame extends JFrame
 {
 
-	//Instanciation des panels
 	UpPanel uppanel = new UpPanel();
 	BackPanel backpanel = new BackPanel();
 	MainPanel mainpanel = new MainPanel();
-	PanelAccueil panelaccueil = new PanelAccueil();
-	
-	//Trier les panels
-	private CardLayout cardLayout = new CardLayout();
-	private JPanel contentPanel = new JPanel(cardLayout);
-	
-	
+	ContactPanel contactpanel = new ContactPanel();
 	
 	public Frame() 
 	{
@@ -48,25 +39,16 @@ public class Frame extends JFrame
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setUndecorated(true);
 		this.setLocationRelativeTo(null);
+		
 		this.setLayout(new BorderLayout());
 		
-		//Gestion des panels
-		contentPanel.add(panelaccueil, "panelaccueil");
-		
-		
 		this.add(uppanel, BorderLayout.NORTH);
-		
+
 		this.add(backpanel, BorderLayout.SOUTH);
 		
-		this.add(mainpanel, BorderLayout.CENTER); //Ecran de base qui changera au fur et à mesure
+//		this.add(mainpanel, BorderLayout.CENTER); 		//Ecran de base qui changera au fur et à mesure
 		
-		this.add(new PanelAccueil(), BorderLayout.CENTER);
-		
-//		this.add(contactpanel, BorderLayout.CENTER);
-		
-		
-		
-		
-	}
+		this.add(contactpanel, BorderLayout.CENTER);
+		}
 	
 }
