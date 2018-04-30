@@ -62,7 +62,7 @@ public class Frame extends JFrame
 		
 		this.add(new PanelAccueil(), BorderLayout.CENTER);
 		
-//		this.add(contactpanel, BorderLayout.CENTER);
+//		sthis.add(contactpanel, BorderLayout.CENTER);
 		
 		
 		
