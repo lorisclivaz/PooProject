@@ -13,7 +13,7 @@ public class ChampTextField extends JTextField{
 	Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
 	
 	public ChampTextField(String text) {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubs
 		this.setText(text);
 		this.setFont(globalFontH2);
 	}

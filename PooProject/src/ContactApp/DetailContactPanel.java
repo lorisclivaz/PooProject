@@ -43,7 +43,7 @@ public class DetailContactPanel extends JPanel
 		//On affiche titre H1 dans le panel UP s
 		this.add(menuh1panel);
 		
-		//On définit la taille de l'image et on l'implémente
+		//On définit la taille de l'image et on l'implémentes
 		this.add(imageContact);
 		
 		//On met les infos dans le gridpanel

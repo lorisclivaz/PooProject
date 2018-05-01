@@ -14,7 +14,7 @@ public class ChampLabel extends JLabel {
 	Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
 	
 	public ChampLabel(String nom,String type) {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubs
 		super(nom);
 		//Design des champs
 		this.setPreferredSize(new Dimension(200,30));
