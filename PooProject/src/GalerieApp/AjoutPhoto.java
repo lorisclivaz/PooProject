@@ -32,7 +32,8 @@ public class AjoutPhoto extends JPanel
 	public AjoutPhoto()
 	{
 
-		this.setLayout(new FlowLayout(10,10,10));
+		this.setLayout(new GridLayout(0, 2, 7, 7));
+		
 		this.add(new IconBase("images/galerie/photo1.jpg", 150, 150));
 		this.add(new IconBase("images/galerie/photo2.jpg", 150, 150));
 		this.add(new IconBase("images/galerie/photo3.jpg", 150, 150));

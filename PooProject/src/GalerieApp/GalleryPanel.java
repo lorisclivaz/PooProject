@@ -1,9 +1,9 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
-* Date creation: 30 avr. 2018
-* 
-*/
+ * Exercise W2Q3 - 2
+ * Author: Clivaz Loris
+ * Date creation: 30 avr. 2018
+ * 
+ */
 /**
  * 
  */
@@ -12,6 +12,7 @@ package GalerieApp;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Scrollbar;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,25 +29,25 @@ import Panels.MenuH1Panel;
  */
 public class GalleryPanel extends JPanel
 {
-	
+
 	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", "galerie");
-	
+
 	private AjoutPhoto ajoutphoto = new AjoutPhoto();
-	
-	
 
 
-	
+
+
 	public GalleryPanel()
 	{
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
-		
+
 		this.add(ajoutphoto, BorderLayout.CENTER);
+
+		JScrollPane scroll = new JScrollPane(ajoutphoto);
 		
-		
-		
-	
+		this.add(scroll);
+
 	}
 }
