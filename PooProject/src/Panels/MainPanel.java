@@ -90,7 +90,7 @@ public class MainPanel extends JPanel
 		
 	}
 	
-	//Quand on clique sur l'icon contact
+	//Quand on clique sur l'icon contacts
 
 	class ClickContact implements ActionListener{
 

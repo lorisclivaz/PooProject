@@ -27,7 +27,7 @@ import Panels.UpPanel;
  */
 public class Frame extends JFrame
 {
-	//Ajout des panels
+	//Ajout des panelss
 	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
 	UpPanel uppanel = new UpPanel();
