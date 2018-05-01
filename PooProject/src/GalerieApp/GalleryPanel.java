@@ -7,13 +7,15 @@
 /**
  * 
  */
-package Panels;
+package GalerieApp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+
+import Panels.MenuH1Panel;
 
 /**
  * @author Loris_Clivaz
@@ -22,6 +24,7 @@ import javax.swing.JPanel;
 public class GalleryPanel extends JPanel
 {
 
+	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery");
 	
 	public GalleryPanel()
 	{
@@ -30,6 +33,8 @@ public class GalleryPanel extends JPanel
 
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setBackground(Color.RED);
+		
+		this.add(menuh1panel, BorderLayout.NORTH);
 
 	}
 }
