@@ -28,8 +28,8 @@ import Panels.MenuH1Panel;
 public class ContactPanel extends JPanel
 {
 	private String titre = "Contacts";
-	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
 	private ListePanel listepanel = new ListePanel();
+	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
 	private JScrollPane scrollPane = new JScrollPane(listepanel);
 
 	

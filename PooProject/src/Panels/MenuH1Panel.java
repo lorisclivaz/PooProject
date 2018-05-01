@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import ContactApp.ContactPanel;
 import ContactApp.NewContact;
 import Images.IconBase;
 
@@ -30,6 +31,7 @@ public class MenuH1Panel extends JPanel{
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("",40,40);
+
 	
 	public MenuH1Panel(String titre, String nomClass)
 		// TODO Auto-generated constructor stube
@@ -70,7 +72,7 @@ public class MenuH1Panel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			System.out.println("Hello");
 		}
 		
 	}
