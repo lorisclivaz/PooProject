@@ -13,11 +13,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
 import Images.IconBase;
 import Images.IconLock;
+import MainFrame.Frame;
 
 /**
  * @author Loris_Clivaz
@@ -36,5 +39,20 @@ public class BackPanel extends JPanel
 	
 	this.setLayout(new FlowLayout(50,210,10));
 	this.add(iconlock);
+	
+	iconlock.addActionListener(new ClickLock());
+	}
+	
+	class ClickLock implements ActionListener
+	{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			Frame.cardLayout.show(Frame.triPanel, "mainpanel");
+
+		}
+		
 	}
 }
