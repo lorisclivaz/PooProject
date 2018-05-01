@@ -31,7 +31,7 @@ public class IconBase extends JButton
 	
 	public IconBase(String url, int width, int heigth) {
 
-		setPreferredSize(new Dimension(100,100));
+		setPreferredSize(new Dimension(width,heigth));
 
 		setBorderPainted(false); 
 		setContentAreaFilled(false); 
