@@ -61,8 +61,9 @@ public class Frame extends JFrame
 	
 	
 	//tri des panels static pour avoir accès dans le panel d'accueil
-	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel = new JPanel(cardLayout);
+	  CardLayout cardLayout = new CardLayout();
+	  JPanel triPanel = new JPanel(cardLayout);
+	
 	
 	
 	
