@@ -15,6 +15,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import Images.IconBase;
 import Panels.MenuH1Panel;
 
 /**
@@ -26,9 +27,12 @@ public class GalleryPanel extends JPanel
 
 	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery");
 	
+	IconBase retour = new IconBase("images/icones/retour.jpg", 50, 50);
+	
 	public GalleryPanel()
 	{
 
+		
 		this.setLayout(new BorderLayout());
 
 		this.setPreferredSize(new Dimension(480, 40));

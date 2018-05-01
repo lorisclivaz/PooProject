@@ -38,18 +38,18 @@ public class MainPanel extends JPanel
 	ImageFond imagefond = new ImageFond();
 	
 	//Ajout des icons
-	IconBase iconcontact = new IconBase("images/icones/contact.png");
-	IconBase icongallery = new IconBase("images/icones/gallery.png");
-	IconBase iconpower = new IconBase("images/icones/power.png");
-	IconBase iconmusic = new IconBase("images/icones/music.png");
-	IconBase iconsettings = new IconBase("images/icones/settings.png");
-	IconBase iconmail = new IconBase("images/icones/mail.png");
-	IconBase iconyoutube = new IconBase("images/icones/youtube.png");
-	IconBase iconfacebook = new IconBase("images/icones/facebook.png");
-	IconBase iconinstagram = new IconBase("images/icones/instagram.png");
-	IconBase iconagenda = new IconBase("images/icones/agenda.png");
-	IconBase iconphoto = new IconBase("images/icones/photo.png");
-	IconBase iconhorloge = new IconBase("images/icones/horloge.png");
+	IconBase iconcontact = new IconBase("images/icones/contact.png", 100,100);
+	IconBase icongallery = new IconBase("images/icones/gallery.png", 100,100);
+	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
+	IconBase iconmusic = new IconBase("images/icones/music.png", 100,100);
+	IconBase iconsettings = new IconBase("images/icones/settings.png", 100,100);
+	IconBase iconmail = new IconBase("images/icones/mail.png", 100,100);
+	IconBase iconyoutube = new IconBase("images/icones/youtube.png", 100,100);
+	IconBase iconfacebook = new IconBase("images/icones/facebook.png", 100,100);
+	IconBase iconinstagram = new IconBase("images/icones/instagram.png", 100,100);
+	IconBase iconagenda = new IconBase("images/icones/agenda.png", 100,100);
+	IconBase iconphoto = new IconBase("images/icones/photo.png", 100,100);
+	IconBase iconhorloge = new IconBase("images/icones/horloge.png", 100,100);
 
 	
 	

@@ -26,8 +26,10 @@ public class IconBase extends JButton
 {
 
 	private String url;
+	private int width;
+	private int heigth;
 	
-	public IconBase(String url) {
+	public IconBase(String url, int width, int heigth) {
 
 		setPreferredSize(new Dimension(100,100));
 
@@ -37,6 +39,8 @@ public class IconBase extends JButton
 		setOpaque(false);
 
 		this.url = url;
+		this.width = width;
+		this.heigth = heigth;
 	}
 
 	public void paintComponent(Graphics g){
