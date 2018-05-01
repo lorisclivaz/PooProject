@@ -18,7 +18,7 @@ import Panels.MenuH1Panel;
 
 public class DetailContactPanel extends JPanel
 {
-	private MenuH1Panel menuh1panel = new MenuH1Panel("Bridy Vivian");
+	private MenuH1Panel menuh1panel = new MenuH1Panel("Bridy Vivian",getClass().getSimpleName());
 	private IconBase imageContact = new IconBase("images/photos/photo8.jpg",480,300);
 	private JPanel infosContact = new JPanel();
 	
