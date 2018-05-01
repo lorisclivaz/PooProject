@@ -10,13 +10,17 @@
 package GalerieApp;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
-import Images.IconBase;
 import Panels.MenuH1Panel;
+
 
 /**
  * @author Loris_Clivaz
@@ -24,21 +28,25 @@ import Panels.MenuH1Panel;
  */
 public class GalleryPanel extends JPanel
 {
-
-	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", getClass().getSimpleName());
 	
-	IconBase retour = new IconBase("images/icones/retour.jpg", 50, 50);
+	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", "galerie");
+	
+	private AjoutPhoto ajoutphoto = new AjoutPhoto();
+	
+	
+
+
 	
 	public GalleryPanel()
 	{
-
-		
-		this.setLayout(new BorderLayout());
-
 		this.setPreferredSize(new Dimension(480, 40));
-		this.setBackground(Color.RED);
-		
+		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
-
+		
+		this.add(ajoutphoto, BorderLayout.CENTER);
+		
+		
+		
+	
 	}
 }
