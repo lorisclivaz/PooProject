@@ -11,28 +11,25 @@ package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
-
-import Images.ImageFond;
 
 /**
  * @author Loris_Clivaz
  *
  */
-public class PanelAccueil extends JPanel
+public class GalleryPanel extends JPanel
 {
 
-	ImageFond imagefond = new ImageFond();
 	
-	
-	public PanelAccueil()
+	public GalleryPanel()
 	{
 
 		this.setLayout(new BorderLayout());
-		this.setSize(440, 820);
-		
-		this.add(imagefond);
+
+		this.setPreferredSize(new Dimension(480, 40));
+		this.setBackground(Color.RED);
+
 	}
 }

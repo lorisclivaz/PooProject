@@ -1,9 +1,9 @@
 /*
- * Exercise W2Q3 - 2
- * Author: Clivaz Loris
- * Date creation: 30 avr. 2018
- * 
- */
+* Exercise W2Q3 - 2
+* Author: Clivaz Loris
+* Date creation: 30 avr. 2018
+* 
+*/
 /**
  * 
  */
@@ -22,21 +22,27 @@ import javax.swing.JButton;
  * @author Loris_Clivaz
  *
  */
-public class IconPower extends JButton
+public class IconLock extends JButton
 {
 
+	
+	public IconLock( ) {
 
-	public IconPower() {
+		setPreferredSize(new Dimension(50,50));
 
-		setPreferredSize(new Dimension(100, 100));
+		setBorderPainted(false); 
+		setContentAreaFilled(false); 
+		setFocusPainted(false); 
+		setOpaque(false);
+
+		
 	}
 
 	public void paintComponent(Graphics g){
 
 		try {
 
-			Image img = ImageIO.read(new File("images/icones/power.png"));
-			g.drawImage(img, 0, 0, this);
+			Image img = ImageIO.read(new File("images/icones/lock.png"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {

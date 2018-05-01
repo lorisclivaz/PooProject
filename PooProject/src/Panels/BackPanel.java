@@ -9,10 +9,15 @@
  */
 package Panels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
+
+import Images.IconBase;
+import Images.IconLock;
 
 /**
  * @author Loris_Clivaz
@@ -21,12 +26,15 @@ import javax.swing.JPanel;
 public class BackPanel extends JPanel
 {
 
+	IconLock iconlock = new IconLock();
 	
 	public BackPanel() 
 	{
 
-	this.setPreferredSize(new Dimension(480, 40));
+	this.setPreferredSize(new Dimension(480, 80));
 	this.setBackground(Color.BLACK);
-		
+	
+	this.setLayout(new FlowLayout(50,210,10));
+	this.add(iconlock);
 	}
 }

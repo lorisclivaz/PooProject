@@ -10,13 +10,13 @@
 package MainFrame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.CardLayout;
 
 import javax.swing.JFrame;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JPanel;
 
-import ContactApp.ContactPanel;
 import Panels.BackPanel;
+import Panels.GalleryPanel;
 import Panels.MainPanel;
 import Panels.UpPanel;
 
@@ -26,15 +26,26 @@ import Panels.UpPanel;
  */
 public class Frame extends JFrame
 {
-
+	//Ajout des panels
+	GalleryPanel gallerypanel = new GalleryPanel();
 	UpPanel uppanel = new UpPanel();
 	BackPanel backpanel = new BackPanel();
 	MainPanel mainpanel = new MainPanel();
-	ContactPanel contactpanel = new ContactPanel();
+	
+	
+	
+	//tri des panels static pour avoir accès dans le panel d'accueil
+	public  static CardLayout cardLayout = new CardLayout();
+	public static JPanel triPanel = new JPanel(cardLayout);
+	
+	
+	
 	
 	public Frame() 
 	{
 
+		
+		
 		this.setSize(480, 860);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setUndecorated(true);
@@ -46,9 +57,16 @@ public class Frame extends JFrame
 
 		this.add(backpanel, BorderLayout.SOUTH);
 		
-//		this.add(mainpanel, BorderLayout.CENTER); 		//Ecran de base qui changera au fur et à mesure
+		this.add(triPanel);
 		
-		this.add(contactpanel, BorderLayout.CENTER);
+		triPanel.add(mainpanel, "mainpanel");
+		triPanel.add(gallerypanel, "gallerypanel");
+		
+		
+		
 		}
+	
+	
+	
 	
 }
