@@ -15,8 +15,9 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ContactApp.ContactPanel;
+import GalerieApp.GalleryPanel;
 import Panels.BackPanel;
-import Panels.GalleryPanel;
 import Panels.MainPanel;
 import Panels.UpPanel;
 
@@ -27,6 +28,7 @@ import Panels.UpPanel;
 public class Frame extends JFrame
 {
 	//Ajout des panels
+	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
 	UpPanel uppanel = new UpPanel();
 	BackPanel backpanel = new BackPanel();
@@ -61,6 +63,7 @@ public class Frame extends JFrame
 		
 		triPanel.add(mainpanel, "mainpanel");
 		triPanel.add(gallerypanel, "gallerypanel");
+		triPanel.add(contactpanel,"contactpanel");
 		
 		
 		

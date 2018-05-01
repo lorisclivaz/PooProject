@@ -86,11 +86,23 @@ public class MainPanel extends JPanel
 		
 		
 		icongallery.addActionListener(new ClickGallery());
-		
-		
+		iconcontact.addActionListener(new ClickContact());		
 		
 	}
 	
+	//Quand on clique sur l'icon contact
+
+	class ClickContact implements ActionListener{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			System.out.println("cliqué");
+			Frame.cardLayout.show(Frame.triPanel, "contactpanel");
+		}
+		
+	}
 	
 	//Quand on clique sur l'icon gallery
 	
