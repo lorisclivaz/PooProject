@@ -34,7 +34,7 @@ public class MenuH1Panel extends JPanel{
 			this.setPreferredSize(new Dimension(480, 78));
 			this.setBackground(Color.decode("#DFDFDF"));
 			
-			this.setLayout(new FlowLayout(FlowLayout.CENTER,61,8)); 	//61 est la valeur maxi
+			this.setLayout(new FlowLayout(FlowLayout.CENTER,61,8)); 	//61 est la valeur max
 			//On met le plus à gauche
 			this.add(previous, BorderLayout.WEST);
 			//On met le titre au centre
