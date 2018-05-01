@@ -25,7 +25,7 @@ import Panels.MenuH1Panel;
 public class GalleryPanel extends JPanel
 {
 
-	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery");
+	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", getClass().getSimpleName());
 	
 	IconBase retour = new IconBase("images/icones/retour.jpg", 50, 50);
 	

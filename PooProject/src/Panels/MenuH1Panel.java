@@ -25,7 +25,8 @@ public class MenuH1Panel extends JPanel{
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	public MenuH1Panel(String titre)
+	IconBase vide = new IconBase("",40,40);
+	public MenuH1Panel(String titre, String nomClass)
 		// TODO Auto-generated constructor stube
 		{
 			titrePanel = new JLabel(titre);
@@ -35,8 +36,12 @@ public class MenuH1Panel extends JPanel{
 			this.setBackground(Color.decode("#DFDFDF"));
 			
 			this.setLayout(new FlowLayout(FlowLayout.CENTER,61,8)); 	//61 est la valeur max
-			//On met le plus à gauche
-			this.add(previous, BorderLayout.WEST);
+			if(nomClass.equals("ContactPanel")) {
+				//On met le plus à gauche
+				this.add(vide, BorderLayout.WEST);
+			}else {
+				this.add(previous, BorderLayout.WEST);
+			}
 			//On met le titre au centre
 			this.add(titrePanel, BorderLayout.CENTER);
 			//On met le plus à droite

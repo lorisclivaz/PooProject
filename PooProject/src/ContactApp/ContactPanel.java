@@ -28,7 +28,7 @@ import Panels.MenuH1Panel;
 public class ContactPanel extends JPanel
 {
 	private String titre = "Contacts";
-	private MenuH1Panel menuh1panel = new MenuH1Panel(titre);
+	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
 	private ListePanel listepanel = new ListePanel();
 	private JScrollPane scrollPane = new JScrollPane(listepanel);
 	
@@ -42,8 +42,6 @@ public class ContactPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 		
 		//On affiche la liste de contact
-//		listepanel.setLayout(new BoxLayout(listepanel, BoxLayout.Y_AXIS));
-//		this.add(listepanel, BorderLayout.CENTER);s
 		listepanel.setLayout(new FlowLayout());
 		add(listepanel, BorderLayout.CENTER);
 		scrollPane.setPreferredSize(new Dimension(30, 10));
