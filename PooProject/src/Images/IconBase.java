@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
- * @author Loris_Clivaz
+ * @author Loris_Clivaza
  *
  */
 public class IconBase extends JButton
