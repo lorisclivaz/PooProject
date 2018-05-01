@@ -1,42 +1,38 @@
 /*
 * Author : Vivian Bridy
-* Date creation : 30 avr. 2018
+* Date creation : 1 mai 2018
 */
 package ContactApp;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Images.IconBase;
 import Panels.MenuH1Panel;
 
-public class DetailContactPanel extends JPanel
-{
-	private MenuH1Panel menuh1panel = new MenuH1Panel("Bridy Vivian", getClass().getSimpleName());
-	private IconBase imageContact = new IconBase("images/photos/photo8.jpg",480,300);
+public class NewContact extends JPanel 
+{	
+	private MenuH1Panel menuh1panel = new MenuH1Panel("Nouv. Contact", getClass().getSimpleName());
+	private IconBase imageContact = new IconBase("images/photos/contact-1.png",480,300);
 	private JPanel infosContact = new JPanel();
 	
 	private ChampLabel nom = new ChampLabel("Nom :","text");
-	private ChampTextField textNom = new ChampTextField("Bridy");
+	private ChampTextField textNom = new ChampTextField("");
 	private ChampLabel prenom = new ChampLabel("Prénom :","text");
-	private ChampTextField textPrenom = new ChampTextField("Vivian");
+	private ChampTextField textPrenom = new ChampTextField("");
 	private ChampLabel adresse = new ChampLabel("Adresse :","text");
-	private ChampTextField textAdresse = new ChampTextField("Route de Fellina 3");
+	private ChampTextField textAdresse = new ChampTextField("");
 	private ChampLabel vide = new ChampLabel("","text");
-	private ChampTextField textLocalite = new ChampTextField("1873 Val-d'Illiez");
+	private ChampTextField textLocalite = new ChampTextField("");
 	private ChampLabel mail = new ChampLabel("Email :","mail");
-	private ChampTextField textMail = new ChampTextField("vbridy2@gmail.com");
+	private ChampTextField textMail = new ChampTextField("");
 	private ChampLabel phone = new ChampLabel("Téléphone :","text");
-	private ChampTextField textPhone = new ChampTextField("0798323581");
+	private ChampTextField textPhone = new ChampTextField("");
 	
 	
-	public DetailContactPanel() {
+	public NewContact() {
 		// TODO Auto-generated constructor stub
 		this.setBackground(Color.decode("#EFEFEF")); 
 		

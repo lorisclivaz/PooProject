@@ -31,6 +31,7 @@ public class ContactPanel extends JPanel
 	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
 	private ListePanel listepanel = new ListePanel();
 	private JScrollPane scrollPane = new JScrollPane(listepanel);
+
 	
 	public ContactPanel() {
 		// TODO Auto-generated constructor stub

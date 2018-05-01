@@ -5,6 +5,7 @@
 package Panels;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -12,11 +13,14 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import ContactApp.NewContact;
 import Images.IconBase;
 
 public class MenuH1Panel extends JPanel{
@@ -26,6 +30,7 @@ public class MenuH1Panel extends JPanel{
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("",40,40);
+	
 	public MenuH1Panel(String titre, String nomClass)
 		// TODO Auto-generated constructor stube
 		{
@@ -44,10 +49,29 @@ public class MenuH1Panel extends JPanel{
 			}
 			//On met le titre au centre
 			this.add(titrePanel, BorderLayout.CENTER);
+
 			//On met le plus à droite
 			this.add(create, BorderLayout.EAST);
 			
-			
+			//On met un listener sur le bouton
+			create.addActionListener(new ClickCreate(nomClass));
 			
 		}
+	
+	//quand on clique sur le bouton create
+	class ClickCreate implements ActionListener{
+		
+		String nomClass;
+		
+		public ClickCreate(String nomClass) {
+			this.nomClass = nomClass;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 }
