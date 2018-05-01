@@ -7,7 +7,7 @@
 /**
  * 
  */
-package Panels;
+package MainFrame;
 
 import javax.swing.JPanel;
 
@@ -15,10 +15,8 @@ import javax.swing.JPanel;
  * @author Loris_Clivaz
  *
  */
-public class BackPanel extends JPanel
-{
+public class MainPanel extends JPanel{
 
 	
-	//panel invisible pour définir la taille
-	
+	//panel invisible pour configurer la taille
 }
