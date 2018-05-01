@@ -24,11 +24,20 @@ public class DetailContactPanel extends JPanel
 	
 	private ChampLabel nom = new ChampLabel("Nom :","text");
 	private ChampTextField textNom = new ChampTextField("Bridy");
-	private ChampLabel prenom = new ChampLabel("Prénom :","");
+	private ChampLabel prenom = new ChampLabel("Prénom :","text");
+	private ChampTextField textPrenom = new ChampTextField("Vivian");
+	private ChampLabel adresse = new ChampLabel("Adresse :","text");
+	private ChampTextField textAdresse = new ChampTextField("Route de Fellina 3");
+	private ChampLabel vide = new ChampLabel("","text");
+	private ChampTextField textLocalite = new ChampTextField("1873 Val-d'Illiez");
+	private ChampLabel mail = new ChampLabel("Email :","mail");
+	private ChampTextField textMail = new ChampTextField("vbridy2@gmail.com");
+	private ChampLabel phone = new ChampLabel("Téléphone :","text");
+	private ChampTextField textPhone = new ChampTextField("0798323581");
+	
 	
 	public DetailContactPanel() {
 		// TODO Auto-generated constructor stub
-		this.setPreferredSize(new Dimension(480, 40));
 		this.setBackground(Color.decode("#EFEFEF")); 
 		
 		//On affiche titre H1 dans le panel UP s
@@ -38,11 +47,21 @@ public class DetailContactPanel extends JPanel
 		this.add(imageContact);
 		
 		//On met les infos dans le gridpanel
-		infosContact.setLayout(new GridLayout(1,2,10,10));
+		infosContact.setLayout(new GridLayout(6,2,10,10)); 		//(ligne,colonne,espace,espace)
 		
 		//On ajoute dans les infos contacts
 		infosContact.add(nom);
 		infosContact.add(textNom);
+		infosContact.add(prenom);
+		infosContact.add(textPrenom);
+		infosContact.add(adresse);
+		infosContact.add(textAdresse);
+		infosContact.add(vide);
+		infosContact.add(textLocalite);
+		infosContact.add(mail);
+		infosContact.add(textMail);
+		infosContact.add(phone);
+		infosContact.add(textPhone);
 		
 		//On affiche les infos
 		this.add(infosContact);

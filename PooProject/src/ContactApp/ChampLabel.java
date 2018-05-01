@@ -17,7 +17,7 @@ public class ChampLabel extends JLabel {
 		// TODO Auto-generated constructor stub
 		super(nom);
 		//Design des champs
-		this.setPreferredSize(new Dimension(200,50));
+		this.setPreferredSize(new Dimension(200,30));
 		this.setFont(globalFontH2);
 	
 	}
