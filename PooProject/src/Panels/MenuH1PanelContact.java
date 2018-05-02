@@ -33,7 +33,7 @@ public class MenuH1PanelContact extends JPanel{
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("images/icones/left-arrow.png",40,40);
-	String titre;
+	String titre, nomClass;
 	CardLayout cardlayout = new CardLayout();
 	JPanel triPanel = new JPanel(cardlayout);
 
@@ -41,6 +41,7 @@ public class MenuH1PanelContact extends JPanel{
 	// TODO Auto-generated constructor stube
 	{
 		this.titre = titre;
+		this.nomClass = nomClass;
 		titrePanel = new JLabel(getTitre());
 		titrePanel.setFont(globalFont);
 
@@ -57,7 +58,10 @@ public class MenuH1PanelContact extends JPanel{
 		this.add(titrePanel, BorderLayout.CENTER);
 
 		//On met le plus à droite
-		this.add(create, BorderLayout.EAST);
+		if(nomClass.equals("NewContact"))
+			this.remove(create);
+		else
+			this.add(create, BorderLayout.EAST);
 
 		//On met un listener sur le bouton
 		create.addActionListener(new ClickCreate());
@@ -85,7 +89,6 @@ public class MenuH1PanelContact extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
 			cardlayout.show(triPanel, "listepanel");
 			
 		}
@@ -99,6 +102,13 @@ public class MenuH1PanelContact extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			cardlayout.show(triPanel, "newcontact");
+			if(nomClass.equals("NewContact")) {
+				System.out.println("page de création de contact");
+			}
+			else
+				System.out.println("create cliqué");
 		}
 	}
+	
+	//
 }

@@ -8,7 +8,14 @@ package ContactApp;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Images.IconBase;
@@ -34,12 +41,14 @@ public class NewContact extends JPanel
 	private ChampLabel adresse = new ChampLabel("Adresse :","text");
 	private ChampTextField textAdresse = new ChampTextField("");
 	private ChampLabel vide = new ChampLabel("","text");
+	private ChampLabel vide2 = new ChampLabel("","text");
 	private ChampTextField textLocalite = new ChampTextField("");
 	private ChampLabel mail = new ChampLabel("Email :","mail");
 	private ChampTextField textMail = new ChampTextField("");
 	private ChampLabel phone = new ChampLabel("Téléphone :","text");
 	private ChampTextField textPhone = new ChampTextField("");
 	
+	private JButton enregistrement = new JButton("Sauver le contact !");
 	
 	public NewContact(CardLayout cardlayout,JPanel triPanel) {
 		// TODO Auto-generated constructor stub
@@ -55,7 +64,7 @@ public class NewContact extends JPanel
 		this.add(imageContact);
 		
 		//On met les infos dans le gridpanel
-		infosContact.setLayout(new GridLayout(6,2,10,10)); 		//(ligne,colonne,espace,espace)
+		infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
 		
 		//On ajoute dans les infos contacts
 		infosContact.add(nom);
@@ -70,11 +79,67 @@ public class NewContact extends JPanel
 		infosContact.add(textMail);
 		infosContact.add(phone);
 		infosContact.add(textPhone);
+		infosContact.add(vide2);
+		enregistrement.addActionListener(new ClickEnregistrement());
+		infosContact.add(enregistrement);
 		
 		//On affiche les infos
 		this.add(infosContact);
 		
 		menuh1panel.setCardLayout(cardLayout,triPanel);
+		
+	}
+	
+	
+	
+	class ClickEnregistrement implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			Contact contactEnCreation = new Contact(textNom.getText(),
+													textPrenom.getText(),
+													textAdresse.getText()+"/"+textLocalite.getText(),
+													textMail.getText(),
+													textPhone.getText());
+			this.serializeObject(contactEnCreation);
+			System.out.println("Sérialisation effectuée");
+			cardLayout.show(triPanel, "listepanel");
+			
+		}
+		
+		public void serializeObject(Contact contactEnCreation) {
+			try {
+				FileOutputStream fichier = new FileOutputStream("serialisation\\"+contactEnCreation.getNom()+"-"+contactEnCreation.getPrenom()+".ser");
+				ObjectOutputStream oos = new ObjectOutputStream(fichier);
+				oos.writeObject(contactEnCreation);
+				oos.flush();
+				oos.close();
+			}
+			catch (java.io.IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void deSerializeObject(Contact contactEnCreation) { 
+			try {
+				FileInputStream fichier = new FileInputStream("serialisation\\"+contactEnCreation.getNom()+"-"+contactEnCreation.getPrenom()+".ser");
+				ObjectInputStream ois = new ObjectInputStream(fichier);
+				Contact cs = (Contact) ois.readObject();
+				System.out.println("Classe deserialisée : ");
+				System.out.println("Nom : " + cs.getNom());
+				System.out.println("Age : " + cs.getPrenom());
+				System.out.println("Sexe : " + cs.getAdresse());
+				System.out.println("Mot de passe : " + cs.getMail());
+				System.out.println("Ville : " + cs.getTelephone());
+			}
+			catch (java.io.IOException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 }

@@ -4,7 +4,9 @@
 */
 package ContactApp;
 
-public class Contact
+import java.io.Serializable;
+
+public class Contact implements Serializable
 {
 	private String nom,prenom,adresse,telephone,mail;
 	
