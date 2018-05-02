@@ -12,9 +12,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import Images.IconBase;
 
 public class MenuH1PanelGallery extends JPanel{
@@ -84,10 +84,9 @@ public class MenuH1PanelGallery extends JPanel{
 		}
 
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent e) {
 
 			
-				
 		}
 
 		
