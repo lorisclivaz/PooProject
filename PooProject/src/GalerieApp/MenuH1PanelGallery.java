@@ -11,9 +11,18 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Images.IconBase;
 
@@ -64,12 +73,7 @@ public class MenuH1PanelGallery extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if(GalleryPanel.class != null)
-			{
-				System.out.println("salut");
-
-			}
-
+			
 		}
 
 	}
@@ -86,9 +90,47 @@ public class MenuH1PanelGallery extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			JFileChooser choisir = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+			choisir.setFileFilter(filter);
+			choisir.showOpenDialog(MenuH1PanelGallery.this);
+			File valeur = choisir.getSelectedFile();
 			
+			try {
+				serializeObject(valeur);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
+		private  void serializeObject(File valeur) throws IOException
+
+		{
+
+			try {
+				
+				File dossier = new File("serialisationPhoto"); 
+				dossier.mkdir();
+				
+				FileOutputStream fichier = new FileOutputStream("serialisationPhoto/photo.ser");
+				
+				BufferedOutputStream bfichier = new  BufferedOutputStream(fichier);
+				
+				ObjectOutputStream ecrireobjet = new ObjectOutputStream(bfichier);
+				
+				ecrireobjet.writeObject(valeur);
+			
+				ecrireobjet.close();
+				
+				
+			} catch (FileNotFoundException e) {
+
+					e.printStackTrace();
+			}
+			
+			System.out.println("J'ai été sérializé !!");
+		}
 		
 	}
 }
