@@ -27,11 +27,12 @@ public class Photo implements Serializable
 {
 
 	private String url;
+	private String nom;
 	
 	
-	public Photo(String url)
+	public Photo(String url, String nom)
 	{
-
+		this.nom = nom;
 		this.url = url;
 	}
 	

@@ -34,6 +34,8 @@ public class MenuH1PanelGallery extends JPanel{
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("",40,40);
 
+	private String nomPhoto;
+	private String nomPhotoFinal;
 
 
 
@@ -95,7 +97,9 @@ public class MenuH1PanelGallery extends JPanel{
 			choisir.setFileFilter(filter);
 			choisir.showOpenDialog(MenuH1PanelGallery.this);
 			File valeur = choisir.getSelectedFile();
+			nomPhoto = choisir.getName(valeur);
 			
+			System.out.println(nomPhoto);
 			try {
 				serializeObject(valeur);
 			} catch (IOException e1) {
