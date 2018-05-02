@@ -5,6 +5,7 @@
 package ContactApp;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -16,19 +17,28 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import Panels.MenuH1PanelContact;
+
 public class ListePanel extends JPanel
 {
-	
+	private String titre = "Contacts";
 	JScrollPane s = new JScrollPane();
 	JPanel Panel = new JPanel();
+	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact(titre, getClass().getSimpleName());
+	public   CardLayout cardLayout;
+	public  JPanel triPanel;
 	
-	public ListePanel()
+	public ListePanel(CardLayout cardlayout,JPanel triPanel)
 	{
-		
+		this.cardLayout = cardlayout;
+		this.triPanel = triPanel;
 		
 //		this.setLayout(new GridLayout(0, 1, 7, 7));
 		// TODO Auto-generated constructor stube
 		this.setSize(480,400);
+		
+		this.add(menuh1panel);
+		
 		Panel.setLayout(new BoxLayout(Panel, BoxLayout.Y_AXIS));
 		this.setBackground(Color.decode("#FFFFFF"));
 		
@@ -47,6 +57,8 @@ public class ListePanel extends JPanel
 		s.getViewport().add(Panel);
 		add(s);
 		setVisible(true);
+		
+		menuh1panel.setCardLayout(cardLayout,triPanel);
 		
 	}
 

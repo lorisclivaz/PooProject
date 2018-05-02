@@ -32,15 +32,16 @@ public class MenuH1PanelContact extends JPanel{
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	IconBase vide = new IconBase("",40,40);
-	private JFileChooser fileChooser = new JFileChooser();
-
-
+	IconBase vide = new IconBase("images/icones/left-arrow.png",40,40);
+	String titre;
+	CardLayout cardlayout = new CardLayout();
+	JPanel triPanel = new JPanel(cardlayout);
 
 	public MenuH1PanelContact(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
-		titrePanel = new JLabel(titre);
+		this.titre = titre;
+		titrePanel = new JLabel(getTitre());
 		titrePanel.setFont(globalFont);
 
 		this.setPreferredSize(new Dimension(480, 78));
@@ -48,7 +49,6 @@ public class MenuH1PanelContact extends JPanel{
 
 		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
 		if(nomClass.equals("ContactPanel")) {
-			//On met le plus à gauche
 			this.add(vide, BorderLayout.WEST);
 		}else {
 			this.add(previous, BorderLayout.WEST);
@@ -60,11 +60,24 @@ public class MenuH1PanelContact extends JPanel{
 		this.add(create, BorderLayout.EAST);
 
 		//On met un listener sur le bouton
-		create.addActionListener(new ClickCreate(nomClass));
+		create.addActionListener(new ClickCreate());
 		previous.addActionListener(new ClickPrevious());
 
 	}
 
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	
+	public String getTitre() {
+		return titre;
+	}
+	
+	public void setCardLayout(CardLayout cardlayout, JPanel triPanel) {
+		this.cardlayout = cardlayout;
+		this.triPanel = triPanel;
+	}
+	
 	//quand on clique sur le bouton previous
 	
 	class ClickPrevious implements ActionListener
@@ -72,12 +85,8 @@ public class MenuH1PanelContact extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-			if(GalleryPanel.class != null)
-			{
-				System.out.println("salut");
-				
-			}
+			
+			cardlayout.show(triPanel, "listepanel");
 			
 		}
 		
@@ -86,17 +95,10 @@ public class MenuH1PanelContact extends JPanel{
 	//quand on clique sur le bouton create
 	class ClickCreate implements ActionListener{
 
-		String nomClass;
-
-		public ClickCreate(String nomClass) {
-			this.nomClass = nomClass;
-		}
-
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-
-			System.out.println("Salut");
+			cardlayout.show(triPanel, "newcontact");
 		}
 	}
 }

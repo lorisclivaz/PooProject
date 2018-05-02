@@ -5,22 +5,27 @@
 */
 package ContactApp;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
 import Images.IconBase;
+import Panels.MenuH1PanelContact;
 import Panels.MenuH1PanelGallery;
+import ContactApp.ContactPanel;
 
 public class NewContact extends JPanel 
 {	
 	
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Nouv. Contact", getClass().getSimpleName());
+	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact("Nouv. Contact", getClass().getSimpleName());
 	private IconBase imageContact = new IconBase("images/photos/contact-1.png",480,300);
 	private JPanel infosContact = new JPanel();
+	public   CardLayout cardLayout;
+	public  JPanel triPanel;
 	
 	private ChampLabel nom = new ChampLabel("Nom :","text");
 	private ChampTextField textNom = new ChampTextField("");
@@ -36,11 +41,14 @@ public class NewContact extends JPanel
 	private ChampTextField textPhone = new ChampTextField("");
 	
 	
-	public NewContact() {
+	public NewContact(CardLayout cardlayout,JPanel triPanel) {
 		// TODO Auto-generated constructor stub
+		this.cardLayout = cardlayout;
+		this.triPanel = triPanel;
+		
 		this.setBackground(Color.decode("#EFEFEF")); 
 		
-		//On affiche titre H1 dans le panel UP s
+		//On affiche titre H1 dans le panel UP
 		this.add(menuh1panel);
 		
 		//On définit la taille de l'image et on l'implémentes
@@ -66,6 +74,7 @@ public class NewContact extends JPanel
 		//On affiche les infos
 		this.add(infosContact);
 		
+		menuh1panel.setCardLayout(cardLayout,triPanel);
 		
 	}
 }
