@@ -24,7 +24,7 @@ public class ListePanel extends JPanel
 	
 	public ListePanel()
 	{
-		this.setLayout(new GridLayout(0, 1, 0, 0));
+		this.setLayout(new GridLayout(0, 1, 7, 7));
 		// TODO Auto-generated constructor stube
 		this.setBackground(Color.decode("#FFFFFF"));
 		
@@ -38,9 +38,12 @@ public class ListePanel extends JPanel
 		
 		for(int i=0; i<15; i++) {
 			JButton bouton = new JButton();
+			
 			bouton.setText(bookContact[i].getNom()+" "+bookContact[i].getPrenom());
 			this.add(bouton);	
 		}
+		
+		
 		
 	}
 

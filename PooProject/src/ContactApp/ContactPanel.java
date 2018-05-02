@@ -35,7 +35,6 @@ public class ContactPanel extends JPanel
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
-	private JScrollPane scrollPane = new JScrollPane(listepanel);
 	NewContact newcontact = new NewContact();
 
 	
@@ -47,6 +46,12 @@ public class ContactPanel extends JPanel
 		//On affiche titre H1 dans le panel UP s
 		this.setLayout(new BorderLayout());
 		
+
+		JScrollPane scroll = new JScrollPane(listepanel);
+
+		this.add(scroll, BorderLayout.EAST);
+
+		
 		//On met un listener sur le bouton
 		create.addActionListener(new ClickCreate());
 		
@@ -55,7 +60,6 @@ public class ContactPanel extends JPanel
 		//On affiche la liste de contact
 		this.add(listepanel, BorderLayout.CENTER);
 	
-		
 		
 	}
 	
