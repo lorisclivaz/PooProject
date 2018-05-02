@@ -14,13 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Images.IconBase;
-import Panels.MenuH1Panel;
+import Panels.MenuH1PanelGallery;
 
 public class DetailContactPanel extends JPanel
 {
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1Panel menuh1panel = new MenuH1Panel("Bridy Vivian", getClass().getSimpleName());
+	private MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Bridy Vivian", getClass().getSimpleName());
 	private IconBase imageContact = new IconBase("images/photos/photo8.jpg",480,300);
 	private JPanel infosContact = new JPanel();
 	

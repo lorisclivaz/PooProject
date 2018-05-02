@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import Images.IconBase;
-import Panels.MenuH1Panel;
+import Panels.MenuH1PanelGallery;
 
 /**
  * @author Loris_Clivaz
@@ -34,7 +35,7 @@ public class ContactPanel extends JPanel
 	private ListePanel listepanel = new ListePanel();
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
+	private MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery(titre, getClass().getSimpleName());
 	NewContact newcontact = new NewContact();
 
 	
@@ -45,11 +46,6 @@ public class ContactPanel extends JPanel
 		
 		//On affiche titre H1 dans le panel UP s
 		this.setLayout(new BorderLayout());
-		
-
-		JScrollPane scroll = new JScrollPane(listepanel);
-
-		this.add(scroll, BorderLayout.EAST);
 
 		
 		//On met un listener sur le bouton
@@ -58,8 +54,8 @@ public class ContactPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 		
 		//On affiche la liste de contact
+		
 		this.add(listepanel, BorderLayout.CENTER);
-	
 		
 	}
 	

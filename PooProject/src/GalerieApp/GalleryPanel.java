@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Images.IconBase;
-import Panels.MenuH1Panel;
+import Panels.MenuH1PanelGallery;
 
 
 /**
@@ -39,7 +39,7 @@ public class GalleryPanel extends JPanel
 
 	private AjoutPhoto ajoutphoto = new AjoutPhoto();
 
-	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", "Gallery");
+	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
 
 
 	public GalleryPanel()

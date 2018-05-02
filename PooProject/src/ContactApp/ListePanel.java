@@ -19,31 +19,34 @@ import javax.swing.JScrollPane;
 public class ListePanel extends JPanel
 {
 	
-//	private JScrollPane scrollPane = new JScrollPane(this,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-//	private JScrollPane scrollPane = new JScrollPane();
+	JScrollPane s = new JScrollPane();
+	JPanel Panel = new JPanel();
 	
 	public ListePanel()
 	{
-		this.setLayout(new GridLayout(0, 1, 7, 7));
+		
+		
+//		this.setLayout(new GridLayout(0, 1, 7, 7));
 		// TODO Auto-generated constructor stube
+		this.setSize(480,400);
+		Panel.setLayout(new BoxLayout(Panel, BoxLayout.Y_AXIS));
 		this.setBackground(Color.decode("#FFFFFF"));
 		
-//		this.setLayout(new BorderLayout());
 		
-		Contact[] bookContact = new Contact[15];
+		Contact[] bookContact = new Contact[30];
 		
-		for(int i=0;i<15;i++) {
+		for(int i=0;i<30;i++) {
 			bookContact[i] = new Contact("Bridy"+i, "Vivian"+i, "Route"+i, "Num"+i, "vivian"+i+"@gmail.com");
 		}
 		
-		for(int i=0; i<15; i++) {
+		for(int i=0; i<30; i++) {
 			JButton bouton = new JButton();
-			
 			bouton.setText(bookContact[i].getNom()+" "+bookContact[i].getPrenom());
-			this.add(bouton);	
+			Panel.add(bouton);	
 		}
-		
-		
+		s.getViewport().add(Panel);
+		add(s);
+		setVisible(true);
 		
 	}
 

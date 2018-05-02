@@ -26,7 +26,7 @@ import ContactApp.NewContact;
 import GalerieApp.GalleryPanel;
 import Images.IconBase;
 
-public class MenuH1Panel extends JPanel{
+public class MenuH1PanelGallery extends JPanel{
 
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
@@ -37,7 +37,7 @@ public class MenuH1Panel extends JPanel{
 
 
 
-	public MenuH1Panel(String titre, String nomClass)
+	public MenuH1PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
 		titrePanel = new JLabel(titre);
