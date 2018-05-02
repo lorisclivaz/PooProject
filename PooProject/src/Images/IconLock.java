@@ -28,7 +28,7 @@ public class IconLock extends JButton
 	
 	public IconLock( ) {
 
-		setPreferredSize(new Dimension(50,50));
+		setPreferredSize(new Dimension(150, 50));
 
 		setBorderPainted(false); 
 		setContentAreaFilled(false); 
@@ -42,7 +42,7 @@ public class IconLock extends JButton
 
 		try {
 
-			Image img = ImageIO.read(new File("images/icones/lock.png"));
+			Image img = ImageIO.read(new File("images/icones/lock.jpg"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {

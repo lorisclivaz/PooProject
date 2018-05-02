@@ -88,7 +88,7 @@ public class Frame extends JFrame
 		//choisir la taille
 		backpanel.setPreferredSize(new Dimension(480, 80));
 		backpanel.setBackground(Color.BLACK);
-		backpanel.setLayout(new FlowLayout(50,210,10));
+		backpanel.setLayout(new FlowLayout(30,165,10));
 		backpanel.add(iconlock);
 		iconlock.addActionListener(new ClickLock());
 		
