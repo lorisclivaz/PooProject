@@ -2,28 +2,19 @@
  * Author : Vivian Bridy
  * Date creation : 30 avr. 2018
  */
-package Panels;
+package GalerieApp;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFileChooser;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-
-import ContactApp.ContactPanel;
-import ContactApp.NewContact;
-import GalerieApp.GalleryPanel;
 import Images.IconBase;
 
 public class MenuH1PanelGallery extends JPanel{
@@ -33,7 +24,7 @@ public class MenuH1PanelGallery extends JPanel{
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("",40,40);
-	private JFileChooser fileChooser = new JFileChooser();
+
 
 
 
@@ -66,7 +57,7 @@ public class MenuH1PanelGallery extends JPanel{
 	}
 
 	//quand on clique sur le bouton previous
-	
+
 	class ClickPrevious implements ActionListener
 	{
 
@@ -76,11 +67,11 @@ public class MenuH1PanelGallery extends JPanel{
 			if(GalleryPanel.class != null)
 			{
 				System.out.println("salut");
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 	//quand on clique sur le bouton create
@@ -94,21 +85,11 @@ public class MenuH1PanelGallery extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 
-			if(GalleryPanel.class != null)
-			{
-				int resultat = fileChooser.showOpenDialog(null);
-
-				if(resultat == fileChooser.CANCEL_OPTION)
-				{
-					fileChooser.cancelSelection();
-					return;
-				}
-
-
-
-			}
+			
+				
 		}
+
+		
 	}
 }

@@ -23,9 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
+import GalerieApp.MenuH1PanelGallery;
 import Images.IconBase;
 import Panels.MenuH1PanelContact;
-import Panels.MenuH1PanelGallery;
 
 /**
  * @author Loris_Clivaz

@@ -26,7 +26,6 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.BackPanel;
-import Panels.UpPanel;
 
 /**
  * @author Loris_Clivaz
@@ -37,10 +36,9 @@ public class Frame extends JFrame
 	//Ajout des panelss
 	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
-	UpPanel uppanel = new UpPanel();
 	BackPanel backpanel = new BackPanel();
 	MainPanel mainpanel = new MainPanel();
-	
+	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
 	
 	//Ajout des icons

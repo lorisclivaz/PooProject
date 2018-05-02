@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import GalerieApp.MenuH1PanelGallery;
 import Images.IconBase;
-import Panels.MenuH1PanelGallery;
 
 public class DetailContactPanel extends JPanel
 {
