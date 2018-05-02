@@ -104,7 +104,6 @@ public class NewContact extends JPanel
 													textPhone.getText());
 			this.serializeObject(contactEnCreation);
 			System.out.println("Sérialisation effectuée");
-			cardLayout.show(triPanel, "listepanel");
 			
 		}
 		

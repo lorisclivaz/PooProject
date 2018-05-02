@@ -10,6 +10,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -42,17 +45,21 @@ public class ListePanel extends JPanel
 		Panel.setLayout(new BoxLayout(Panel, BoxLayout.Y_AXIS));
 		this.setBackground(Color.decode("#FFFFFF"));
 		
-		
-		Contact[] bookContact = new Contact[30];
-		
-		for(int i=0;i<30;i++) {
-			bookContact[i] = new Contact("Bridy"+i, "Vivian"+i, "Route"+i, "Num"+i, "vivian"+i+"@gmail.com");
-		}
-		
-		for(int i=0; i<30; i++) {
+		//On calcule le nombre de contact dans le dossier serialisation
+		File dossier = new File("serialisation");
+		File[] f = dossier.listFiles();
+		String path;
+		Contact current;
+		int nombreFichier = 0;
+		for (int i = 0 ; i < f.length ; i++) {
+		  if (f[i].isFile()) {
+//		    nombreFichier++;
+			path = f[i].getAbsolutePath();
+			current = this.deSerializeObject(path);
 			JButton bouton = new JButton();
-			bouton.setText(bookContact[i].getNom()+" "+bookContact[i].getPrenom());
-			Panel.add(bouton);	
+			bouton.setText(current.getNom()+" "+current.getPrenom());
+			Panel.add(bouton);
+		  }
 		}
 		s.getViewport().add(Panel);
 		add(s);
@@ -60,6 +67,23 @@ public class ListePanel extends JPanel
 		
 		menuh1panel.setCardLayout(cardLayout,triPanel);
 		
+	}
+	
+	public Contact deSerializeObject(String path) { 
+		try {
+			FileInputStream fichier = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fichier);
+			Contact cs = (Contact) ois.readObject();
+			return cs;
+		}
+		catch (java.io.IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
