@@ -25,7 +25,10 @@ import Panels.MenuH1Panel;
 public class GalleryPanel extends JPanel
 {
 
-	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", getClass().getSimpleName());
+	IconBase create = new IconBase("images/icones/plus.png",40,40);
+	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+	
+	MenuH1Panel menuh1panel = new MenuH1Panel("Gallery", getClass().getSimpleName(),previous,create);
 	
 	IconBase retour = new IconBase("images/icones/retour.jpg", 50, 50);
 	

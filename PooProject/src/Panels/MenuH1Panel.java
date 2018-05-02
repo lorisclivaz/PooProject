@@ -28,12 +28,11 @@ public class MenuH1Panel extends JPanel{
 	
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
-	IconBase create = new IconBase("images/icones/plus.png",40,40);
-	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+
 	IconBase vide = new IconBase("",40,40);
 
 	
-	public MenuH1Panel(String titre, String nomClass)
+	public MenuH1Panel(String titre, String nomClass, IconBase previous,IconBase create)
 		// TODO Auto-generated constructor stube
 		{
 			titrePanel = new JLabel(titre);
@@ -42,7 +41,7 @@ public class MenuH1Panel extends JPanel{
 			this.setPreferredSize(new Dimension(480, 78));
 			this.setBackground(Color.decode("#DFDFDF"));
 			
-			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
+			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8));
 			if(nomClass.equals("ContactPanel")) {
 				//On met le plus à gauche
 				this.add(vide, BorderLayout.WEST);
@@ -55,25 +54,8 @@ public class MenuH1Panel extends JPanel{
 			//On met le plus à droite
 			this.add(create, BorderLayout.EAST);
 			
-			//On met un listener sur le bouton
-			create.addActionListener(new ClickCreate(nomClass));
+			
 			
 		}
 	
-	//quand on clique sur le bouton create
-	class ClickCreate implements ActionListener{
-		
-		String nomClass;
-		
-		public ClickCreate(String nomClass) {
-			this.nomClass = nomClass;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			System.out.println("Hello");
-		}
-		
-	}
 }

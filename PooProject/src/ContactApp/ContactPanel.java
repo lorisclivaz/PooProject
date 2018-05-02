@@ -13,12 +13,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
+import Images.IconBase;
 import Panels.MenuH1Panel;
 
 /**
@@ -29,8 +32,11 @@ public class ContactPanel extends JPanel
 {
 	private String titre = "Contacts";
 	private ListePanel listepanel = new ListePanel();
-	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
+	IconBase create = new IconBase("images/icones/plus.png",40,40);
+	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName(),previous,create);
 	private JScrollPane scrollPane = new JScrollPane(listepanel);
+	NewContact newcontact = new NewContact();
 
 	
 	public ContactPanel() {
@@ -40,16 +46,29 @@ public class ContactPanel extends JPanel
 		
 		//On affiche titre H1 dans le panel UP s
 		this.setLayout(new BorderLayout());
+		
+		//On met un listener sur le bouton
+		create.addActionListener(new ClickCreate());
+		
 		this.add(menuh1panel, BorderLayout.NORTH);
 		
 		//On affiche la liste de contact
 		listepanel.setLayout(new FlowLayout());
-		add(listepanel, BorderLayout.CENTER);
+		this.add(listepanel, BorderLayout.CENTER);
 		scrollPane.setPreferredSize(new Dimension(30, 10));
 	
 		this.add(scrollPane,BorderLayout.EAST);
 		
+	}
+	
+	//quand on clique sur le bouton create
+	class ClickCreate implements ActionListener{
 		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			System.out.println("Hello");
+		}
 		
 	}
 }
