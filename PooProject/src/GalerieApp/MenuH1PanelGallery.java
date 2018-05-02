@@ -98,6 +98,7 @@ public class MenuH1PanelGallery extends JPanel{
 			
 			nomPhoto = choisir.getName(valeur);
 			
+			
 			try {
 				serializeObject(valeur);
 			} catch (IOException e1) {
