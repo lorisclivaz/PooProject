@@ -97,9 +97,6 @@ public class MenuH1PanelContact extends JPanel{
 			// TODO Auto-generated method stub
 
 			System.out.println("Salut");
-
-
-			}
 		}
 	}
 }
