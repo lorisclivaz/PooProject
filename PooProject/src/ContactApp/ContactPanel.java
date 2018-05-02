@@ -34,7 +34,7 @@ public class ContactPanel extends JPanel
 	private ListePanel listepanel = new ListePanel();
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName(),previous,create);
+	private MenuH1Panel menuh1panel = new MenuH1Panel(titre, getClass().getSimpleName());
 	private JScrollPane scrollPane = new JScrollPane(listepanel);
 	NewContact newcontact = new NewContact();
 

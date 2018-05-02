@@ -18,7 +18,7 @@ public class NewContact extends JPanel
 	
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1Panel menuh1panel = new MenuH1Panel("Nouv. Contact", getClass().getSimpleName(),previous,create);
+	private MenuH1Panel menuh1panel = new MenuH1Panel("Nouv. Contact", getClass().getSimpleName());
 	private IconBase imageContact = new IconBase("images/photos/contact-1.png",480,300);
 	private JPanel infosContact = new JPanel();
 	
