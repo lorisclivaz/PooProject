@@ -17,6 +17,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -54,10 +55,13 @@ public class GalleryPanel extends JPanel
 
 	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
 
+	
+	Photo photos [] ;
+
 
 	public GalleryPanel()
 	{
-
+		this.photos  = new Photo[10];
 
 
 		//scanGalleryFolder();
@@ -78,7 +82,26 @@ public class GalleryPanel extends JPanel
 
 	}
 
+	
 
+	private static void deserializeObject(Photo	photo) throws IOException, ClassNotFoundException 
+	{
+		
+		
+		FileInputStream fichier = new FileInputStream("serialisationPhoto/photo.ser");	
+		
+		BufferedInputStream bfichier = new BufferedInputStream(fichier);
+		
+		ObjectInputStream lireobject = new ObjectInputStream(bfichier);	
+		
+		Photo valeur = (Photo) lireobject.readObject();
+		
+		
+		
+		
+		lireobject.close();
+		
+	}
 
-
+	
 }
