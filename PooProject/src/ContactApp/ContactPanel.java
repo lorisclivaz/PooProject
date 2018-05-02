@@ -23,6 +23,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import Images.IconBase;
+import Panels.MenuH1PanelContact;
 import Panels.MenuH1PanelGallery;
 
 /**
@@ -35,7 +36,7 @@ public class ContactPanel extends JPanel
 	private ListePanel listepanel = new ListePanel();
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	private MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery(titre, getClass().getSimpleName());
+	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact(titre, getClass().getSimpleName());
 	NewContact newcontact = new NewContact();
 
 	
