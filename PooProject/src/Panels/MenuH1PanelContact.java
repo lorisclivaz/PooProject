@@ -96,16 +96,7 @@ public class MenuH1PanelContact extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 
-			if(GalleryPanel.class != null)
-			{
-				int resultat = fileChooser.showOpenDialog(null);
-
-				if(resultat == fileChooser.CANCEL_OPTION)
-				{
-					fileChooser.cancelSelection();
-					return;
-				}
-
+			System.out.println("Salut");
 
 
 			}
