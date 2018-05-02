@@ -34,9 +34,7 @@ public class MenuH1PanelGallery extends JPanel{
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("",40,40);
 
-	private String nomPhoto;
-	private String nomPhotoFinal;
-
+	public String nomPhoto;
 
 
 	public MenuH1PanelGallery(String titre, String nomClass)
@@ -97,9 +95,9 @@ public class MenuH1PanelGallery extends JPanel{
 			choisir.setFileFilter(filter);
 			choisir.showOpenDialog(MenuH1PanelGallery.this);
 			File valeur = choisir.getSelectedFile();
+			
 			nomPhoto = choisir.getName(valeur);
 			
-			System.out.println(nomPhoto);
 			try {
 				serializeObject(valeur);
 			} catch (IOException e1) {
@@ -117,7 +115,7 @@ public class MenuH1PanelGallery extends JPanel{
 				File dossier = new File("serialisationPhoto"); 
 				dossier.mkdir();
 				
-				FileOutputStream fichier = new FileOutputStream("serialisationPhoto/photo.ser");
+				FileOutputStream fichier = new FileOutputStream("serialisationPhoto/"+nomPhoto+".ser");
 				
 				BufferedOutputStream bfichier = new  BufferedOutputStream(fichier);
 				
