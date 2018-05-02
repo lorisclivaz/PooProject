@@ -53,11 +53,9 @@ public class ContactPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 		
 		//On affiche la liste de contact
-		listepanel.setLayout(new FlowLayout());
 		this.add(listepanel, BorderLayout.CENTER);
-		scrollPane.setPreferredSize(new Dimension(30, 10));
 	
-		this.add(scrollPane,BorderLayout.EAST);
+		
 		
 	}
 	

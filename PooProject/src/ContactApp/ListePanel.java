@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -22,21 +24,21 @@ public class ListePanel extends JPanel
 	
 	public ListePanel()
 	{
+		this.setLayout(new GridLayout(0, 1, 0, 0));
 		// TODO Auto-generated constructor stube
 		this.setBackground(Color.decode("#FFFFFF"));
 		
 //		this.setLayout(new BorderLayout());
 		
-		Contact[] bookContact = new Contact[10];
+		Contact[] bookContact = new Contact[15];
 		
-		for(int i=0;i<10;i++) {
+		for(int i=0;i<15;i++) {
 			bookContact[i] = new Contact("Bridy"+i, "Vivian"+i, "Route"+i, "Num"+i, "vivian"+i+"@gmail.com");
 		}
 		
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<15; i++) {
 			JButton bouton = new JButton();
 			bouton.setText(bookContact[i].getNom()+" "+bookContact[i].getPrenom());
-			bouton.setPreferredSize(new Dimension(480,78));
 			this.add(bouton);	
 		}
 		
