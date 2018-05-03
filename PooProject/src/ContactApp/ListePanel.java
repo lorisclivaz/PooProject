@@ -67,8 +67,8 @@ public class ListePanel extends JPanel
 		add(s);
 		
 		JScrollBar bar = new JScrollBar();
-		bar.setVisible(false);
-		this.add(bar, BorderLayout.EAST);
+		bar.setVisible(true);
+		Panel.add(bar);
 		
 		setVisible(true);
 		
