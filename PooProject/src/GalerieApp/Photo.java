@@ -27,6 +27,8 @@ public class Photo implements Serializable
 {
 
 	private String url;
+	
+
 	private String nom;
 	
 	
@@ -36,21 +38,16 @@ public class Photo implements Serializable
 		this.url = url;
 	}
 	
-	private static void deserializeObject(Photo photo) throws IOException, ClassNotFoundException 
+	public void affichePhoto(Photo photo)
 	{
 		
-		FileInputStream fichier = new FileInputStream("serialisation/gallery/photo.ser");	
-		
-		BufferedInputStream bfichier = new BufferedInputStream(fichier);
-		
-		ObjectInputStream lireobject = new ObjectInputStream(bfichier);	
-		
-		
-		System.out.println(lireobject.readObject());
-		
-		lireobject.close();
-		
 	}
-	
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 }

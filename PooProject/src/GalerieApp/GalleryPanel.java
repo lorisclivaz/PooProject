@@ -34,6 +34,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import ContactApp.Contact;
 import Images.ImagePhoto;
 import MainFrame.MainPanel;
 
@@ -58,7 +59,8 @@ public class GalleryPanel extends JPanel
 	
 	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
 
-	
+	String path;
+	Photo current;
 	private ArrayList<Photo> photos = new ArrayList<Photo>();
 
 
@@ -82,7 +84,7 @@ public class GalleryPanel extends JPanel
 
 	
 		
-		nbrObjets();
+		
 
 	}
 
@@ -95,30 +97,33 @@ public class GalleryPanel extends JPanel
 		
 		for (int i = 0; i < f.length; i++)
 		{
-			System.out.println(f[i].getAbsolutePath()); 
+			path = f[i].getAbsolutePath(); 
+			current = this.deSerializeObject(path);
+			
+			
+			
 		}
 		
 		
 	}
 	
-	
-
-	private static void readObject(Photo photo) throws IOException, ClassNotFoundException 
-	{
-		
-		
-		FileInputStream fichier = new FileInputStream("serialisationPhoto/photo.ser");	
-		
-		BufferedInputStream bfichier = new BufferedInputStream(fichier);
-		
-		ObjectInputStream lireobject = new ObjectInputStream(bfichier);	
-		
-		Photo valeur = (Photo) lireobject.readObject();
-		
-
-		lireobject.close();
-		
+	public Photo deSerializeObject(String path) { 
+		try {
+			FileInputStream fichier = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fichier);
+			Photo cs = (Photo) ois.readObject();
+			return cs;
+		}
+		catch (java.io.IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
+
 
 	
 }
