@@ -9,15 +9,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -35,7 +40,7 @@ public class MenuH1PanelGallery extends JPanel{
 	IconBase vide = new IconBase("",40,40);
 
 	public String nomPhoto;
-
+	
 
 	public MenuH1PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
@@ -96,44 +101,20 @@ public class MenuH1PanelGallery extends JPanel{
 			choisir.showOpenDialog(MenuH1PanelGallery.this);
 			File valeur = choisir.getSelectedFile();
 			
-			nomPhoto = choisir.getName(valeur);
-			
-			
-			try {
-				WriteObject(valeur);
+			  try {
+				ImageIO.write((RenderedImage) valeur, "jpg", new File("C:/Users/Loris_Clivaz/git/PooProject/PooProject/imagesgallery"));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			
+			System.out.println(valeur.getAbsolutePath());
+			
 		}
 
-		private  void WriteObject(File valeur) throws IOException
-
-		{
-
-			try {
-				
-				File dossier = new File("serialisationPhoto"); 
-				dossier.mkdir();
-				
-				FileOutputStream fichier = new FileOutputStream("serialisationPhoto/"+nomPhoto+".ser");
-				
-				BufferedOutputStream bfichier = new  BufferedOutputStream(fichier);
-				
-				ObjectOutputStream ecrireobjet = new ObjectOutputStream(bfichier);
-				
-				ecrireobjet.writeObject(valeur);
-			
-				ecrireobjet.close();
-				
-				
-			} catch (FileNotFoundException e) {
-
-					e.printStackTrace();
-			}
-			
-			System.out.println("J'ai été sérializé !!");
-		}
+		
+		
 		
 	}
 }

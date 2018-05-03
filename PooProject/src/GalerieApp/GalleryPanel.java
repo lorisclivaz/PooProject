@@ -61,7 +61,7 @@ public class GalleryPanel extends JPanel
 
 	String path;
 	Photo current;
-	private ArrayList<Photo> photos = new ArrayList<Photo>();
+	
 
 
 	public GalleryPanel()
@@ -84,48 +84,12 @@ public class GalleryPanel extends JPanel
 
 	
 		
-		nbrObjets();
 
 	}
 
-	public void nbrObjets()
-	{
-		
-		
-		File dossier = new File("serialisationPhoto");
-		File[] f = dossier.listFiles();
-		
-		for (int i = 0; i < f.length; i++)
-		{
-			path = f[i].getAbsolutePath(); 
-			current = deSerializeObject(path);
-			
-			
-			
-			ImagePhoto imagephoto = new ImagePhoto(current.getUrl());
-			
-			this.add(imagephoto, BorderLayout.CENTER);
-		}
-		
-		
-	}
 	
-	public Photo deSerializeObject(String path) { 
-		try {
-			FileInputStream fichier = new FileInputStream(path);
-			ObjectInputStream ois = new ObjectInputStream(fichier);
-			Photo cs = (Photo) ois.readObject();
-			return cs;
-		}
-		catch (java.io.IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	
+	
 
 
 	
