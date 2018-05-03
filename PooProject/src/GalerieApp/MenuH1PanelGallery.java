@@ -100,14 +100,14 @@ public class MenuH1PanelGallery extends JPanel{
 			
 			
 			try {
-				serializeObject(valeur);
+				WriteObject(valeur);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 
-		private  void serializeObject(File valeur) throws IOException
+		private  void WriteObject(File valeur) throws IOException
 
 		{
 

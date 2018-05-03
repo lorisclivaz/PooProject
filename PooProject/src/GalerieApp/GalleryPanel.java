@@ -80,9 +80,9 @@ public class GalleryPanel extends JPanel
 		JScrollBar bar = new JScrollBar();
 		this.add(bar, BorderLayout.EAST);		
 
+	
+		
 		nbrObjets();
-		
-		
 
 	}
 
@@ -101,27 +101,9 @@ public class GalleryPanel extends JPanel
 		
 	}
 	
-	private void deserial()
-	{
-		try 
-		{
-			FileInputStream fichier = new FileInputStream("serialisationPhoto/photos.ser");
-			ObjectInputStream ois = new ObjectInputStream(fichier);
-			photos = (ArrayList<Photo>) ois.readObject();
-			ois.close();
-		} 
-		catch (IOException e) 
-		{
-			photos = new ArrayList<Photo>();
-		} 
-		catch (ClassNotFoundException e) 
-		{
-			e.printStackTrace();
+	
 
-		}
-	}
-
-	private static void deserializeObject(Photo	photo) throws IOException, ClassNotFoundException 
+	private static void readObject(Photo photo) throws IOException, ClassNotFoundException 
 	{
 		
 		
@@ -133,9 +115,7 @@ public class GalleryPanel extends JPanel
 		
 		Photo valeur = (Photo) lireobject.readObject();
 		
-		
-		
-		
+
 		lireobject.close();
 		
 	}
