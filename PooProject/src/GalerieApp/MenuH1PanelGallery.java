@@ -6,9 +6,11 @@ package GalerieApp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,15 +103,7 @@ public class MenuH1PanelGallery extends JPanel{
 			choisir.showOpenDialog(MenuH1PanelGallery.this);
 			File valeur = choisir.getSelectedFile();
 			
-			  try {
-				ImageIO.write((RenderedImage) valeur, "jpg", new File("C:/Users/Loris_Clivaz/git/PooProject/PooProject/imagesgallery"));
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
-			System.out.println(valeur.getAbsolutePath());
+			System.out.println(valeur);
 			
 		}
 
