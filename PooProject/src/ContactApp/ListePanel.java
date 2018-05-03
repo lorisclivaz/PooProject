@@ -58,7 +58,7 @@ public class ListePanel extends JPanel
 			current = this.deSerializeObject(path);
 			JButton bouton = new JButton();
 			bouton.setText(current.getNom()+" "+current.getPrenom());
-			bouton.setPreferredSize(new Dimension(480,100));
+			bouton.setPreferredSize(new Dimension(470,100));
 			Panel.add(bouton);
 		  }
 		}
@@ -67,6 +67,7 @@ public class ListePanel extends JPanel
 		add(s);
 		
 		JScrollBar bar = new JScrollBar();
+		bar.setVisible(false);
 		this.add(bar, BorderLayout.EAST);
 		
 		setVisible(true);
