@@ -84,7 +84,7 @@ public class GalleryPanel extends JPanel
 
 	
 		
-		
+		nbrObjets();
 
 	}
 
@@ -98,10 +98,13 @@ public class GalleryPanel extends JPanel
 		for (int i = 0; i < f.length; i++)
 		{
 			path = f[i].getAbsolutePath(); 
-			current = this.deSerializeObject(path);
+			current = deSerializeObject(path);
 			
 			
 			
+			ImagePhoto imagephoto = new ImagePhoto(current.getUrl());
+			
+			this.add(imagephoto, BorderLayout.CENTER);
 		}
 		
 		

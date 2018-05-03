@@ -19,6 +19,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import Images.ImagePhoto;
+
 /**
  * @author Loris_Clivaz
  *
@@ -38,10 +40,7 @@ public class Photo implements Serializable
 		this.url = url;
 	}
 	
-	public void affichePhoto(Photo photo)
-	{
-		
-	}
+	
 
 	public String getUrl() {
 		return url;
