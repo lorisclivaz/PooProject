@@ -40,8 +40,8 @@ public class ListePanel extends JPanel
 //		this.setLayout(new GridLayout(0, 1, 7, 7));
 		// TODO Auto-generated constructor stube
 		this.setSize(480,400);
-		
-		this.add(menuh1panel);
+		this.setLayout(new BorderLayout());
+		this.add(menuh1panel, BorderLayout.NORTH);
 		
 		Panel.setLayout(new BoxLayout(Panel, BoxLayout.Y_AXIS));
 		this.setBackground(Color.decode("#FFFFFF"));
@@ -65,6 +65,10 @@ public class ListePanel extends JPanel
 		Panel.setPreferredSize(new Dimension(480,640));
 		s.getViewport().add(Panel);
 		add(s);
+		
+		JScrollBar bar = new JScrollBar();
+		this.add(bar, BorderLayout.EAST);
+		
 		setVisible(true);
 		
 		menuh1panel.setCardLayout(cardLayout,triPanel);

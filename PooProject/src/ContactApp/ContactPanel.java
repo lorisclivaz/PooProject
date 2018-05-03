@@ -60,8 +60,7 @@ public class ContactPanel extends JPanel
 		//On ajoute newcontact
 		triPanel.add(newcontact, "newcontact");
 		
-		JScrollBar bar = new JScrollBar();
-		this.add(bar, BorderLayout.EAST);
+		
 //		menuh1panel.setCardLayout(cardLayout,triPanel);
 		
 	}
