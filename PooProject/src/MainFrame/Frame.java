@@ -26,7 +26,7 @@ import Images.ImageFond;
 import Panels.UpPanel;
 
 /**
- * @author Loris_Clivaz
+ * @author Loris_Clivazs
  *
  */
 public class Frame extends JFrame
