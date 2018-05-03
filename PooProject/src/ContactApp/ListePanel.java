@@ -18,6 +18,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import Panels.MenuH1PanelContact;
@@ -53,14 +54,15 @@ public class ListePanel extends JPanel
 		int nombreFichier = 0;
 		for (int i = 0 ; i < f.length ; i++) {
 		  if (f[i].isFile()) {
-//		    nombreFichier++;
 			path = f[i].getAbsolutePath();
 			current = this.deSerializeObject(path);
 			JButton bouton = new JButton();
 			bouton.setText(current.getNom()+" "+current.getPrenom());
+			bouton.setPreferredSize(new Dimension(480,100));
 			Panel.add(bouton);
 		  }
 		}
+		Panel.setPreferredSize(new Dimension(480,640));
 		s.getViewport().add(Panel);
 		add(s);
 		setVisible(true);
