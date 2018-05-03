@@ -12,6 +12,7 @@ package GalerieApp;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -33,7 +34,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Images.ImagePhoto;
 import MainFrame.MainPanel;
+
 
 
 
@@ -52,16 +55,16 @@ public class GalleryPanel extends JPanel
 
 
 
-
+	
 	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
 
 	
-	Photo photos [] ;
+	private ArrayList<Photo> photos = new ArrayList<Photo>();
 
 
 	public GalleryPanel()
 	{
-		this.photos  = new Photo[10];
+		
 
 
 		//scanGalleryFolder();
@@ -77,12 +80,46 @@ public class GalleryPanel extends JPanel
 		JScrollBar bar = new JScrollBar();
 		this.add(bar, BorderLayout.EAST);		
 
-
-
+		nbrObjets();
+		
+		
 
 	}
 
+	public void nbrObjets()
+	{
+		
+		
+		File dossier = new File("serialisationPhoto");
+		File[] f = dossier.listFiles();
+		
+		for (int i = 0; i < f.length; i++)
+		{
+			System.out.println(f[i].getAbsolutePath()); 
+		}
+		
+		
+	}
 	
+	private void deserial()
+	{
+		try 
+		{
+			FileInputStream fichier = new FileInputStream("serialisationPhoto/photos.ser");
+			ObjectInputStream ois = new ObjectInputStream(fichier);
+			photos = (ArrayList<Photo>) ois.readObject();
+			ois.close();
+		} 
+		catch (IOException e) 
+		{
+			photos = new ArrayList<Photo>();
+		} 
+		catch (ClassNotFoundException e) 
+		{
+			e.printStackTrace();
+
+		}
+	}
 
 	private static void deserializeObject(Photo	photo) throws IOException, ClassNotFoundException 
 	{
