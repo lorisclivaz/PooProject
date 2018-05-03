@@ -2,7 +2,7 @@
  * Author : Vivian Bridy
  * Date creation : 30 avr. 2018
  */
-package GalerieApp;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

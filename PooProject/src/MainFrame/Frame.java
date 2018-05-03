@@ -16,16 +16,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import ContactApp.ContactPanel;
 import GalerieApp.GalleryPanel;
 import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
-import Panels.BackPanel;
+import Panels.UpPanel;
 
 /**
  * @author Loris_Clivaz
@@ -36,8 +34,8 @@ public class Frame extends JFrame
 	//Ajout des panelss
 	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
-	BackPanel backpanel = new BackPanel();
-	MainPanel mainpanel = new MainPanel();
+	JPanel backpanel = new JPanel();
+	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
 	

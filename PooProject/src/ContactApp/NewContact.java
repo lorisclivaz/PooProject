@@ -20,8 +20,8 @@ import javax.swing.JPanel;
 
 import Images.IconBase;
 import Panels.MenuH1PanelContact;
+import Panels.MenuH1PanelGallery;
 import ContactApp.ContactPanel;
-import GalerieApp.MenuH1PanelGallery;
 
 public class NewContact extends JPanel 
 {	

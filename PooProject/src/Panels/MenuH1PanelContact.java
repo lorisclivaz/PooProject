@@ -28,12 +28,18 @@ import Images.IconBase;
 
 public class MenuH1PanelContact extends JPanel{
 
+	//Définit un titre sur le panel avec une couleur
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
+	
+	//On instancie les icones pour les ajouters sur le panel
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("images/icones/left-arrow.png",40,40);
+	
 	String titre, nomClass;
+	
+	//Pour faire le tri des panels
 	CardLayout cardlayout = new CardLayout();
 	JPanel triPanel = new JPanel(cardlayout);
 

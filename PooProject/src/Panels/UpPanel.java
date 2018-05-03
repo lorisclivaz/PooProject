@@ -7,7 +7,7 @@
 /**
  * 
  */
-package MainFrame;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +23,8 @@ public class UpPanel extends JPanel{
 
 	
 
-		
+		//Constructeur qui définit la taille du panel ou il y aura la batterie l'heure ect...
+	
 		public UpPanel() 
 		{
 			this.setLayout(new BorderLayout());
