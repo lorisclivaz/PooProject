@@ -24,7 +24,7 @@ import Panels.MenuH1PanelGallery;
 
 
 /**
- * @author Loris_Clivaz
+ * @author Loris_Clivaza
  *
  */
 public class GalleryPanel extends JPanel 

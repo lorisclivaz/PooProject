@@ -53,7 +53,7 @@ public class MenuH1PanelGallery extends JPanel{
 		this.setPreferredSize(new Dimension(480, 78));
 		this.setBackground(Color.decode("#DFDFDF"));
 
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
+		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur maxs
 		if(nomClass.equals("ContactPanel")) {
 			//On met le plus à gauche
 			this.add(vide, BorderLayout.WEST);

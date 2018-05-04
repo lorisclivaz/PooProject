@@ -28,7 +28,7 @@ import Images.IconBase;
 
 public class MenuH1PanelContact extends JPanel{
 
-	//Définit un titre sur le panel avec une couleur
+	//Définit un titre sur le panel avec une couleurs
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 	

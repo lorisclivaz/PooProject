@@ -23,7 +23,7 @@ public class UpPanel extends JPanel{
 
 	
 
-		//Constructeur qui définit la taille du panel ou il y aura la batterie l'heure ect...
+		//Constructeur qui définit la taille du panel ou il y aura la batterie l'heures ect...
 	
 		public UpPanel() 
 		{
