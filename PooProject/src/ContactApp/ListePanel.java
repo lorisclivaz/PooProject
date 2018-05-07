@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -31,11 +33,13 @@ public class ListePanel extends JPanel
 	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact(titre, getClass().getSimpleName());
 	public   CardLayout cardLayout;
 	public  JPanel triPanel;
+	ModifContact modifcontact;
 	
 	public ListePanel(CardLayout cardlayout,JPanel triPanel)
 	{
 		this.cardLayout = cardlayout;
 		this.triPanel = triPanel;
+	
 		
 //		this.setLayout(new GridLayout(0, 1, 7, 7));
 		// TODO Auto-generated constructor stube
@@ -58,6 +62,7 @@ public class ListePanel extends JPanel
 			current = this.deSerializeObject(path);
 			JButton bouton = new JButton();
 			bouton.setText(current.getNom()+" "+current.getPrenom());
+			bouton.addActionListener(new ClickContact(current));
 			bouton.setPreferredSize(new Dimension(470,100));
 			Panel.add(bouton);
 		  }
@@ -91,6 +96,25 @@ public class ListePanel extends JPanel
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	class ClickContact implements ActionListener{
+
+		Contact contact;
+		public ClickContact(Contact contact) {
+			// TODO Auto-generated constructor stub
+			this.contact = contact;
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			ModifContact modifcontact = new ModifContact(contact, cardLayout,triPanel);
+			
+			triPanel.add(modifcontact, "modifcontact");
+			
+			cardLayout.show(triPanel, "modifcontact");
+		}
+		
 	}
 
 }

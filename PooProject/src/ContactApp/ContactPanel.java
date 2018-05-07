@@ -42,7 +42,6 @@ public class ContactPanel extends JPanel
 	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact(titre, getClass().getSimpleName());
 	private ListePanel listepanel = new ListePanel(cardLayout,triPanel);
 	NewContact newcontact = new NewContact(cardLayout,triPanel);
-	
 	public ContactPanel() {
 		// TODO Auto-generated constructor stub
 		this.setPreferredSize(new Dimension(480, 40));
@@ -60,7 +59,7 @@ public class ContactPanel extends JPanel
 		//On ajoute newcontact
 		triPanel.add(newcontact, "newcontact");
 		
-		
+//		triPanel.add(modifcontact, "modifcontact");
 //		menuh1panel.setCardLayout(cardLayout,triPanel);
 		
 	}
