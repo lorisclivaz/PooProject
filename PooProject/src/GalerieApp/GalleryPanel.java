@@ -46,9 +46,8 @@ public class GalleryPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 
 
-		//Ajout de la scrool bar
-		JScrollBar bar = new JScrollBar();
-		this.add(bar, BorderLayout.EAST);		
+		// ajouter la methode deSerializeObject
+		
 
 	
 		
