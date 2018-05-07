@@ -1,34 +1,17 @@
 /*
- * Author : Vivian Bridy
+ * Author : Loris C
  * Date creation : 30 avr. 2018
  */
 package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,7 +23,6 @@ import Images.IconBase;
 
 public class MenuH1PanelGallery extends JPanel{
 
-	private ArrayList<Picture> listImg =new ArrayList<Picture>();
 
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
@@ -73,11 +55,19 @@ public class MenuH1PanelGallery extends JPanel{
 		//On met le plus à droite
 		this.add(create, BorderLayout.EAST);
 
+
 		//On met un listener sur le bouton
 		create.addActionListener(new ClickCreate(nomClass));
 		previous.addActionListener(new ClickPrevious());
 
+
+
+
+
 	}
+
+
+
 
 	//quand on clique sur le bouton previous
 
@@ -119,63 +109,16 @@ public class MenuH1PanelGallery extends JPanel{
 				repaint();
 			}
 
-			
+
 
 
 		}
 
-		// Création des "boutons photos", miniatures
-		public  class minipicture extends JButton {
-			private Picture pic;
-
-			public minipicture(String path) {
-				super();
-				this.setIcon(new ImageIcon(path));
-				this.setOpaque(false);
-				this.setBorderPainted(false);
-				this.setContentAreaFilled(false);
-				this.setFocusPainted(false);
-
-				try {
-					this.pic = new Picture(path, ImageIO.read(new File(path)));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				BufferedImage img = pic.getPicture();
-				int nW = img.getWidth() / (img.getHeight() / 100);
-				
-				this.setPreferredSize(new Dimension(nW, 100));
-
-
-				this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-				listImg.add(pic);
-
-			}
-
-
-		}
-		public void actualisePhoto() {
 
 
 
-			File folder = new File("imagesgallery");
-			if (!folder.exists()) {
-				folder.mkdirs();
-			}
-
-			File[] photos = folder.listFiles();
-			for (File photo : photos) {
-
-				System.out.println(photo.getAbsolutePath());
-				new minipicture(photo.getAbsolutePath());
-
-			}
-
-		}
 	}
 }
 
-	
+
+

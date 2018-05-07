@@ -58,15 +58,29 @@ public class GalleryPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 		center.setLayout(new GridLayout(2, 3));
 
-		
 
+		actualisePhoto();
 
 
 	}
 
 
-	
-	// Création des "boutons photos", miniatures
-	
-	
+
+	public void actualisePhoto() {
+
+
+
+		File folder = new File("imagesgallery");
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		File[] photos = folder.listFiles();
+		for (File photo : photos) {
+
+			System.out.println(photo.getAbsolutePath());
+		}
+
+
+	}
 }
