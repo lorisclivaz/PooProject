@@ -21,7 +21,7 @@ import GalerieApp.Picture;
 import Images.IconBase;
 
 
-public class MenuH1PanelGallery extends JPanel{
+public class PanelGallery extends JPanel{
 
 
 	JLabel titrePanel;
@@ -33,7 +33,7 @@ public class MenuH1PanelGallery extends JPanel{
 	public String nomPhoto;
 
 
-	public MenuH1PanelGallery(String titre, String nomClass)
+	public PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
 		titrePanel = new JLabel(titre);
@@ -99,7 +99,7 @@ public class MenuH1PanelGallery extends JPanel{
 			choisir.setAcceptAllFileFilterUsed(false);
 			choisir.setFileFilter(filter);
 
-			int returnVal = choisir.showOpenDialog(MenuH1PanelGallery.this);
+			int returnVal = choisir.showOpenDialog(PanelGallery.this);
 
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 			{
