@@ -38,7 +38,8 @@ public class UpPanel extends JPanel{
 			this.setBackground(Color.BLACK);
 			
 			
-			date.setText("      4G     "+madate.getHours()+" : "+ madate.getMinutes()+ madate.getMinutes()+"    ");
+			date.setText("      4G     "+madate.getHours()+" : "+madate.getMinutes()+"    ");
+			
 			date.setForeground(Color.WHITE);
 			
 			fourni.setForeground(Color.WHITE);
