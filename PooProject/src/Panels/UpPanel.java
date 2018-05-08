@@ -13,6 +13,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JLabel;
@@ -24,8 +27,10 @@ import javax.swing.JPanel;
  */
 public class UpPanel extends JPanel{
 
+	//Création de l'heure avec le nom swisscom
 	Date madate = new Date();
 	JLabel date = new JLabel();
+	DateFormat formatHeure = new SimpleDateFormat("HH:mm");
 	JLabel fourni = new JLabel("    Swisscom");
 	
 
@@ -37,10 +42,12 @@ public class UpPanel extends JPanel{
 			this.setPreferredSize(new Dimension(480, 50));
 			this.setBackground(Color.BLACK);
 			
-			
-			date.setText("      4G     "+madate.getHours()+" : "+madate.getMinutes()+"    ");
-			
+			//heure
+			Calendar now = Calendar.getInstance();
+			date.setText("      4G     "+formatHeure.format(now.getTime())+"    ");
 			date.setForeground(Color.WHITE);
+			
+			
 			
 			fourni.setForeground(Color.WHITE);
 			this.add(fourni, BorderLayout.WEST);
