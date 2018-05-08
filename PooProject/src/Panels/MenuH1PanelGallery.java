@@ -1,39 +1,28 @@
 /*
- * Author : Vivian Bridy
+ * Author : Loris C
  * Date creation : 30 avr. 2018
  */
 package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import GalerieApp.Picture;
 import Images.IconBase;
 
+
 public class MenuH1PanelGallery extends JPanel{
+
 
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
@@ -42,7 +31,7 @@ public class MenuH1PanelGallery extends JPanel{
 	IconBase vide = new IconBase("",40,40);
 
 	public String nomPhoto;
-	
+
 
 	public MenuH1PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
@@ -66,11 +55,19 @@ public class MenuH1PanelGallery extends JPanel{
 		//On met le plus à droite
 		this.add(create, BorderLayout.EAST);
 
+
 		//On met un listener sur le bouton
 		create.addActionListener(new ClickCreate(nomClass));
 		previous.addActionListener(new ClickPrevious());
 
+
+
+
+
 	}
+
+
+
 
 	//quand on clique sur le bouton previous
 
@@ -80,7 +77,7 @@ public class MenuH1PanelGallery extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			
+
 		}
 
 	}
@@ -98,17 +95,30 @@ public class MenuH1PanelGallery extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 
 			JFileChooser choisir = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "png");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("picture", "jpg", "png", "gif");
+			choisir.setAcceptAllFileFilterUsed(false);
 			choisir.setFileFilter(filter);
-			choisir.showOpenDialog(MenuH1PanelGallery.this);
-			File valeur = choisir.getSelectedFile();
-			
-			System.out.println(valeur);
-			
+
+			int returnVal = choisir.showOpenDialog(MenuH1PanelGallery.this);
+
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+			{
+				File file = choisir.getSelectedFile();
+				Picture.copy(file);
+				revalidate();
+				repaint();
+			}
+
+
+
+
 		}
 
-		
-		
-		
+
+
+
 	}
 }
+
+
+

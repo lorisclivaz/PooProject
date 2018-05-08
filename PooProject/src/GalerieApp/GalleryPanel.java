@@ -10,11 +10,22 @@
 package GalerieApp;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import Panels.MenuH1PanelGallery;
+
+
 
 
 
@@ -30,34 +41,46 @@ import Panels.MenuH1PanelGallery;
 public class GalleryPanel extends JPanel 
 {
 
-	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
 
-	
-	
+	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
+	JPanel center = new JPanel();
+
+
 
 
 	public GalleryPanel()
 	{
-		
+
 
 		//scanGalleryFolder();
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
+		center.setLayout(new GridLayout(2, 3));
 
 
-		// ajouter la methode deSerializeObject
-		
+		actualisePhoto();
 
-	
-		
 
 	}
 
-	
-	
-	
 
 
-	
+	public void actualisePhoto() {
+
+
+
+		File folder = new File("imagesgallery");
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		File[] photos = folder.listFiles();
+		for (File photo : photos) {
+
+			System.out.println(photo.getAbsolutePath());
+		}
+
+
+	}
 }

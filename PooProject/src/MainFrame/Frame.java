@@ -16,7 +16,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ContactApp.ContactPanel;
 import GalerieApp.GalleryPanel;
@@ -38,7 +41,7 @@ public class Frame extends JFrame
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
-	
+
 	//Ajout des icons
 	IconLock iconlock = new IconLock();
 	IconBase iconcontact = new IconBase("images/icones/contact.png", 100,100);
@@ -65,7 +68,7 @@ public class Frame extends JFrame
 	
 	public Frame() 
 	{
-
+		
 		
 		
 		this.setSize(480, 860);
@@ -77,6 +80,7 @@ public class Frame extends JFrame
 		
 		//ajout du panel du haut
 		this.add(uppanel, BorderLayout.NORTH);
+		
 
 		//ajout du panel du bas
 		this.add(backpanel, BorderLayout.SOUTH);
