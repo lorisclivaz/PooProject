@@ -26,22 +26,24 @@ public class UpPanel extends JPanel{
 
 	Date madate = new Date();
 	JLabel date = new JLabel();
-	
+	JLabel fourni = new JLabel("    Swisscom");
 	
 
 		//Constructeur qui définit la taille du panel ou il y aura la batterie l'heures ect...
 	
 		public UpPanel() 
 		{
-			this.setLayout(new FlowLayout(100,215,20));
+			this.setLayout(new BorderLayout(2,1));
 			this.setPreferredSize(new Dimension(480, 50));
 			this.setBackground(Color.BLACK);
 			
-			date.setSize(100, 100);
-			date.setText(madate.getHours()+" : "+ madate.getMinutes()+" ");
+			
+			date.setText("      4G     "+madate.getHours()+" : "+ madate.getMinutes()+ madate.getMinutes()+"    ");
 			date.setForeground(Color.WHITE);
 			
-			this.add(date);
+			fourni.setForeground(Color.WHITE);
+			this.add(fourni, BorderLayout.WEST);
+			this.add(date, BorderLayout.EAST);
 		}
 	}
 
