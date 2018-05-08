@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-import Panels.MenuH1PanelGallery;
+import Panels.PanelGallery;
 
 
 
@@ -42,7 +42,7 @@ public class GalleryPanel extends JPanel
 {
 
 
-	MenuH1PanelGallery menuh1panel = new MenuH1PanelGallery("Gallery", "Gallery");
+	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
 	JPanel center = new JPanel();
 
 
