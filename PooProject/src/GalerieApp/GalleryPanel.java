@@ -59,6 +59,7 @@ public class GalleryPanel extends JPanel
 	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
 	JPanel center = new JPanel();
 
+	private Frame frame;
 
 
 	public GalleryPanel()
@@ -143,7 +144,6 @@ public class GalleryPanel extends JPanel
 		JLabel titrePanel;
 		Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 		IconBase create = new IconBase("images/icones/plus.png",40,40);
-		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 		IconBase vide = new IconBase("",40,40);
 
 		public String nomPhoto;
@@ -161,9 +161,8 @@ public class GalleryPanel extends JPanel
 			if(nomClass.equals("ContactPanel")) {
 				//On met le plus à gauche
 				this.add(vide, BorderLayout.WEST);
-			}else {
-				this.add(previous, BorderLayout.WEST);
-			}
+			}else 
+			
 			//On met le titre au centre
 			this.add(titrePanel, BorderLayout.CENTER);
 
@@ -174,7 +173,6 @@ public class GalleryPanel extends JPanel
 			
 			//On met un listener sur le bouton
 			create.addActionListener(new ClickCreate(nomClass));
-			previous.addActionListener(new ClickPrevious());
 
 
 
@@ -185,20 +183,6 @@ public class GalleryPanel extends JPanel
 
 
 
-		//quand on clique sur le bouton previous
-
-		class ClickPrevious implements ActionListener
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			
-				
-
-			}
-
-		}
 
 		//quand on clique sur le bouton create
 		class ClickCreate implements ActionListener{

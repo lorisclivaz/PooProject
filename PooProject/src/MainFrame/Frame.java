@@ -187,5 +187,12 @@ public class Frame extends JFrame
 		public JPanel getMainpanel() {
 			return mainpanel;
 		}
+
+		
+
+		public JPanel getTriPanel() {
+			return triPanel;
+		}
 	
+		
 }
