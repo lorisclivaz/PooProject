@@ -25,7 +25,6 @@ import javax.swing.JScrollPane;
 
 import Images.IconBase;
 import Panels.MenuH1PanelContact;
-import Panels.PanelGallery;
 
 /**
  * @author Loris_Clivaz

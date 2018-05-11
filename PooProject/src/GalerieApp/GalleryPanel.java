@@ -14,7 +14,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -23,14 +23,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Images.IconBase;
+import MainFrame.Frame;
 
 
 
@@ -57,7 +61,6 @@ public class GalleryPanel extends JPanel
 
 
 
-
 	public GalleryPanel()
 	{
 
@@ -66,12 +69,19 @@ public class GalleryPanel extends JPanel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
-		center.setLayout(new GridLayout(2, 3));
+		center.setLayout(new FlowLayout(12,12,12));
 
+		
+		
 		this.add(center, BorderLayout.CENTER);
 		
+	
+		
+		
+		
 		actualisePhoto();
-
+		
+		
 
 	}
 
@@ -161,6 +171,7 @@ public class GalleryPanel extends JPanel
 			this.add(create, BorderLayout.EAST);
 
 
+			
 			//On met un listener sur le bouton
 			create.addActionListener(new ClickCreate(nomClass));
 			previous.addActionListener(new ClickPrevious());
@@ -182,6 +193,8 @@ public class GalleryPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+			
+				
 
 			}
 

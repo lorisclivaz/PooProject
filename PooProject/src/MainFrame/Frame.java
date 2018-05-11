@@ -44,6 +44,8 @@ public class Frame extends JFrame
 
 	//Ajout des icons
 	IconLock iconlock = new IconLock();
+	
+
 	IconBase iconcontact = new IconBase("images/icones/contact.png", 100,100);
 	IconBase icongallery = new IconBase("images/icones/gallery.png", 100,100);
 	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
@@ -180,6 +182,10 @@ public class Frame extends JFrame
 				
 			}
 			
+		}
+		
+		public JPanel getMainpanel() {
+			return mainpanel;
 		}
 	
 }
