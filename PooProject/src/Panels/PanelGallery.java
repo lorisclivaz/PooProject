@@ -32,7 +32,6 @@ public class PanelGallery extends JPanel{
 
 	public String nomPhoto;
 
-
 	public PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
@@ -101,14 +100,12 @@ public class PanelGallery extends JPanel{
 
 			int returnVal = choisir.showOpenDialog(PanelGallery.this);
 
-			if(returnVal == JFileChooser.APPROVE_OPTION)
-			{
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = choisir.getSelectedFile();
 				Picture.copy(file);
 				revalidate();
 				repaint();
 			}
-
 
 
 
