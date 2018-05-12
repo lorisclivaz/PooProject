@@ -131,10 +131,12 @@ public class Frame extends JFrame
 	{
 
 		
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			cardLayout.show(triPanel, "mainpanel");
+			
 
 		}
 		

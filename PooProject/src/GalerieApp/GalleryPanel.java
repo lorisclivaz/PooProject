@@ -10,10 +10,12 @@ package GalerieApp;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -28,7 +30,9 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Images.IconBase;
@@ -42,27 +46,28 @@ public class GalleryPanel extends JPanel
 {
 
 	//Création du tableau d'objet pricture
-	private ArrayList<Picture> listImg =new ArrayList<Picture>();
+	private ArrayList<Picture> listImg = new ArrayList<Picture>();
 
 	//instanciation du panel du haut gallery
 	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
-	PanelPhoto panelphoto = new PanelPhoto();	
 
 	//Création d'un panel central pour mettre les photos
 	JPanel center = new JPanel();
-
 	//Gestion des panels dans la gallery
 	public   CardLayout cardLayout = new CardLayout();
 	public  JPanel triPanel = new JPanel(cardLayout);
-	
-	//Constructeur 
+
+
 	public GalleryPanel()
 	{
-
+		
+		
 		//Choix du layout et de la dimension du panel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
+		
+		
 		center.setLayout(new FlowLayout(12,12,12));
 
 		
@@ -71,7 +76,6 @@ public class GalleryPanel extends JPanel
 		this.add(triPanel, BorderLayout.CENTER);
 
 		triPanel.add(center, "center");
-		triPanel.add(panelphoto, "panelphoto");
 
 		//Méthode qui va gérer les miniphotos dans la gallery
 		actualisePhoto();
@@ -79,8 +83,6 @@ public class GalleryPanel extends JPanel
 	
 
 	}
-	
-	
 
 
 	// Création des "boutons photos", miniatures
@@ -110,42 +112,26 @@ public class GalleryPanel extends JPanel
 			int nW = img.getWidth() / (img.getHeight() / 100);
 			this.setPreferredSize(new Dimension(nW, 100));
 
-			//Ajout du listener pour l'action de la minipicture
-			this.addActionListener(new ActionImgBut());
-
+			
 			//Ajout de la minipicture dans le panel center
 			center.add(this);
 			listImg.add(pic);
 
 		}
 
-
-
-	}
-	
-	
-	private class ActionImgBut implements ActionListener {
-
 		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-			
-			cardLayout.show(triPanel, "panelphoto");
+		protected void paintComponent(Graphics g) {
 
-			menuh1panel.setVisible(false);
-			
-			System.out.println(listImg.toArray());
-			
-			
+			super.paintComponent(g);
+			g.drawImage(pic.getPicture(), 0, 0, getWidth(), getHeight(), this);
 		}
 
 	}
-	
-	
 
 	//Méthode qui va actualiser à chaque fois les images enregistrés
 	public void actualisePhoto() {
 
+		listImg.clear();
 		File folder = new File("imagesgallery");
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -231,10 +217,9 @@ public class GalleryPanel extends JPanel
 		}
 
 
-		public JLabel getTitrePanel() {
-			return titrePanel;
-		}
+
 		
-		
+
 	}
+
 }
