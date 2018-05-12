@@ -1,15 +1,14 @@
 /*
- * Exercise W2Q3 - 2
+ * PanelGallery
  * Author: Clivaz Loris
  * Date creation: 30 avr. 2018
  * 
  */
-/**
- * 
- */
+
 package GalerieApp;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -29,22 +28,10 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Images.IconBase;
-import MainFrame.Frame;
-
-
-
-
-
-
-
-
-
-
 
 
 /**
@@ -54,44 +41,56 @@ import MainFrame.Frame;
 public class GalleryPanel extends JPanel 
 {
 
+	//Création du tableau d'objet pricture
 	private ArrayList<Picture> listImg =new ArrayList<Picture>();
 
+	//instanciation du panel du haut gallery
 	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
+	PanelPhoto panelphoto = new PanelPhoto();	
+
+	//Création d'un panel central pour mettre les photos
 	JPanel center = new JPanel();
 
-	private Frame frame;
-
-
+	//Gestion des panels dans la gallery
+	public   CardLayout cardLayout = new CardLayout();
+	public  JPanel triPanel = new JPanel(cardLayout);
+	
+	//Constructeur 
 	public GalleryPanel()
 	{
 
-
-		//scanGalleryFolder();
+		//Choix du layout et de la dimension du panel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
 		center.setLayout(new FlowLayout(12,12,12));
 
 		
-		
-		this.add(center, BorderLayout.CENTER);
-		
-	
-		
-		
-		
+
+		//Ajout du panel center à galleryPanel
+		this.add(triPanel, BorderLayout.CENTER);
+
+		triPanel.add(center, "center");
+		triPanel.add(panelphoto, "panelphoto");
+
+		//Méthode qui va gérer les miniphotos dans la gallery
 		actualisePhoto();
-		
-		
+
+	
 
 	}
+	
+	
 
 
 	// Création des "boutons photos", miniatures
 	public class minipicture extends JButton {
+
 		private Picture pic;
 
+		//Constructeur avec le lien 
 		public minipicture(String path) {
+
 			super();
 			this.setIcon(new ImageIcon(path));
 			this.setOpaque(false);
@@ -102,30 +101,50 @@ public class GalleryPanel extends JPanel
 			try {
 				this.pic = new Picture(path, ImageIO.read(new File(path)));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 
+			//Choix de la dimension de l'image
 			BufferedImage img = pic.getPicture();
 			int nW = img.getWidth() / (img.getHeight() / 100);
-			//				if (nW > 100)
-			//					this.setPreferredSize(new Dimension(135, 100));
-			//				else
 			this.setPreferredSize(new Dimension(nW, 100));
 
-			center.add(this);
+			//Ajout du listener pour l'action de la minipicture
+			this.addActionListener(new ActionImgBut());
 
+			//Ajout de la minipicture dans le panel center
+			center.add(this);
 			listImg.add(pic);
 
 		}
 
 
-		
+
 	}
-	@SuppressWarnings("unused")
+	
+	
+	private class ActionImgBut implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			cardLayout.show(triPanel, "panelphoto");
+
+			menuh1panel.setVisible(false);
+			
+			System.out.println(listImg.toArray());
+			
+			
+		}
+
+	}
+	
+	
+
+	//Méthode qui va actualiser à chaque fois les images enregistrés
 	public void actualisePhoto() {
-
-
 
 		File folder = new File("imagesgallery");
 		if (!folder.exists()) {
@@ -138,6 +157,8 @@ public class GalleryPanel extends JPanel
 		}
 
 	}
+
+	//Panel du haut dans la gallery avec le bouton d'ajout
 	public class PanelGallery extends JPanel{
 
 
@@ -148,40 +169,35 @@ public class GalleryPanel extends JPanel
 
 		public String nomPhoto;
 
+		//Constructeur
 		public PanelGallery(String titre, String nomClass)
-		// TODO Auto-generated constructor stube
 		{
+
 			titrePanel = new JLabel(titre);
 			titrePanel.setFont(globalFont);
 
 			this.setPreferredSize(new Dimension(480, 78));
 			this.setBackground(Color.decode("#DFDFDF"));
 
-			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur maxs
+			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	
 			if(nomClass.equals("ContactPanel")) {
+
 				//On met le plus à gauche
 				this.add(vide, BorderLayout.WEST);
 			}else 
-			
-			//On met le titre au centre
-			this.add(titrePanel, BorderLayout.CENTER);
+
+				//On met le titre au centre
+				this.add(titrePanel, BorderLayout.CENTER);
 
 			//On met le plus à droite
 			this.add(create, BorderLayout.EAST);
 
 
-			
+
 			//On met un listener sur le bouton
 			create.addActionListener(new ClickCreate(nomClass));
 
-
-
-
-
 		}
-
-
-
 
 
 		//quand on clique sur le bouton create
@@ -210,14 +226,15 @@ public class GalleryPanel extends JPanel
 					revalidate();
 					repaint();
 				}
-
-
-
 			}
 
-
-
-
 		}
+
+
+		public JLabel getTitrePanel() {
+			return titrePanel;
+		}
+		
+		
 	}
 }
