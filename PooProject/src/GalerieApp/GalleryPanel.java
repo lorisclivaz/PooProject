@@ -10,7 +10,6 @@ package GalerieApp;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -18,28 +17,28 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Images.IconBase;
 
 
+
+
 /**
- * @author Loris_Clivaza
+ * @author Loris_Clivaz
  *
  */
 public class GalleryPanel extends JPanel 
@@ -51,38 +50,60 @@ public class GalleryPanel extends JPanel
 	//instanciation du panel du haut gallery
 	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
 
-	//Création d'un panel central pour mettre les photos
+	//Création des panels  pour mettre les photos
 	JPanel center = new JPanel();
+	JPanel photo = new JPanel();
+
 	//Gestion des panels dans la gallery
 	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel = new JPanel(cardLayout);
+	public  JPanel triPanel2 = new JPanel(cardLayout);
+
+	JScrollPane scroll = new  JScrollPane(center);
 
 
 	public GalleryPanel()
 	{
-		
-		
+
+
 		//Choix du layout et de la dimension du panel
+
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
-		
-		
-		center.setLayout(new FlowLayout(12,12,12));
 
-		
+
+		center.setLayout(new GridLayout(2,4,20,20));
+
+
+		scroll.getHorizontalScrollBar();
+		scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+
 
 		//Ajout du panel center à galleryPanel
-		this.add(triPanel, BorderLayout.CENTER);
+		this.add(triPanel2, BorderLayout.CENTER);
 
-		triPanel.add(center, "center");
+		triPanel2.add(scroll, "scroll");
+		triPanel2.add(photo, "photo");
 
 		//Méthode qui va gérer les miniphotos dans la gallery
 		actualisePhoto();
 
-	
+
+
 
 	}
+
+
+
+
+	public JPanel getTriPanel2() {
+		return triPanel2;
+	}
+	public void setTriPanel2(JPanel triPanel) {
+		this.triPanel2 = triPanel;
+	}
+
+
 
 
 	// Création des "boutons photos", miniatures
@@ -112,7 +133,7 @@ public class GalleryPanel extends JPanel
 			int nW = img.getWidth() / (img.getHeight() / 100);
 			this.setPreferredSize(new Dimension(nW, 100));
 
-			
+			this.addActionListener(new ClickPhoto());
 			//Ajout de la minipicture dans le panel center
 			center.add(this);
 			listImg.add(pic);
@@ -127,6 +148,107 @@ public class GalleryPanel extends JPanel
 		}
 
 	}
+
+	//Action sur la clique de l'image dans la gallery
+	class ClickPhoto implements ActionListener
+	{
+
+
+
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+
+			menuh1panel.setVisible(false);
+			cardLayout.show(getTriPanel2(), "photo");
+
+			minipicture minsource = (minipicture) e.getSource();
+
+			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
+			//Création d'un panel pour la photo en grand
+			photo.setLayout(new BorderLayout());
+			photo.setBackground(Color.BLUE);
+			photo.add(photoPanel, BorderLayout.CENTER);
+
+
+			System.out.println("j'ai cliqué!!");
+
+		}
+
+
+	}
+	
+	
+	public class PhotoPanel extends JPanel {
+
+		
+		private GalleryPanel photo;
+		public  Picture image;
+		private MouseAdapter ma;
+		
+		
+		JPanel up = new JPanel();
+		
+		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+		
+		public PhotoPanel(GalleryPanel photo, Picture image) {
+			
+			this.photo = photo;
+			this.image = image;
+			
+			BorderLayout fl = new BorderLayout();
+			this.setLayout(fl);
+			this.setBackground(Color.BLACK);
+			
+			up.setLayout(new BorderLayout());
+			up.setBackground(Color.BLACK);
+			this.add(up, BorderLayout.NORTH);
+			
+			up.add(previous, BorderLayout.WEST);
+			
+			previous.addActionListener(new ClickPrevious());
+			
+			
+
+		}
+		
+		
+
+		class ClickPrevious implements ActionListener
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+
+				cardLayout.show(getTriPanel2(), "scroll");
+				
+				//il faut reprendre le panel de la gallery de base
+
+				System.out.println("J'ai cliqué");
+			}
+			
+		}
+		
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			BufferedImage pic = image.getPicture();
+			int nH = (int) (pic.getHeight() / ((double) pic.getWidth() / getWidth()));
+			if (nH > getHeight()) {
+				int nW = (int) (pic.getWidth() / ((double) pic.getHeight() / getHeight()));
+				int x = (getWidth() - nW) / 2;
+				g.drawImage(pic, x, 0, nW, getHeight(), this);
+			} else {
+
+				int y = (getHeight() - nH) / 2;
+				g.drawImage(pic, 0, y, getWidth(), nH, this);
+			}
+
+		}
+	}
+	
+	
+
 
 	//Méthode qui va actualiser à chaque fois les images enregistrés
 	public void actualisePhoto() {
@@ -218,8 +340,12 @@ public class GalleryPanel extends JPanel
 
 
 
-		
-
 	}
+
+
+	
+
+	
+	
 
 }

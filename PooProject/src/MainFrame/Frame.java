@@ -62,8 +62,8 @@ public class Frame extends JFrame
 	
 	
 	//tri des panels static pour avoir accès dans le panel d'accueil
-	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel = new JPanel(cardLayout);
+	private     CardLayout cardLayout = new CardLayout();
+	private    JPanel triPanel = new JPanel(cardLayout);
 	
 	
 	
@@ -126,6 +126,16 @@ public class Frame extends JFrame
 		iconpower.addActionListener(new ClickPower());
 		}
 	
+	
+	
+	
+	public  JPanel getTriPanel() {
+		return triPanel;
+	}
+
+
+
+
 	//quand on clique sur le bouton lock
 	class ClickLock implements ActionListener
 	{
@@ -186,15 +196,7 @@ public class Frame extends JFrame
 			
 		}
 		
-		public JPanel getMainpanel() {
-			return mainpanel;
-		}
-
 		
-
-		public JPanel getTriPanel() {
-			return triPanel;
-		}
 	
 		
 }
