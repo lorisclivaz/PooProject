@@ -1,66 +1,134 @@
-/*Vivian Bridy
-* Date creation: 30 avr. 2018
-* 
-* On définit la couleur #EFEFEF comme étant la couleur de fond de base
-* 
+/*
+* Author : Vivian Bridy
+* Date creation : 14 mai 2018
 */
-/**
- * 
- */
 package ContactApp;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-import Images.IconBase;
+import GalerieApp.Picture;
 import Panels.MenuH1PanelContact;
+import GalerieApp.GalleryPanel.PanelGallery;
+import GalerieApp.GalleryPanel.minipicture;
 
-/**
- * @author Loris_Clivaz
- *
- */
-public class ContactPanel extends JPanel
-{
-	private String titre = "Contacts";
+public class ContactPanel extends JPanel{
+		//Création du tableau de contact
+		private ArrayList<Contact> listContact = new ArrayList<Contact>();
 
-	
-	//tri des panels static pour avoir accès dans le panel d'accueil
-	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel = new JPanel(cardLayout);
-	private MenuH1PanelContact menuh1panel = new MenuH1PanelContact(titre, getClass().getSimpleName());
-	private ListePanel listepanel = new ListePanel(cardLayout,triPanel);
-	NewContact newcontact = new NewContact(cardLayout,triPanel);
-	public ContactPanel() {
-		// TODO Auto-generated constructor stub
-		this.setPreferredSize(new Dimension(480, 40));
-		this.setBackground(Color.decode("#EFEFEF")); 
+		//instanciation du panel du haut gallery
+		MenuH1PanelContact menuh1panel = new MenuH1PanelContact("Contacts", "ContactPanel");
 		
-		//On affiche titre H1 dans le panel UP s
-		this.setLayout(new BorderLayout());
+		//Création des panels  pour mettre les contacts
+		JPanel center = new JPanel();
+		JPanel allContact = new JPanel();
+
+		//Gestion des panels dans les contacts
+		public   CardLayout cardLayout = new CardLayout();
+		public  JPanel triPanel = new JPanel(cardLayout);
+
+		//On crée la scrollBar
+		JScrollPane scroll = new  JScrollPane(allContact);
 		
-//		this.add(menuh1panel, BorderLayout.NORTH);
+		public ContactPanel() {
+			// TODO Auto-generated constructor stub
+			//Choix du layout et de la dimension du panel
+
+			this.setPreferredSize(new Dimension(480, 40));
+			this.setLayout(new BorderLayout());
+			this.add(menuh1panel, BorderLayout.NORTH);
+
+
+			center.setLayout(new GridLayout(6,2,0,0));
+			
+			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+
+
+			//Ajout du panel center à galleryPanele
+			this.add(triPanel, BorderLayout.CENTER);
+			
+			
+			for(int i=0;i<10;i++) {
+				//On ajoute des contacts à listContact
+				listContact.add(new Contact("Bridy", "Vivian", "Route de Fellina 3", "0798434456", "vbridy2@gmail.com"));
+				JButton boutonTest = new JButton();
+				boutonTest.setPreferredSize(new Dimension(400,100));
+				boutonTest.setText(listContact.get(0).getNom());
+				allContact.add(boutonTest);
+			}
+			
+//			triPanel.add(scroll, "scroll");
+			triPanel.add(allContact, "allcontact");
+			
+			cardLayout.show(triPanel, "allcontact");
+
+			
+		}
 		
-		//On affiche la liste de contact
-		this.add(triPanel, BorderLayout.CENTER);
-		triPanel.add(listepanel, "listepanel");
+		public class Contact implements Serializable {
+			private String nom,prenom,adresse,telephone,mail;
+			
+			public Contact(String nom,String prenom,String adresse,String telephone,String mail) {
+				// TODO Auto-generated constructor stub
+				setNom(nom);
+				setPrenom(prenom);
+				setAdresse(adresse);
+				setTelephone(telephone);
+				setMail(mail);
+			}
+
+			public String getNom() {
+				return nom;
+			}
+
+			public void setNom(String nom) {
+				this.nom = nom;
+			}
+
+			public String getPrenom() {
+				return prenom;
+			}
+
+			public void setPrenom(String prenom) {
+				this.prenom = prenom;
+			}
+
+			public String getAdresse() {
+				return adresse;
+			}
+
+			public void setAdresse(String adresse) {
+				this.adresse = adresse;
+			}
+
+			public String getTelephone() {
+				return telephone;
+			}
+
+			public void setTelephone(String telephone) {
+				this.telephone = telephone;
+			}
+
+			public String getMail() {
+				return mail;
+			}
+
+			public void setMail(String mail) {
+				this.mail = mail;
+			}
+		}
 		
-		//On ajoute newcontact
-		triPanel.add(newcontact, "newcontact");
-		
-//		triPanel.add(modifcontact, "modifcontact");
-//		menuh1panel.setCardLayout(cardLayout,triPanel);
-		
-	}
 
 }
+

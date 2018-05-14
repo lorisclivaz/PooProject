@@ -21,8 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import ContactApp.ContactPanel;
-import ContactApp.NewContact;
+//import ContactApp.ContactPanel;
+//import ContactApp.NewContact;
 import GalerieApp.GalleryPanel;
 import Images.IconBase;
 
