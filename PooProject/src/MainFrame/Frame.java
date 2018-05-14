@@ -44,6 +44,8 @@ public class Frame extends JFrame
 
 	//Ajout des icons
 	IconLock iconlock = new IconLock();
+	
+
 	IconBase iconcontact = new IconBase("images/icones/contact.png", 100,100);
 	IconBase icongallery = new IconBase("images/icones/gallery.png", 100,100);
 	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
@@ -60,8 +62,8 @@ public class Frame extends JFrame
 	
 	
 	//tri des panels static pour avoir accès dans le panel d'accueil
-	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel = new JPanel(cardLayout);
+	private     CardLayout cardLayout = new CardLayout();
+	private    JPanel triPanel = new JPanel(cardLayout);
 	
 	
 	
@@ -124,15 +126,27 @@ public class Frame extends JFrame
 		iconpower.addActionListener(new ClickPower());
 		}
 	
+	
+	
+	
+	public  JPanel getTriPanel() {
+		return triPanel;
+	}
+
+
+
+
 	//quand on clique sur le bouton lock
 	class ClickLock implements ActionListener
 	{
 
 		
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			cardLayout.show(triPanel, "mainpanel");
+			
 
 		}
 		
@@ -181,5 +195,8 @@ public class Frame extends JFrame
 			}
 			
 		}
+		
+		
 	
+		
 }
