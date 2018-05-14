@@ -16,10 +16,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ContactApp.ContactPanel;
 import GalerieApp.GalleryPanel;
@@ -27,7 +25,6 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.UpPanel;
-import Panels.VerrouPanel;
 
 /**
  * @author Loris_Clivazs
@@ -133,9 +130,7 @@ public class Frame extends JFrame
 	
 	
 	
-	public  JPanel getTriPanel() {
-		return triPanel;
-	}
+	
 
 
 
@@ -171,6 +166,67 @@ public class Frame extends JFrame
 			
 		}
 		
+		public class VerrouPanel extends JPanel
+		{
+
+			ImageFond imagefond = new ImageFond();
+			ImageFond imagefond2 = new ImageFond();
+			IconBase lock = new IconBase("images/icones/padlock.png", 50,50);
+
+			JPanel boutonlock = new JPanel();
+
+			
+			
+
+			public VerrouPanel() 
+			{
+
+			
+				this.setPreferredSize(new Dimension(480, 40));
+				this.setBackground(Color.RED);
+				this.setLayout(new BorderLayout());
+
+
+				imagefond.setLayout(new BorderLayout());
+				
+				boutonlock.setLayout(new BorderLayout());
+				boutonlock.add(imagefond2);
+
+				imagefond2.setLayout(new FlowLayout(100,215,20));
+				imagefond2.add(lock);
+
+
+				lock.addActionListener(new ClickLock());
+
+
+
+				this.add(imagefond, BorderLayout.CENTER);
+				this.add(boutonlock, BorderLayout.SOUTH);
+				
+				
+				
+				
+				
+				
+			}
+
+			private class ClickLock implements ActionListener
+			{
+
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					cardLayout.show(triPanel, "mainpanel");
+					System.out.println("cliqué");
+					
+				}
+				
+			}
+			
+		}
+
+		
 		//Quand on clique sur l'icon contacts
 
 		class ClickContact implements ActionListener{
@@ -200,7 +256,9 @@ public class Frame extends JFrame
 			
 		}
 		
-		
+		public  JPanel getTriPanel() {
+			return triPanel;
+		}
 	
 		
 }
