@@ -20,8 +20,7 @@ import javax.swing.JScrollPane;
 
 import GalerieApp.Picture;
 import Panels.MenuH1PanelContact;
-import GalerieApp.GalleryPanel.PanelGallery;
-import GalerieApp.GalleryPanel.minipicture;
+
 
 public class ContactPanel extends JPanel{
 		//Création du tableau de contact
@@ -34,6 +33,7 @@ public class ContactPanel extends JPanel{
 		JPanel center = new JPanel();
 		JPanel allContact = new JPanel();
 
+	
 		//Gestion des panels dans les contacts
 		public   CardLayout cardLayout = new CardLayout();
 		public  JPanel triPanel = new JPanel(cardLayout);
@@ -49,6 +49,7 @@ public class ContactPanel extends JPanel{
 			this.setLayout(new BorderLayout());
 			this.add(menuh1panel, BorderLayout.NORTH);
 
+			allContact.setLayout(new GridLayout(0,1));
 
 			center.setLayout(new GridLayout(6,2,0,0));
 			
@@ -69,7 +70,7 @@ public class ContactPanel extends JPanel{
 			}
 			
 //			triPanel.add(scroll, "scroll");
-			triPanel.add(allContact, "allcontact");
+			triPanel.add(scroll, "scroll");
 			
 			cardLayout.show(triPanel, "allcontact");
 

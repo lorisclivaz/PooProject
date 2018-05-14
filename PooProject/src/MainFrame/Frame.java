@@ -42,6 +42,8 @@ public class Frame extends JFrame
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
 
+	
+
 	//Ajout des icons
 	IconLock iconlock = new IconLock();
 	
@@ -260,5 +262,8 @@ public class Frame extends JFrame
 			return triPanel;
 		}
 	
+		public void setImagefond(ImageFond imagefond) {
+			this.imagefond = imagefond;
+		}
 		
 }
