@@ -27,6 +27,7 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.UpPanel;
+import Panels.VerrouPanel;
 
 /**
  * @author Loris_Clivazs
@@ -37,6 +38,8 @@ public class Frame extends JFrame
 	//Ajout des panelss
 	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
+	VerrouPanel verroupanel = new VerrouPanel();
+	
 	JPanel backpanel = new JPanel();
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
@@ -96,6 +99,7 @@ public class Frame extends JFrame
 		
 		
 		this.add(triPanel);
+		triPanel.add(verroupanel, "verroupanel");
 		triPanel.add(mainpanel, "mainpanel");
 		
 		mainpanel.setLayout(new BorderLayout());

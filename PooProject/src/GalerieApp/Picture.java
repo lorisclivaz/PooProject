@@ -24,20 +24,26 @@ public class Picture {
 	private String path ;
 	private BufferedImage picture ;
 
-	public Picture (String path, BufferedImage picture){
+	//Constructeur qui va récupérer le path
+	public Picture (String path, BufferedImage picture)
+	{
 		this.path = path ;
 		this.picture = picture ;
 
 	}
-	//Bouton supprimer, obliger de flush la buffer d'image, sinon elle disparait seulement à la fermeture du programme
-	public void delete(){
+
+	//Bouton supprimer, obliger de flush image, sinon elle disparait seulement à la fermeture du programme
+	public void delete()
+	{
 		picture.flush();
 		File file = new File(path);
 		file.delete();
 
 	}
 
-	public static void copy(File file){
+	//On va copier 
+	public static void copy(File file)
+	{
 		Path path2 = Paths.get("imagesgallery/"+file.getName());
 		try {
 			Files.copy(file.toPath(),path2,StandardCopyOption.REPLACE_EXISTING );
@@ -48,7 +54,6 @@ public class Picture {
 
 
 	//Getters et setters
-
 	public String getPath() {
 		return path;
 	}
@@ -65,7 +70,7 @@ public class Picture {
 		this.picture = picture;
 	}
 
-	
+
 }
 
 

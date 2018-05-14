@@ -31,10 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import Images.IconBase;
-
-
 
 
 
@@ -56,18 +53,17 @@ public class GalleryPanel extends JPanel
 	JPanel photo = new JPanel();
 
 	//Gestion des panels dans la gallery
-	public   CardLayout cardLayout = new CardLayout();
-	public  JPanel triPanel2 = new JPanel(cardLayout);
+	private   CardLayout cardLayout = new CardLayout();
+	private  JPanel triPanel2 = new JPanel(cardLayout);
 
+	//pour le scroll
 	JScrollPane scroll = new  JScrollPane(center);
 
 
 	public GalleryPanel()
 	{
 
-
 		//Choix du layout et de la dimension du panel
-
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
 		this.add(menuh1panel, BorderLayout.NORTH);
@@ -78,7 +74,7 @@ public class GalleryPanel extends JPanel
 
 		scroll.getHorizontalScrollBar();
 		scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-
+		scroll.setPreferredSize(new Dimension(200, 40));
 
 		//Ajout du panel center à galleryPanel
 		this.add(triPanel2, BorderLayout.CENTER);
@@ -87,34 +83,22 @@ public class GalleryPanel extends JPanel
 		triPanel2.add(photo, "photo");
 
 		//Méthode qui va gérer les miniphotos dans la gallery
-		
 		actualisePhoto();
 
-
-
-
 	}
 
 
-
-
-	public JPanel getTriPanel2() {
-		return triPanel2;
-	}
-	public void setTriPanel2(JPanel triPanel) {
-		this.triPanel2 = triPanel;
-	}
-
-
+	
 
 
 	// Création des "boutons photos", miniatures
-	public class minipicture extends JButton {
+	private class minipicture extends JButton {
 
 		private Picture pic;
 
 		//Constructeur avec le lien 
-		public minipicture(String path) {
+		public minipicture(String path) 
+		{
 
 			super();
 			this.setIcon(new ImageIcon(path));
@@ -125,7 +109,8 @@ public class GalleryPanel extends JPanel
 
 			try {
 				this.pic = new Picture(path, ImageIO.read(new File(path)));
-			} catch (IOException e) {
+			} catch (IOException e) 
+			{
 
 				e.printStackTrace();
 			}
@@ -143,7 +128,8 @@ public class GalleryPanel extends JPanel
 		}
 
 		@Override
-		protected void paintComponent(Graphics g) {
+		public void paintComponent(Graphics g) 
+		{
 
 			super.paintComponent(g);
 			g.drawImage(pic.getPicture(), 0, 0, getWidth(), getHeight(), this);
@@ -155,8 +141,6 @@ public class GalleryPanel extends JPanel
 	class ClickPhoto implements ActionListener
 	{
 
-
-
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
@@ -165,86 +149,80 @@ public class GalleryPanel extends JPanel
 			cardLayout.show(getTriPanel2(), "photo");
 
 			minipicture minsource = (minipicture) e.getSource();
-			System.out.println(minsource.pic.getPath());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
-			
+
 			//Création d'un panel pour la photo en grand
 			photo.setLayout(new BorderLayout());
-			
+
 			//on fait un removeAll pour remettre à zéro l'objet instancié
 			photo.removeAll();
 			photo.add(photoPanel, BorderLayout.CENTER);
 
-			System.out.println("j'ai cliqué!!");
 
 		}
 
 
 	}
-	
-	
-	public class PhotoPanel extends JPanel {
 
-		
+
+	private class PhotoPanel extends JPanel {
+
+
 		private GalleryPanel photo;
-		public  Picture image;
+		private  Picture image;
 		private MouseAdapter ma;
-		
-		
+
+
 		JPanel up = new JPanel();
-		
+
 		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 		IconBase delete = new IconBase("images/icones/delete.png",40,40);
 
-		
+		//Constructeur
 		public PhotoPanel(GalleryPanel photo, Picture image) {
-			
+
 			this.photo = photo;
 			this.image = image;
-			
+
 			BorderLayout fl = new BorderLayout();
 			this.setLayout(fl);
 			this.setBackground(Color.BLACK);
-			
+
 			up.setLayout(new BorderLayout());
 			up.setBackground(Color.BLACK);
 			this.add(up, BorderLayout.NORTH);
-			
+
 			up.add(previous, BorderLayout.WEST);
 			up.add(delete, BorderLayout.EAST);
-			
+
 			previous.addActionListener(new ClickPrevious());
 			delete.addActionListener(new ClickDelete());
-			
-			
+
+		
+
 
 		}
-		
+
 		class ClickDelete implements ActionListener
 		{
 
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
 
-				System.out.println("delete !!");
-
 				image.delete();
 				removeChild(GalleryPanel.this);
-				
-				
-				
+
 			}
-			
-			
 		}
-		
-		
-		public void removeChild(JPanel PaneltoRemove) {
-			scroll.remove(PaneltoRemove);
-			
+
+		//On remove la minipicture dans la gallery
+		private void removeChild(JPanel PaneltoRemove) {
+
+			menuh1panel.setVisible(true);
 			cardLayout.show(triPanel2, "scroll");
+
 
 			actualisePhoto();
 			this.revalidate();
@@ -258,28 +236,31 @@ public class GalleryPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
+				menuh1panel.setVisible(true);
 
 				cardLayout.show(getTriPanel2(), "scroll");
-				
-				//il faut reprendre le panel de la gallery de base
 
-				System.out.println("J'ai cliqué");
 			}
-			
+
 		}
-		
-		
-		
-		
-		public void paintComponent(Graphics g) {
+
+
+		public void paintComponent(Graphics g) 
+		{
 			super.paintComponent(g);
+			
 			BufferedImage pic = image.getPicture();
+			
 			int nH = (int) (pic.getHeight() / ((double) pic.getWidth() / getWidth()));
-			if (nH > getHeight()) {
+			
+			if (nH > getHeight()) 
+			{
 				int nW = (int) (pic.getWidth() / ((double) pic.getHeight() / getHeight()));
 				int x = (getWidth() - nW) / 2;
 				g.drawImage(pic, x, 0, nW, getHeight(), this);
-			} else {
+			} 
+			else 
+			{
 
 				int y = (getHeight() - nH) / 2;
 				g.drawImage(pic, 0, y, getWidth(), nH, this);
@@ -287,30 +268,34 @@ public class GalleryPanel extends JPanel
 
 		}
 	}
-	
-	
+
+
 
 
 	//Méthode qui va actualiser à chaque fois les images enregistrés
-	public void actualisePhoto() {
+	private void actualisePhoto() {
 
+		//Après problème de suppression, remove all actualise à chaque fois la gallery
 		center.removeAll();
-		
 		listImg.clear();
+		
+		//On va chercher dans le fichier
 		File folder = new File("imagesgallery");
-		if (!folder.exists()) {
+		if (!folder.exists()) 
+		{
 			folder.mkdirs();
 		}
 
 		File[] photos = folder.listFiles();
-		for (File photo : photos) {
+		for (File photo : photos) 
+		{
 			new minipicture(photo.getAbsolutePath());
 		}
 
 	}
 
 	//Panel du haut dans la gallery avec le bouton d'ajout
-	public class PanelGallery extends JPanel{
+	private class PanelGallery extends JPanel{
 
 
 		JLabel titrePanel;
@@ -318,7 +303,7 @@ public class GalleryPanel extends JPanel
 		IconBase create = new IconBase("images/icones/plus.png",40,40);
 		IconBase vide = new IconBase("",40,40);
 
-		public String nomPhoto;
+		private String nomPhoto;
 
 		//Constructeur
 		public PanelGallery(String titre, String nomClass)
@@ -329,9 +314,10 @@ public class GalleryPanel extends JPanel
 
 			this.setPreferredSize(new Dimension(480, 78));
 			this.setBackground(Color.decode("#DFDFDF"));
-
-			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	
-			if(nomClass.equals("ContactPanel")) {
+			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 
+			
+			if(nomClass.equals("ContactPanel")) 
+			{
 
 				//On met le plus à gauche
 				this.add(vide, BorderLayout.WEST);
@@ -352,16 +338,19 @@ public class GalleryPanel extends JPanel
 
 
 		//quand on clique sur le bouton create
-		class ClickCreate implements ActionListener{
+		class ClickCreate implements ActionListener
+		{
 
 			String nomClass;
 
-			public ClickCreate(String nomClass) {
+			public ClickCreate(String nomClass) 
+			{
 				this.nomClass = nomClass;
 			}
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 
 				JFileChooser choisir = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("picture", "jpg", "png", "gif");
@@ -370,7 +359,8 @@ public class GalleryPanel extends JPanel
 
 				int returnVal = choisir.showOpenDialog(PanelGallery.this);
 
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
+				if (returnVal == JFileChooser.APPROVE_OPTION)
+				{
 					File file = choisir.getSelectedFile();
 					Picture.copy(file);
 					minipicture newpic = new minipicture("imagesGallery/" + file.getName());
@@ -378,17 +368,22 @@ public class GalleryPanel extends JPanel
 					repaint();
 				}
 			}
-
 		}
-
-
-
 	}
-
-
+	
+	public JPanel getTriPanel2() {
+		return triPanel2;
+	}
+	public void setTriPanel2(JPanel triPanel) {
+		this.triPanel2 = triPanel;
+	}
+	public ArrayList<Picture> getListImg() {
+		return listImg;
+	}
+	
+	public int getVoisin(Picture actu){
+		return listImg.indexOf(actu);
+	}
 	
 	
-	
-	
-
 }
