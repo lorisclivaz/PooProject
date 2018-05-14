@@ -55,7 +55,7 @@ public class ContactPanel extends JPanel{
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
 
-			//Ajout du panel center à galleryPanele
+			//Ajout du panel center à galleryPanelea
 			this.add(triPanel, BorderLayout.CENTER);
 			
 			
