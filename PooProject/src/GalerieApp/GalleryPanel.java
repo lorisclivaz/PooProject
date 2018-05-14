@@ -37,6 +37,7 @@ import Images.IconBase;
 
 
 
+
 /**
  * @author Loris_Clivaz
  *
@@ -86,6 +87,7 @@ public class GalleryPanel extends JPanel
 		triPanel2.add(photo, "photo");
 
 		//Méthode qui va gérer les miniphotos dans la gallery
+		
 		actualisePhoto();
 
 
@@ -163,13 +165,15 @@ public class GalleryPanel extends JPanel
 			cardLayout.show(getTriPanel2(), "photo");
 
 			minipicture minsource = (minipicture) e.getSource();
-
+			System.out.println(minsource.pic.getPath());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
+			
 			//Création d'un panel pour la photo en grand
 			photo.setLayout(new BorderLayout());
-			photo.setBackground(Color.BLUE);
+			
+			//on fait un removeAll pour remettre à zéro l'objet instancié
+			photo.removeAll();
 			photo.add(photoPanel, BorderLayout.CENTER);
-
 
 			System.out.println("j'ai cliqué!!");
 
@@ -190,6 +194,8 @@ public class GalleryPanel extends JPanel
 		JPanel up = new JPanel();
 		
 		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+		IconBase delete = new IconBase("images/icones/delete.png",40,40);
+
 		
 		public PhotoPanel(GalleryPanel photo, Picture image) {
 			
@@ -205,14 +211,46 @@ public class GalleryPanel extends JPanel
 			this.add(up, BorderLayout.NORTH);
 			
 			up.add(previous, BorderLayout.WEST);
+			up.add(delete, BorderLayout.EAST);
 			
 			previous.addActionListener(new ClickPrevious());
+			delete.addActionListener(new ClickDelete());
 			
 			
 
 		}
 		
+		class ClickDelete implements ActionListener
+		{
+
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+
+				System.out.println("delete !!");
+
+				image.delete();
+				removeChild(GalleryPanel.this);
+				
+				
+				
+			}
+			
+			
+		}
 		
+		
+		public void removeChild(JPanel PaneltoRemove) {
+			scroll.remove(PaneltoRemove);
+			
+			cardLayout.show(triPanel2, "scroll");
+
+			actualisePhoto();
+			this.revalidate();
+			this.repaint();
+
+		}
 
 		class ClickPrevious implements ActionListener
 		{
@@ -229,6 +267,9 @@ public class GalleryPanel extends JPanel
 			}
 			
 		}
+		
+		
+		
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -253,6 +294,8 @@ public class GalleryPanel extends JPanel
 	//Méthode qui va actualiser à chaque fois les images enregistrés
 	public void actualisePhoto() {
 
+		center.removeAll();
+		
 		listImg.clear();
 		File folder = new File("imagesgallery");
 		if (!folder.exists()) {
@@ -344,7 +387,7 @@ public class GalleryPanel extends JPanel
 
 
 	
-
+	
 	
 	
 
