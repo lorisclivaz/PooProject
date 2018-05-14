@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -59,15 +61,34 @@ public class ContactPanel extends JPanel{
 			//Ajout du panel center à galleryPanelea
 			this.add(triPanel, BorderLayout.CENTER);
 			
-			
-			for(int i=0;i<10;i++) {
-				//On ajoute des contacts à listContact
-				listContact.add(new Contact("Bridy", "Vivian", "Route de Fellina 3", "0798434456", "vbridy2@gmail.com"));
-				JButton boutonTest = new JButton();
-				boutonTest.setPreferredSize(new Dimension(400,100));
-				boutonTest.setText(listContact.get(0).getNom());
-				allContact.add(boutonTest);
+			//On calcule le nombre de contact dans le dossier serialisation
+			File dossier = new File("serialisation");
+			File[] f = dossier.listFiles();
+			String path;
+			Contact current;
+			int nombreFichier = 0;
+			for (int i = 0 ; i < f.length ; i++) {
+			  if (f[i].isFile()) {
+				path = f[i].getAbsolutePath();
+				current = deSerializeObject(path);
+				JButton bouton = new JButton();
+				bouton.setText(current.getNom()+" "+current.getPrenom());
+//				bouton.addActionListener(new ClickContact(current));
+				bouton.setPreferredSize(new Dimension(400,100));
+				bouton.setText(listContact.get(0).getNom());
+				allContact.add(bouton);
+			  }
 			}
+			
+			
+//			for(int i=0;i<10;i++) {
+//				//On ajoute des contacts à listContact
+//				listContact.add(new Contact("Bridy", "Vivian", "Route de Fellina 3", "0798434456", "vbridy2@gmail.com"));
+//				JButton boutonTest = new JButton();
+//				boutonTest.setPreferredSize(new Dimension(400,100));
+//				boutonTest.setText(listContact.get(0).getNom());
+//				allContact.add(boutonTest);
+//			}
 			
 //			triPanel.add(scroll, "scroll");
 			triPanel.add(scroll, "scroll");
@@ -77,6 +98,23 @@ public class ContactPanel extends JPanel{
 			
 		}
 		
+		private Contact deSerializeObject(String path) {
+			try {
+				FileInputStream fichier = new FileInputStream(path);
+				ObjectInputStream ois = new ObjectInputStream(fichier);
+				Contact cs = (Contact) ois.readObject();
+				return cs;
+			}
+			catch (java.io.IOException e) {
+				e.printStackTrace();
+				return null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+
 		public class Contact implements Serializable {
 			private String nom,prenom,adresse,telephone,mail;
 			
