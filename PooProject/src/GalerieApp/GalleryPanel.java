@@ -15,15 +15,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -32,6 +33,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Images.IconBase;
+
 
 
 
@@ -69,13 +71,10 @@ public class GalleryPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 
 
-		center.setLayout(new GridLayout(2,4,20,20));
+		center.setLayout(new GridLayout(2,3,10,10));
 
 
-		scroll.getHorizontalScrollBar();
-		scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-		scroll.setPreferredSize(new Dimension(200, 40));
-
+		
 		//Ajout du panel center à galleryPanel
 		this.add(triPanel2, BorderLayout.CENTER);
 
@@ -121,6 +120,7 @@ public class GalleryPanel extends JPanel
 			this.setPreferredSize(new Dimension(nW, 100));
 
 			this.addActionListener(new ClickPhoto());
+			
 			//Ajout de la minipicture dans le panel center
 			center.add(this);
 			listImg.add(pic);
@@ -198,9 +198,57 @@ public class GalleryPanel extends JPanel
 			previous.addActionListener(new ClickPrevious());
 			delete.addActionListener(new ClickDelete());
 
-		
+			//Swiper de photo grace au clique
+			ma = new MouseAdapter() {
+				private Point origin;
 
+				@Override
+				public void mousePressed(MouseEvent e) {
+					origin = new Point(e.getPoint());
+					
+				}
 
+				@Override
+				public void mouseReleased(MouseEvent e) {
+				}
+
+				@Override
+				public void mouseDragged(MouseEvent e) {
+					if (origin != null) {
+						int deltaX = origin.x - e.getX();
+						if(deltaX>=200){
+							changeImg(1);
+							origin=null;
+						}
+						else if(deltaX<=-200){
+							changeImg(-1);
+							origin=null;
+						}
+					}
+				}
+
+				
+			};
+
+			
+			this.addMouseListener(ma);
+			this.addMouseMotionListener(ma);
+
+		}
+		private void changeImg(int i) {
+
+			int idImg = photo.getVoisin(image)+i;
+			ArrayList<Picture> list = photo.getListImg();
+			if(idImg==-1){
+				idImg=list.size()-1;
+			}
+			else if(idImg==list.size()){
+				idImg=0;
+			}
+			image = list.get(idImg);
+			PhotoPanel.this.revalidate();
+			PhotoPanel.this.repaint();
+			
 		}
 
 		class ClickDelete implements ActionListener

@@ -123,17 +123,28 @@ public class Frame extends JFrame
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
 		
-		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
+		iconagenda.addActionListener(new ClickAgenda());
 		}
 	
 	
 	
 	
 	
+	class ClickAgenda implements ActionListener
+	{
 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			
+			cardLayout.show(triPanel, "notepanel");
+		}
+		
+	}
 
 
 
