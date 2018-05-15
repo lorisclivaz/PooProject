@@ -95,7 +95,7 @@ public class MenuH1PanelContact extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			cardlayout.show(triPanel, "listepanel");
+			cardlayout.show(triPanel, "scroll");
 			
 		}
 		
@@ -108,11 +108,8 @@ public class MenuH1PanelContact extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			cardlayout.show(triPanel, "newcontact");
-			if(nomClass.equals("NewContact")) {
-				System.out.println("page de création de contact");
-			}
-			else
-				System.out.println("create cliqué");
+
+			System.out.println("create cliqué");
 		}
 	}
 	
