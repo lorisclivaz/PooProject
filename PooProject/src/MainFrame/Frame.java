@@ -25,7 +25,6 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.UpPanel;
-import Settings.PanelSettings;
 
 /**
  * @author Loris_Clivazs
@@ -42,36 +41,9 @@ public class Frame extends JFrame
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
-	PanelSettings panelsettings = new PanelSettings(this);
 	
 
-	public CardLayout getCardLayout() {
-		return cardLayout;
-	}
-
-
-
-
-
-	public void setCardLayout(CardLayout cardLayout) {
-		this.cardLayout = cardLayout;
-	}
-
-
-
-
-
-	public JPanel getTriPanel() {
-		return triPanel;
-	}
-
-
-
-
-
-	public void setTriPanel(JPanel triPanel) {
-		this.triPanel = triPanel;
-	}
+	
 
 
 
@@ -155,7 +127,6 @@ public class Frame extends JFrame
 		
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
-		triPanel.add(panelsettings, "panelsettings");
 		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
@@ -318,7 +289,33 @@ public class Frame extends JFrame
 
 
 		
-		
+		public CardLayout getCardLayout() {
+			return cardLayout;
+		}
+
+
+
+
+
+		public void setCardLayout(CardLayout cardLayout) {
+			this.cardLayout = cardLayout;
+		}
+
+
+
+
+
+		public JPanel getTriPanel() {
+			return triPanel;
+		}
+
+
+
+
+
+		public void setTriPanel(JPanel triPanel) {
+			this.triPanel = triPanel;
+		}
 		
 }
 

@@ -17,9 +17,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import GalerieApp.GalleryPanel;
-import GalerieApp.GalleryPanel.PhotoPanel;
-import GalerieApp.GalleryPanel.PhotoPanel.ClickFond;
+
 
 /**
  * @author Loris_Clivaz
@@ -27,7 +25,7 @@ import GalerieApp.GalleryPanel.PhotoPanel.ClickFond;
  */
 public class ImageFond extends JPanel
 {
-	String url="images/background/imagefond.png";
+	String changeImage="images/background/imagefond.png";
 
 
 	public ImageFond() {
@@ -36,9 +34,9 @@ public class ImageFond extends JPanel
 
 	}
 
-	public ImageFond(String url) {
+	public ImageFond(String changeImage) {
 
-		this.url=url;
+		this.changeImage=changeImage;
 
 	}
 
@@ -49,13 +47,23 @@ public class ImageFond extends JPanel
 		try {
 
 
-			Image img = ImageIO.read(new File(url));
+			Image img = ImageIO.read(new File(changeImage));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		}                
 
+	}
+
+
+	/**
+	 * @param changeImage
+	 */
+	public void setUrl(String changeImage) {
+
+		this.changeImage = changeImage;
 	}    
 
 	

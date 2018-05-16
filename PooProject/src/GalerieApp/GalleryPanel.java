@@ -72,7 +72,7 @@ public class GalleryPanel extends JPanel
 		this.add(menuh1panel, BorderLayout.NORTH);
 
 
-		center.setLayout(new GridLayout(2,3,10,10));
+		center.setLayout(new GridLayout(2,2,10,10));
 
 
 		
@@ -123,7 +123,9 @@ public class GalleryPanel extends JPanel
 			this.addActionListener(new ClickPhoto());
 			
 			//Ajout de la minipicture dans le panel center
+			
 			center.add(this);
+			
 			listImg.add(pic);
 
 		}
@@ -168,7 +170,8 @@ public class GalleryPanel extends JPanel
 
 	public  class PhotoPanel extends JPanel {
 
-		private ImageFond imagefond;
+		private ImageFond imageFond ;
+
 		private GalleryPanel photo;
 		private  Picture image;
 		private MouseAdapter ma;
@@ -180,7 +183,7 @@ public class GalleryPanel extends JPanel
 		JPanel up = new JPanel();
 
 		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-		JButton fond = new JButton("Fond");
+	
 		IconBase delete = new IconBase("images/icones/delete.png",40,40);
 
 		
@@ -198,10 +201,9 @@ public class GalleryPanel extends JPanel
 			this.add(up, BorderLayout.NORTH);
 
 			up.add(previous, BorderLayout.WEST);
-			up.add(fond, BorderLayout.CENTER);
 			up.add(delete, BorderLayout.EAST);
 
-			fond.addActionListener(new ClickFond());
+			
 			previous.addActionListener(new ClickPrevious());
 			delete.addActionListener(new ClickDelete());
 
@@ -258,28 +260,7 @@ public class GalleryPanel extends JPanel
 			
 		}
 		
-	public	class ClickFond implements ActionListener
-		{
-
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) 
-			{
-
-				
-				
-				changeImage = image.getPath();
-				
-				getParent().getParent().repaint();
-				
-				System.out.println(image.getPath());
-				
-				
-				
-				 
-			}
-			
-		}
+	
 		
 		
 
@@ -375,9 +356,11 @@ public class GalleryPanel extends JPanel
 		File[] photos = folder.listFiles();
 		for (File photo : photos) 
 		{
+			
 			new minipicture(photo.getAbsolutePath());
 		}
 
+		//photos.length;
 	}
 
 	//Panel du haut dans la gallery avec le bouton d'ajout
