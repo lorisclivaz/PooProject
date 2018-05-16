@@ -14,8 +14,10 @@ import javax.swing.JPanel;
   
 public class Calculette extends JPanel {
   private JPanel container = new JPanel();
+  private JPanel david = new JPanel();
   //Tableau stockant les éléments à afficher dans la calculatrice
   String[] tab_string = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "=", "C", "+", "-", "*", "/"};
+  
   //Un bouton par élément à afficher
   JButton[] tab_button = new JButton[tab_string.length];
   private JLabel ecran = new JLabel();
@@ -26,21 +28,24 @@ public class Calculette extends JPanel {
   private String operateur = "";
   
   public Calculette(){
+	  
 		this.setPreferredSize(new Dimension(480, 40));
-
-    
-    //On initialise le conteneur avec tous les composants
+		//On initialise le conteneur avec tous les composants
 	  initComposant();
+	  
 	  //On ajoute le conteneur
-    this.add(container);
+	  david.add(container, BorderLayout.CENTER);
+    this.add(david, BorderLayout.CENTER);
     this.setVisible(true);
   }
       
   private void initComposant(){
+	  
     //On définit la police d'écriture à utiliser
     Font police = new Font("Arial", Font.BOLD, 20);
     ecran = new JLabel("0");
     ecran.setFont(police);
+    
     //On aligne les informations à droite dans le JLabel
     ecran.setHorizontalAlignment(JLabel.RIGHT);
     ecran.setPreferredSize(new Dimension(220, 20));
