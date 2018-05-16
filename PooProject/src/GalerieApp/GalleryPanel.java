@@ -33,6 +33,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Images.IconBase;
+import Images.ImageFond;
 
 
 
@@ -165,20 +166,24 @@ public class GalleryPanel extends JPanel
 	}
 
 
-	private class PhotoPanel extends JPanel {
+	public  class PhotoPanel extends JPanel {
 
-
+		private ImageFond imagefond;
 		private GalleryPanel photo;
 		private  Picture image;
 		private MouseAdapter ma;
+		private String changeImage;
+
+		
 
 
 		JPanel up = new JPanel();
 
 		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+		JButton fond = new JButton("Fond");
 		IconBase delete = new IconBase("images/icones/delete.png",40,40);
 
-		//Constructeur
+		
 		public PhotoPanel(GalleryPanel photo, Picture image) {
 
 			this.photo = photo;
@@ -193,8 +198,10 @@ public class GalleryPanel extends JPanel
 			this.add(up, BorderLayout.NORTH);
 
 			up.add(previous, BorderLayout.WEST);
+			up.add(fond, BorderLayout.CENTER);
 			up.add(delete, BorderLayout.EAST);
 
+			fond.addActionListener(new ClickFond());
 			previous.addActionListener(new ClickPrevious());
 			delete.addActionListener(new ClickDelete());
 
@@ -250,6 +257,35 @@ public class GalleryPanel extends JPanel
 			PhotoPanel.this.repaint();
 			
 		}
+		
+	public	class ClickFond implements ActionListener
+		{
+
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+
+				
+				
+				changeImage = image.getPath();
+				
+				getParent().getParent().repaint();
+				
+				System.out.println(image.getPath());
+				
+				
+				
+				 
+			}
+			
+		}
+		
+		
+
+		public String getChangeImage() {
+		return changeImage;
+	}
 
 		class ClickDelete implements ActionListener
 		{
@@ -315,6 +351,8 @@ public class GalleryPanel extends JPanel
 			}
 
 		}
+		
+		
 	}
 
 
