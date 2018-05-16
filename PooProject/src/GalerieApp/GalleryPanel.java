@@ -49,7 +49,7 @@ public class GalleryPanel extends JPanel
 	private ArrayList<Picture> listImg = new ArrayList<Picture>();
 
 	//instanciation du panel du haut gallery
-	PanelGallery menuh1panel = new PanelGallery("Gallery", "Gallery");
+	PanelGallery panelgallery = new PanelGallery("Gallery", "Gallery");
 
 	//Création des panels  pour mettre les photos
 	JPanel center = new JPanel();
@@ -69,7 +69,7 @@ public class GalleryPanel extends JPanel
 		//Choix du layout et de la dimension du panel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
-		this.add(menuh1panel, BorderLayout.NORTH);
+		this.add(panelgallery, BorderLayout.NORTH);
 
 
 		center.setLayout(new GridLayout(2,2,10,10));
@@ -148,7 +148,7 @@ public class GalleryPanel extends JPanel
 		public void actionPerformed(ActionEvent e)
 		{
 
-			menuh1panel.setVisible(false);
+			panelgallery.setVisible(false);
 			cardLayout.show(getTriPanel2(), "photo");
 
 			minipicture minsource = (minipicture) e.getSource();
@@ -285,7 +285,7 @@ public class GalleryPanel extends JPanel
 		//On remove la minipicture dans la gallery
 		private void removeChild(JPanel PaneltoRemove) {
 
-			menuh1panel.setVisible(true);
+			panelgallery.setVisible(true);
 			cardLayout.show(triPanel2, "scroll");
 
 
@@ -301,7 +301,7 @@ public class GalleryPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				menuh1panel.setVisible(true);
+				panelgallery.setVisible(true);
 
 				cardLayout.show(getTriPanel2(), "scroll");
 
