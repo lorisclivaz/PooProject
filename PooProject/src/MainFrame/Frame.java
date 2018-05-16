@@ -33,7 +33,7 @@ import Panels.UpPanel;
 public class Frame extends JFrame
 {
 	//Ajout des panelss
-	ContactPanel contactpanel = new ContactPanel();
+	ContactPanel contactpanel = new ContactPanel(this);
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
 	
