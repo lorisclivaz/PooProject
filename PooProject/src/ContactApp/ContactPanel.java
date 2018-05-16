@@ -121,13 +121,14 @@ public class ContactPanel extends JPanel{
 		}
 
 		public class Contact implements Serializable {
-			private String nom,prenom,adresse,telephone,mail;
+			private String nom,prenom,adresse,localite,telephone,mail;
 			
-			public Contact(String nom,String prenom,String adresse,String telephone,String mail) {
+			public Contact(String nom,String prenom,String adresse,String localite,String telephone,String mail) {
 				// TODO Auto-generated constructor stub
 				setNom(nom);
 				setPrenom(prenom);
 				setAdresse(adresse);
+				setLocalite(localite);
 				setTelephone(telephone);
 				setMail(mail);
 			}
@@ -154,6 +155,14 @@ public class ContactPanel extends JPanel{
 
 			public void setAdresse(String adresse) {
 				this.adresse = adresse;
+			}
+			
+			public String getLocalite() {
+				return localite;
+			}
+
+			public void setLocalite(String localite) {
+				this.localite = localite;
 			}
 
 			public String getTelephone() {
@@ -185,7 +194,7 @@ public class ContactPanel extends JPanel{
 				// TODO Auto-generated method stub
 				System.out.println("contact "+contact.getNom()+" "+contact.getPrenom()+" cliqué");
 				//j'ai accès au contact cliqué je dois donc afficher le panel modifcontact avec pour paramètre ce contact
-				ModifContact modifcontact = new ModifContact();
+				ModifContact modifcontact = new ModifContact(contact);
 				triPanel.add(modifcontact,"modifcontact");
 				cardLayout.show(triPanel, "modifcontact");
 				menuh1panel.setVisible(false);
@@ -338,7 +347,8 @@ public class ContactPanel extends JPanel{
 					// TODO Auto-generated method stub
 					Contact contactEnCreation = new Contact(textNom.getText(),
 															textPrenom.getText(),
-															textAdresse.getText()+"/"+textLocalite.getText(),
+															textAdresse.getText(),
+															textLocalite.getText(),
 															textMail.getText(),
 															textPhone.getText());
 					this.serializeObject(contactEnCreation);
@@ -359,58 +369,28 @@ public class ContactPanel extends JPanel{
 					}
 				}
 				
-				public void deSerializeObject(Contact contactEnCreation) { 
-					try {
-						FileInputStream fichier = new FileInputStream("serialisation\\"+contactEnCreation.getNom()+"-"+contactEnCreation.getPrenom()+".ser");
-						ObjectInputStream ois = new ObjectInputStream(fichier);
-						Contact cs = (Contact) ois.readObject();
-						System.out.println("Classe deserialisée : ");
-						System.out.println("Nom : " + cs.getNom());
-						System.out.println("Age : " + cs.getPrenom());
-						System.out.println("Sexe : " + cs.getAdresse());
-						System.out.println("Mot de passe : " + cs.getMail());
-						System.out.println("Ville : " + cs.getTelephone());
-					}
-					catch (java.io.IOException e) {
-						e.printStackTrace();
-					}
-					catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-				
 			}
 		}
 
 		public class ModifContact extends JPanel{
-			IconBase create = new IconBase("images/icones/plus.png",40,40);
-			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-			private MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact("Nouv. Contact", getClass().getSimpleName());
+//			IconBase create = new IconBase("images/icones/plus.png",40,40);
+//			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+			
 			private IconBase imageContact = new IconBase("images/photos/contact-1.png",480,300);
 			private JPanel infosContact = new JPanel();
 			public   CardLayout cardLayout;
 			public  JPanel triPanel;
-			
-			private ChampLabel nom = new ChampLabel("Nom :","text");
-			private ChampTextField textNom = new ChampTextField("");
-			private ChampLabel prenom = new ChampLabel("Prénom :","text");
-			private ChampTextField textPrenom = new ChampTextField("");
-			private ChampLabel adresse = new ChampLabel("Adresse :","text");
-			private ChampTextField textAdresse = new ChampTextField("");
-			private ChampLabel vide = new ChampLabel("","text");
-			private ChampLabel vide2 = new ChampLabel("","text");
-			private ChampTextField textLocalite = new ChampTextField("");
-			private ChampLabel mail = new ChampLabel("Email :","mail");
-			private ChampTextField textMail = new ChampTextField("");
-			private ChampLabel phone = new ChampLabel("Téléphone :","text");
-			private ChampTextField textPhone = new ChampTextField("");
-			
 			private JButton enregistrement = new JButton("Sauver le contact !");
 			
-			public ModifContact() {
+			//Champ du formulaire
+			private ChampTextField textNom,textPrenom,textAdresse,textLocalite,textMail,textPhone;
+			
+			public ModifContact(Contact contact) {
 				// TODO Auto-generated constructor stub
-				
 				this.setBackground(Color.decode("#EFEFEF")); 
+				
+				//On remplit le menuh1
+				MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact(contact.getPrenom(), getClass().getSimpleName());
 				
 				//On affiche titre H1 dans le panel UP
 				this.add(menuh1panel2);
@@ -420,6 +400,27 @@ public class ContactPanel extends JPanel{
 				
 				//On met les infos dans le gridpanel
 				infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
+				
+				//On remplit les champs avec les infos
+				ChampLabel nom = new ChampLabel("Nom :","text");
+				ChampTextField textNom = new ChampTextField(contact.getNom());
+				this.textNom = textNom;
+				ChampLabel prenom = new ChampLabel("Prénom :","text");
+				ChampTextField textPrenom = new ChampTextField(contact.getPrenom());
+				this.textPrenom = textPrenom;
+				ChampLabel adresse = new ChampLabel("Adresse :","text");
+				ChampTextField textAdresse = new ChampTextField(contact.getAdresse());
+				this.textAdresse = textAdresse;
+				ChampLabel vide = new ChampLabel("","text");
+				ChampLabel vide2 = new ChampLabel("","text");
+				ChampTextField textLocalite = new ChampTextField("");
+				this.textLocalite = textLocalite;
+				ChampLabel mail = new ChampLabel("Email :","mail");
+				ChampTextField textMail = new ChampTextField(contact.getMail());
+				this.textMail = textMail;
+				ChampLabel phone = new ChampLabel("Téléphone :","text");
+				ChampTextField textPhone = new ChampTextField(contact.getTelephone());
+				this.textPhone = textPhone;
 				
 				//On ajoute dans les infos contacts
 				infosContact.add(nom);
@@ -440,9 +441,6 @@ public class ContactPanel extends JPanel{
 				
 				//On affiche les infos
 				this.add(infosContact);
-				
-
-				
 			}
 			
 			
@@ -454,7 +452,8 @@ public class ContactPanel extends JPanel{
 					// TODO Auto-generated method stub
 					Contact contactEnCreation = new Contact(textNom.getText(),
 															textPrenom.getText(),
-															textAdresse.getText()+"/"+textLocalite.getText(),
+															textAdresse.getText(),
+															textLocalite.getText(),
 															textMail.getText(),
 															textPhone.getText());
 					this.serializeObject(contactEnCreation);
@@ -508,12 +507,9 @@ public class ContactPanel extends JPanel{
 			IconBase create = new IconBase("images/icones/plus.png",40,40);
 			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 			IconBase vide = new IconBase("images/icones/left-arrow.png",40,40);
+			IconBase delete = new IconBase("images/icones/delete.png",40,40);
 			
 			String titre, nomClass;
-			
-//			//Pour faire le tri des panels
-//			CardLayout cardlayout = new CardLayout();
-//			JPanel triPanel = new JPanel(cardlayout);
 
 			public MenuH1PanelContact(String titre, String nomClass)
 			// TODO Auto-generated constructor stube
@@ -528,7 +524,7 @@ public class ContactPanel extends JPanel{
 
 				this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
 				if(nomClass.equals("ContactPanel")) {
-					this.add(vide, BorderLayout.WEST);
+//					this.add(vide, BorderLayout.WEST);
 				}else {
 					this.add(previous, BorderLayout.WEST);
 				}
@@ -540,10 +536,54 @@ public class ContactPanel extends JPanel{
 					this.remove(create);
 				else
 					this.add(create, BorderLayout.EAST);
+				
+				//Ajout de le l'icone delete
+				if(nomClass.equals("ModifContact")) {
+					this.add(delete, BorderLayout.EAST);
+				}
 
 				//On met un listener sur le bouton
 				create.addActionListener(new ClickCreate());
 				previous.addActionListener(new ClickPrevious());
+
+			}
+			
+			public MenuH1PanelContact(String titre, String nomClass, Contact contact)
+			// TODO Auto-generated constructor stube
+			{
+				this.titre = titre;
+				this.nomClass = nomClass;
+				titrePanel = new JLabel(getTitre());
+				titrePanel.setFont(globalFont);
+
+				this.setPreferredSize(new Dimension(480, 78));
+				this.setBackground(Color.decode("#DFDFDF"));
+
+				this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
+				if(nomClass.equals("ContactPanel")) {
+//					this.add(vide, BorderLayout.WEST);
+				}else {
+					this.add(previous, BorderLayout.WEST);
+				}
+				//On met le titre au centre
+				this.add(titrePanel, BorderLayout.CENTER);
+
+				//On met le plus à droite
+				if(nomClass.equals("NewContact"))
+					this.remove(create);
+				else
+					this.add(create, BorderLayout.EAST);
+				
+				//Ajout de le l'icone delete
+				if(nomClass.equals("ModifContact")) {
+					this.remove(create);
+					this.add(delete, BorderLayout.EAST);
+				}
+
+				//On met un listener sur le bouton
+				create.addActionListener(new ClickCreate());
+				previous.addActionListener(new ClickPrevious());
+				delete.addActionListener(new ClickDelete(contact));
 
 			}
 
@@ -554,11 +594,6 @@ public class ContactPanel extends JPanel{
 			public String getTitre() {
 				return titre;
 			}
-			
-//			public void setCardLayout(CardLayout cardlayout, JPanel triPanel) {
-//				this.cardlayout = cardlayout;
-//				this.triPanel = triPanel;
-//			}
 			
 			//quand on clique sur le bouton previous
 			
@@ -586,6 +621,24 @@ public class ContactPanel extends JPanel{
 				}
 			}
 			
-			//
+			//quand on clique sur le bouton delete
+			class ClickDelete implements ActionListener{
+
+				Contact contact;
+				public ClickDelete(Contact contact) {
+					// TODO Auto-generated constructor stub
+					this.contact = contact;
+				}
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					File delete = new File("serialisation\\"+contact.getNom()+"-"+contact.getPrenom()+".ser");
+					delete.delete();
+					cardLayout.show(triPanel, "scroll");
+					menuh1panel.setVisible(true);
+					System.out.println("delete cliqué");
+				}
+			}
 		}
 }
