@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Calculette.Calculette;
 import ContactApp.ContactPanel;
 import GalerieApp.GalleryPanel;
 import Images.IconBase;
@@ -36,6 +38,7 @@ public class Frame extends JFrame
 	ContactPanel contactpanel = new ContactPanel(this);
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
+	Calculette calculette = new Calculette();
 	
 	JPanel backpanel = new JPanel();
 	JPanel mainpanel = new JPanel();
@@ -127,6 +130,7 @@ public class Frame extends JFrame
 		
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
+		triPanel.add(calculette, "calculette");
 		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
@@ -151,7 +155,7 @@ public class Frame extends JFrame
 		public void actionPerformed(ActionEvent e) {
 
 			
-			cardLayout.show(triPanel, "panelsettings");
+			cardLayout.show(triPanel, "calculette");
 		}
 		
 	}
