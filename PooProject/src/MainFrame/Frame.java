@@ -25,6 +25,7 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.UpPanel;
+import Settings.PanelSettings;
 
 /**
  * @author Loris_Clivazs
@@ -41,8 +42,40 @@ public class Frame extends JFrame
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
-
+	PanelSettings panelsettings = new PanelSettings(this);
 	
+
+	public CardLayout getCardLayout() {
+		return cardLayout;
+	}
+
+
+
+
+
+	public void setCardLayout(CardLayout cardLayout) {
+		this.cardLayout = cardLayout;
+	}
+
+
+
+
+
+	public JPanel getTriPanel() {
+		return triPanel;
+	}
+
+
+
+
+
+	public void setTriPanel(JPanel triPanel) {
+		this.triPanel = triPanel;
+	}
+
+
+
+
 
 	//Ajout des icons
 	IconLock iconlock = new IconLock();
@@ -122,18 +155,24 @@ public class Frame extends JFrame
 		
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
+		triPanel.add(panelsettings, "panelsettings");
 		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
-		iconagenda.addActionListener(new ClickAgenda());
+		iconsettings.addActionListener(new ClickSettings());
 		}
 	
 	
 	
 	
 	
-	class ClickAgenda implements ActionListener
+	
+
+
+
+
+	class ClickSettings implements ActionListener
 	{
 
 		
@@ -141,7 +180,7 @@ public class Frame extends JFrame
 		public void actionPerformed(ActionEvent e) {
 
 			
-			cardLayout.show(triPanel, "notepanel");
+			cardLayout.show(triPanel, "panelsettings");
 		}
 		
 	}
@@ -269,12 +308,17 @@ public class Frame extends JFrame
 			
 		}
 		
-		public  JPanel getTriPanel() {
-			return triPanel;
-		}
+		
+		
+		
 	
 		public void setImagefond(ImageFond imagefond) {
 			this.imagefond = imagefond;
 		}
+
+
+		
+		
 		
 }
+
