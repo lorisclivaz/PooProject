@@ -83,27 +83,15 @@ public class ContactPanel extends JPanel{
 			for (int i = 0 ; i < f.length ; i++) {
 			  if (f[i].isFile()) {
 				path = f[i].getAbsolutePath();
-//				current = deSerializeObject(path);
-				current = new Contact("Bridy-"+i, "Vivian", "Route de Fellina 3", "0798434456", "vbridy2@gmail.com");
+				current = deSerializeObject(path);
 				FlatButton bouton = new FlatButton();
 				bouton.addActionListener(new ClickContact(current));
 				bouton.setText(current.getNom()+" "+current.getPrenom());
-//				bouton.addActionListener(new ClickContact(current));
 				bouton.setPreferredSize(new Dimension(400,120));
-//				bouton.setText(listContact.get(0).getNom());
 				allContact.add(bouton);
 			  }
 			}
 			
-			
-//			for(int i=0;i<10;i++) {
-//				//On ajoute des contacts à listContact
-//				listContact.add(new Contact("Bridy", "Vivian", "Route de Fellina 3", "0798434456", "vbridy2@gmail.com"));
-//				JButton boutonTest = new JButton();
-//				boutonTest.setPreferredSize(new Dimension(400,100));
-//				boutonTest.setText(listContact.get(0).getNom());
-//				allContact.add(boutonTest);
-//			}
 			
 
 			triPanel.add(scroll, "scroll");
@@ -111,7 +99,6 @@ public class ContactPanel extends JPanel{
 			
 			cardLayout.show(triPanel, "allcontact");
 
-//			menuh1panel.setCardLayout(cardLayout, triPanel);
 		}
 		
 		
