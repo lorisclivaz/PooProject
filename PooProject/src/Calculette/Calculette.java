@@ -69,17 +69,17 @@ public class Calculette extends JPanel
 
 		//on met le layout du centre pour l'ordre des panels
 		center.setLayout(new BorderLayout());
-		center.setBackground(Color.RED);
 
 		//panel bas 
 		bas.setLayout(new FlowLayout());
+		bas.setBackground(Color.GRAY);
 		bas.setSize(new Dimension(480, 40));
 		bas.add(point);
 		//mets tous les composants dans le panel center
 		Composant();
 
 		
-
+		
 		this.add(center, BorderLayout.CENTER);
 		this.add(bas, BorderLayout.SOUTH);
 
