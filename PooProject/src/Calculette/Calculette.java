@@ -1,6 +1,7 @@
 package Calculette;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,8 +24,14 @@ public class Calculette extends JPanel
 	IconBase point = new IconBase("images/icones/points.png", 50,50);
 
 
+
 	JPanel center = new JPanel();
 	JPanel bas = new JPanel();
+
+	//Création du panel sur le click
+	JPanel panelCop = new JPanel();
+
+
 
 	//Tableau qui stocke les éléments de la calculatrice
 	String [] tab_string = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "=",
@@ -55,14 +61,16 @@ public class Calculette extends JPanel
 		//choisir la dimension du panel de base
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
-		
+
 		//on rajoute le panel par defaut des apps dans le north du panel de base
 		this.add(panelcalculette, BorderLayout.NORTH);
+
+		
 
 		//on met le layout du centre pour l'ordre des panels
 		center.setLayout(new BorderLayout());
 		center.setBackground(Color.RED);
-		
+
 		//panel bas 
 		bas.setLayout(new FlowLayout());
 		bas.setSize(new Dimension(480, 40));
@@ -70,9 +78,14 @@ public class Calculette extends JPanel
 		//mets tous les composants dans le panel center
 		Composant();
 
+		
+
 		this.add(center, BorderLayout.CENTER);
 		this.add(bas, BorderLayout.SOUTH);
 
+	
+		
+		
 	}
 
 
@@ -88,25 +101,28 @@ public class Calculette extends JPanel
 		//On aligne les informations à droite dans le JLabel
 		ecran.setHorizontalAlignment(JLabel.CENTER);
 		ecran.setPreferredSize(new Dimension(220, 40));
+		
 		JPanel operateur = new JPanel();      
 		operateur.setPreferredSize(new Dimension(200, 225));
+		
 		JPanel chiffre = new JPanel();
 		chiffre.setLayout(new GridLayout(4, 3,5,5));
 		chiffre.setPreferredSize(new Dimension(200, 225));
+		
 		JPanel panEcran = new JPanel();
 		panEcran.setPreferredSize(new Dimension(220, 60));
 
 		//On parcourt le tableau 
 		//afin de créer nos boutons avec la couleur de fond changé
 		//ainsi que la police de caractère
-		
+
 		for(int i = 0; i < tab_string.length; i++){
 			tab_button[i] = new JButton(tab_string[i]);
 			tab_button[i].setPreferredSize(dim);
 			tab_button[i].setBackground(Color.darkGray);
 			tab_button[i].setFont(police2);
 			switch(i){
-			
+
 			//Pour chaque élément situé à la fin du tableau
 			//et qui n'est pas un chiffre
 			//on définit le comportement à avoir grâce à un listener
@@ -189,6 +205,7 @@ public class Calculette extends JPanel
 		}
 	}
 
+	
 	//Listener utilisé pour les chiffres
 	//Permet de stocker les chiffres et de les afficher
 	class ChiffreListener implements ActionListener {
@@ -290,5 +307,5 @@ public class Calculette extends JPanel
 		}
 	}
 
-
+	
 }

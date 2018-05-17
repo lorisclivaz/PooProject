@@ -60,7 +60,7 @@ public class Frame extends JFrame
 	IconBase icongallery = new IconBase("images/icones/gallery.png", 100,100);
 	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
 	IconBase iconmusic = new IconBase("images/icones/music.png", 100,100);
-	IconBase iconsettings = new IconBase("images/icones/settings.png", 100,100);
+	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 100,100);
 	IconBase iconmail = new IconBase("images/icones/mail.png", 100,100);
 	IconBase iconyoutube = new IconBase("images/icones/youtube.png", 100,100);
 	IconBase iconfacebook = new IconBase("images/icones/facebook.png", 100,100);
@@ -118,7 +118,7 @@ public class Frame extends JFrame
 		imagefond.add(icongallery);
 		imagefond.add(iconpower);
 		imagefond.add(iconmusic);
-		imagefond.add(iconsettings);
+		imagefond.add(iconcalculette);
 		imagefond.add(iconmail);
 		imagefond.add(iconyoutube);
 		imagefond.add(iconfacebook);
@@ -135,7 +135,7 @@ public class Frame extends JFrame
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
-		iconsettings.addActionListener(new ClickSettings());
+		iconcalculette.addActionListener(new ClickCalculette());
 		}
 	
 	
@@ -147,7 +147,7 @@ public class Frame extends JFrame
 
 
 
-	class ClickSettings implements ActionListener
+	class ClickCalculette implements ActionListener
 	{
 
 		
