@@ -46,7 +46,7 @@ public class Frame extends JFrame
 	ImageFond imagefond = new ImageFond();
 	
 
-	
+	private boolean lockFrame = false;
 
 
 
@@ -171,7 +171,12 @@ public class Frame extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			cardLayout.show(triPanel, "mainpanel");
+			if(lockFrame == true)
+			{
+				cardLayout.show(triPanel, "mainpanel");
+
+			}
+			System.out.println("clique bouton milieu");
 			
 
 		}
@@ -245,6 +250,7 @@ public class Frame extends JFrame
 				public void actionPerformed(ActionEvent e) {
 
 					cardLayout.show(triPanel, "mainpanel");
+					lockFrame = true;
 					System.out.println("cliqué");
 					
 				}

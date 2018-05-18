@@ -152,6 +152,7 @@ public class GalleryPanel extends JPanel
 			cardLayout.show(getTriPanel2(), "photo");
 
 			minipicture minsource = (minipicture) e.getSource();
+			System.out.println(e.getSource());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
 
 			//Création d'un panel pour la photo en grand
