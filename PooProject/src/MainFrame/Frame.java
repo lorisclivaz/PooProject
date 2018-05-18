@@ -29,6 +29,7 @@ import javax.swing.Timer;
 import Calculette.Calculette;
 import ContactApp.ContactPanel;
 import GalerieApp.GalleryPanel;
+import Horloge.HorlogePanel;
 import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
@@ -45,6 +46,7 @@ public class Frame extends JFrame
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
 	Calculette calculette = new Calculette();
+	HorlogePanel horlogepanel = new HorlogePanel();
 	
 	JPanel backpanel = new JPanel();
 	JPanel mainpanel = new JPanel();
@@ -137,14 +139,31 @@ public class Frame extends JFrame
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
 		triPanel.add(calculette, "calculette");
+		triPanel.add(horlogepanel, "horlogepanel");
 		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
 		iconcalculette.addActionListener(new ClickCalculette());
 		lockMain.addActionListener(new ClickLockMain());
+		iconhorloge.addActionListener(new ClickHorloge());
 		}
 	
+	private class ClickHorloge implements ActionListener
+	{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+
+			cardLayout.show(triPanel, "horlogepanel");
+
+			
+			
+		}
+		
+	}
 	
 	
 	
@@ -283,6 +302,10 @@ public class Frame extends JFrame
 				
 				
 			}
+			
+			
+			
+			
 
 			private class ClickLock implements ActionListener
 			{
@@ -299,7 +322,7 @@ public class Frame extends JFrame
 				
 			}
 			
-			class CurrentDate implements ActionListener
+			private class CurrentDate implements ActionListener
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
@@ -309,7 +332,7 @@ public class Frame extends JFrame
 				}
 			}
 			
-			class CurrentTime implements ActionListener
+			private class CurrentTime implements ActionListener
 			{
 				@Override
 				public void actionPerformed(ActionEvent e) 
@@ -324,7 +347,7 @@ public class Frame extends JFrame
 		
 		//Quand on clique sur l'icon contacts
 
-		class ClickContact implements ActionListener{
+		private class ClickContact implements ActionListener{
 
 			
 			@Override
@@ -338,7 +361,7 @@ public class Frame extends JFrame
 		
 		//Quand on clique sur l'icon gallery
 		
-		class ClickGallery implements ActionListener{
+		private class ClickGallery implements ActionListener{
 
 			
 			@Override
