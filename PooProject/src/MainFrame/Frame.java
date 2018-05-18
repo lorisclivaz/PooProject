@@ -14,11 +14,17 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Calculette.Calculette;
 import ContactApp.ContactPanel;
@@ -208,14 +214,22 @@ public class Frame extends JFrame
 			JPanel boutonlock = new JPanel();
 
 			
-			
+			// Date
+			private JLabel date = new JLabel();
+			final private DateFormat DATEFORMATDATE = new SimpleDateFormat("EEEE dd MMM");
+			private Timer timerDate = new Timer(0, new CurrentDate());
 
+			// Heure
+			private JLabel heure = new JLabel();
+			final private DateFormat DATEFORMATHEURE = new SimpleDateFormat("HH:mm");
+			private Timer timer = new Timer(0, new CurrentTime());
+			
 			public VerrouPanel() 
 			{
 
 			
 				this.setPreferredSize(new Dimension(480, 40));
-				this.setBackground(Color.RED);
+				
 				this.setLayout(new BorderLayout());
 
 
@@ -231,6 +245,20 @@ public class Frame extends JFrame
 				lock.addActionListener(new ClickLock());
 
 
+				// Heure
+				timer.start();
+				imagefond.add(heure, BorderLayout.NORTH);
+				heure.setHorizontalAlignment(JLabel.CENTER);
+				heure.setForeground(Color.WHITE);
+				heure.setFont(new Font("Montserrat", Font.BOLD, 70));
+
+				// Date
+				timerDate.start();
+				imagefond.add(date, BorderLayout.SOUTH);
+				date.setHorizontalAlignment(JLabel.CENTER);
+				date.setForeground(Color.WHITE);
+				date.setFont(new Font("Montserrat", Font.BOLD, 30));
+				
 
 				this.add(imagefond, BorderLayout.CENTER);
 				this.add(boutonlock, BorderLayout.SOUTH);
@@ -255,6 +283,26 @@ public class Frame extends JFrame
 					
 				}
 				
+			}
+			
+			class CurrentDate implements ActionListener
+			{
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					Calendar now = Calendar.getInstance();
+					date.setText(DATEFORMATDATE.format(now.getTime()));
+				}
+			}
+			
+			class CurrentTime implements ActionListener
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					Calendar now = Calendar.getInstance();
+					heure.setText(DATEFORMATHEURE.format(now.getTime()));
+				}
 			}
 			
 		}
@@ -288,6 +336,7 @@ public class Frame extends JFrame
 			}
 			
 		}
+		
 		
 		
 		

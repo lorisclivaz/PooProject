@@ -44,6 +44,8 @@ public class UpPanel extends JPanel{
 			
 			//heure
 			Calendar now = Calendar.getInstance();
+			
+			
 			date.setText("      4G     "+formatHeure.format(now.getTime())+"    ");
 			date.setForeground(Color.WHITE);
 			
