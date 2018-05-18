@@ -37,7 +37,7 @@ import MainFrame.Frame;
 
 
 public class ContactPanel extends JPanel{
-		//Création framee
+		//Création frame
 		private Frame frame;
 	
 		//Création du tableau de contact
@@ -69,9 +69,8 @@ public class ContactPanel extends JPanel{
 		//On crée la scrollBar
 		JScrollPane scroll = new  JScrollPane(allContact);
 		
-		public ContactPanel(Frame frame) {
+		public ContactPanel() {
 			// TODO Auto-generated constructor stub
-			this.frame = frame;
 			//Choix du layout et de la dimension du panel
 
 			this.setPreferredSize(new Dimension(480, 40));
@@ -89,6 +88,15 @@ public class ContactPanel extends JPanel{
 			//Ajout du panel center à galleryPanelea
 			this.add(triPanel, BorderLayout.CENTER);
 			
+			actualise();
+			
+			triPanel.add(newcontact, "newcontact");
+			
+			cardLayout.show(triPanel, "allcontact");
+
+		}
+		
+		public void actualise() {
 			//On calcule le nombre de contact dans le dossier serialisation
 			File dossier = new File("serialisation");
 			File[] f = dossier.listFiles();
@@ -108,10 +116,6 @@ public class ContactPanel extends JPanel{
 			}
 
 			triPanel.add(scroll, "scroll");
-			triPanel.add(newcontact, "newcontact");
-			
-			cardLayout.show(triPanel, "allcontact");
-
 		}
 		
 		
@@ -137,7 +141,7 @@ public class ContactPanel extends JPanel{
 			private int id=0;
 			private String nom,prenom,adresse,localite,telephone,mail,urlImage;
 			
-			public Contact(String nom,String prenom,String adresse,String localite,String telephone,String mail,String urlImage) {
+			public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage) {
 				// TODO Auto-generated constructor stub
 				setId();
 				setNom(nom);
@@ -340,7 +344,6 @@ public class ContactPanel extends JPanel{
 				this.add(menuh1panel2);
 				
 				//On définit la taille de l'image et on l'implémentes
-				imageContact.addActionListener(new ClickImage());
 				this.add(imageContact);
 				
 				//On met les infos dans le gridpanel
@@ -367,17 +370,6 @@ public class ContactPanel extends JPanel{
 				this.add(infosContact);
 				
 
-				
-			}
-			
-			class ClickImage implements ActionListener{
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-					System.out.println("BONJOUR");
-					frame.getCardLayout().show(frame.getTriPanel(), "gallerypanel");
-				}
 				
 			}
 			
@@ -689,8 +681,8 @@ public class ContactPanel extends JPanel{
 					// TODO Auto-generated method stub
 //					allContact.removeAll();
 //					allContact.revalidate();
-					File delete = new File("serialisation\\"+contact.getNom()+"-"+contact.getPrenom()+".ser");
-					delete.delete();
+					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
+					filedeleted.delete();
 					//On actualise la liste des contact et on affiche cette dernière
 					actualiseContact();
 					cardLayout.show(triPanel, "scroll");

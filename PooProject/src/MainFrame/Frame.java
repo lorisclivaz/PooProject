@@ -41,7 +41,7 @@ import Panels.UpPanel;
 public class Frame extends JFrame
 {
 	//Ajout des panelss
-	ContactPanel contactpanel = new ContactPanel(this);
+	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
 	Calculette calculette = new Calculette();
