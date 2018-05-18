@@ -255,7 +255,7 @@ public class Frame extends JFrame
 
 			ImageFond imagefond = new ImageFond();
 			ImageFond imagefond2 = new ImageFond();
-			IconBase lock = new IconBase("images/icones/padlock.png", 50,50);
+			IconBase lock = new IconBase("images/icones/fingerprint.png", 70,70);
 
 			JPanel boutonlock = new JPanel();
 

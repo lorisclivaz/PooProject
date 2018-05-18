@@ -10,11 +10,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,14 +35,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import GalerieApp.GalleryPanel;
+import GalerieApp.Picture;
+import GalerieApp.GalleryPanel.PhotoPanel;
 import Images.IconBase;
 import Images.ImageContact;
+import Images.ImageFond;
 import MainFrame.Frame;
 
 
 public class ContactPanel extends JPanel{
 		//Création frame
-		private Frame frame;
+//		private Frame frame;
 	
 		//Création du tableau de contact
 		private ArrayList<Contact> listContact = new ArrayList<Contact>();
@@ -69,16 +76,18 @@ public class ContactPanel extends JPanel{
 		//On crée la scrollBar
 		JScrollPane scroll = new  JScrollPane(allContact);
 		
+		
 		public ContactPanel() {
 			// TODO Auto-generated constructor stub
+//			this.frame = frame;
 			//Choix du layout et de la dimension du panel
 
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 			
 			this.add(menuh1panel, BorderLayout.NORTH);
-			
-			allContact.setLayout(new GridLayout(7,1));
+						
+			allContact.setLayout(new GridLayout(10,1));
 
 //			center.setLayout(new GridLayout(6,2,0,0));
 			
@@ -103,6 +112,7 @@ public class ContactPanel extends JPanel{
 			String path;
 			Contact current;
 			int nombreFichier = 0;
+						
 			for (int i = 0 ; i < f.length ; i++) {
 			  if (f[i].isFile()) {
 				path = f[i].getAbsolutePath();
@@ -111,11 +121,10 @@ public class ContactPanel extends JPanel{
 				bouton.addActionListener(new ClickContact(current));
 				bouton.setText(current.getNom()+" "+current.getPrenom());
 				bouton.setPreferredSize(new Dimension(400,120));
-//				allContact.setLayout(new GridLayout(i,1));
 				allContact.add(bouton);
 			  }
 			}
-
+			
 			triPanel.add(scroll, "scroll");
 		}
 		
@@ -319,6 +328,7 @@ public class ContactPanel extends JPanel{
 			private MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact("Nouv. Contact", getClass().getSimpleName());
 			String urlImage = "images/photos/contact-1.png";
 			private IconBase imageContact = new IconBase(urlImage,480,300);
+//			private PhotoPanel imageDuContact = new PhotoPanel();
 			private JPanel infosContact = new JPanel();
 			
 			private ChampLabel nom = new ChampLabel("Nom :","text");
@@ -347,7 +357,7 @@ public class ContactPanel extends JPanel{
 				
 				//On définit la taille de l'image et on l'implémentes
 				this.add(imageContact);
-				
+//				imageContact.addActionListener(new ClickImage());
 				//On met les infos dans le gridpanel
 				infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
 				
@@ -372,6 +382,17 @@ public class ContactPanel extends JPanel{
 				this.add(infosContact);
 				
 
+				
+			}
+			
+			class ClickImage implements ActionListener{
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					System.out.println("click sur image");
+//					frame.getCardLayout().show(frame.getTriPanel(), "Gallery");
+				}
 				
 			}
 			
@@ -438,7 +459,8 @@ public class ContactPanel extends JPanel{
 				bouton.setPreferredSize(new Dimension(400,120));
 				allContact.add(bouton);
 			  }
-			}	
+			}
+			
 		}
 		
 		public class SaveButton extends JButton{
@@ -704,4 +726,127 @@ public class ContactPanel extends JPanel{
 				}
 			}
 		}
+
+		public  class PhotoPanel extends JPanel {
+
+			private ImageFond imageFond ;
+
+			private GalleryPanel photo;
+			private  Picture image;
+			private MouseAdapter ma;
+			private String changeImage;
+
+			
+
+
+			JPanel up = new JPanel();
+
+			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
+		
+			IconBase delete = new IconBase("images/icones/delete.png",40,40);
+
+			
+			public PhotoPanel(GalleryPanel photo, Picture image) {
+
+				this.photo = photo;
+				this.image = image;
+
+				BorderLayout fl = new BorderLayout();
+				this.setLayout(fl);
+				this.setBackground(Color.BLACK);
+
+				up.setLayout(new BorderLayout());
+				up.setBackground(Color.BLACK);
+				this.add(up, BorderLayout.NORTH);
+
+				up.add(previous, BorderLayout.WEST);
+				up.add(delete, BorderLayout.EAST);
+
+				//Swiper de photo grace au clique
+				ma = new MouseAdapter() {
+					private Point origin;
+
+					@Override
+					public void mousePressed(MouseEvent e) {
+						origin = new Point(e.getPoint());
+						
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent e) {
+					}
+
+					@Override
+					public void mouseDragged(MouseEvent e) {
+						if (origin != null) {
+							int deltaX = origin.x - e.getX();
+							if(deltaX>=200){
+								changeImg(1);
+								origin=null;
+							}
+							else if(deltaX<=-200){
+								changeImg(-1);
+								origin=null;
+							}
+						}
+					}
+
+					
+				};
+
+				
+				this.addMouseListener(ma);
+				this.addMouseMotionListener(ma);
+
+			}
+			private void changeImg(int i) {
+
+				int idImg = photo.getVoisin(image)+i;
+				ArrayList<Picture> list = photo.getListImg();
+				if(idImg==-1){
+					idImg=list.size()-1;
+				}
+				else if(idImg==list.size()){
+					idImg=0;
+				}
+				image = list.get(idImg);
+				PhotoPanel.this.revalidate();
+				PhotoPanel.this.repaint();
+				
+			}
+			
+			
+		
+
+			public String getChangeImage() {
+			return changeImage;
+		}
+
+
+			public void paintComponent(Graphics g) 
+			{
+				super.paintComponent(g);
+				
+				BufferedImage pic = image.getPicture();
+				
+				int nH = (int) (pic.getHeight() / ((double) pic.getWidth() / getWidth()));
+				
+				if (nH > getHeight()) 
+				{
+					int nW = (int) (pic.getWidth() / ((double) pic.getHeight() / getHeight()));
+					int x = (getWidth() - nW) / 2;
+					g.drawImage(pic, x, 0, nW, getHeight(), this);
+				} 
+				else 
+				{
+
+					int y = (getHeight() - nH) / 2;
+					g.drawImage(pic, 0, y, getWidth(), nH, this);
+				}
+
+			}
+			
+			
+		}
+			
 }
