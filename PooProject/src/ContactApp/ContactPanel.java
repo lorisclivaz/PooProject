@@ -38,7 +38,7 @@ import MainFrame.Frame;
 
 public class ContactPanel extends JPanel{
 		//Création frame
-		private Frame frame;
+//		private Frame frame;
 	
 		//Création du tableau de contact
 		private ArrayList<Contact> listContact = new ArrayList<Contact>();
@@ -69,16 +69,18 @@ public class ContactPanel extends JPanel{
 		//On crée la scrollBar
 		JScrollPane scroll = new  JScrollPane(allContact);
 		
+		
 		public ContactPanel() {
 			// TODO Auto-generated constructor stub
+//			this.frame = frame;
 			//Choix du layout et de la dimension du panel
 
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 			
 			this.add(menuh1panel, BorderLayout.NORTH);
-			
-			allContact.setLayout(new GridLayout(7,1));
+						
+			allContact.setLayout(new GridLayout(10,1));
 
 //			center.setLayout(new GridLayout(6,2,0,0));
 			
@@ -103,6 +105,7 @@ public class ContactPanel extends JPanel{
 			String path;
 			Contact current;
 			int nombreFichier = 0;
+						
 			for (int i = 0 ; i < f.length ; i++) {
 			  if (f[i].isFile()) {
 				path = f[i].getAbsolutePath();
@@ -111,11 +114,10 @@ public class ContactPanel extends JPanel{
 				bouton.addActionListener(new ClickContact(current));
 				bouton.setText(current.getNom()+" "+current.getPrenom());
 				bouton.setPreferredSize(new Dimension(400,120));
-//				allContact.setLayout(new GridLayout(i,1));
 				allContact.add(bouton);
 			  }
 			}
-
+			
 			triPanel.add(scroll, "scroll");
 		}
 		
@@ -347,7 +349,7 @@ public class ContactPanel extends JPanel{
 				
 				//On définit la taille de l'image et on l'implémentes
 				this.add(imageContact);
-				
+//				imageContact.addActionListener(new ClickImage());
 				//On met les infos dans le gridpanel
 				infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
 				
@@ -372,6 +374,17 @@ public class ContactPanel extends JPanel{
 				this.add(infosContact);
 				
 
+				
+			}
+			
+			class ClickImage implements ActionListener{
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					System.out.println("click sur image");
+//					frame.getCardLayout().show(frame.getTriPanel(), "Gallery");
+				}
 				
 			}
 			
@@ -438,7 +451,8 @@ public class ContactPanel extends JPanel{
 				bouton.setPreferredSize(new Dimension(400,120));
 				allContact.add(bouton);
 			  }
-			}	
+			}
+			
 		}
 		
 		public class SaveButton extends JButton{
