@@ -5,5 +5,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="jarFiles/activation.jar"/>
 	<classpathentry kind="lib" path="jarFiles/mail.jar"/>
+	<classpathentry kind="lib" path="C:/opencv/build/java/opencv-341.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/opencv/build/java/x64"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

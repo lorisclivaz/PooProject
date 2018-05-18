@@ -1,3 +1,4 @@
+package MainFrame;
 /*
 * Exercise W2Q3 - 2
 * Author: Clivaz Loris
@@ -7,7 +8,7 @@
 /**
  * 
  */
-package MainFrame;
+
 
 /**
  * @author Loris_Clivaz

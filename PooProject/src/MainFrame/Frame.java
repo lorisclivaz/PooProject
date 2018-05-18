@@ -1,3 +1,4 @@
+package MainFrame;
 /*
 * Frame
 * Author: Clivaz Loris
@@ -7,7 +8,7 @@
 /**
  * 
  */
-package MainFrame;
+
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -47,7 +48,6 @@ public class Frame extends JFrame
 	VerrouPanel verroupanel = new VerrouPanel();
 	Calculette calculette = new Calculette();
 	HorlogePanel horlogepanel = new HorlogePanel();
-	
 	JPanel backpanel = new JPanel();
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
@@ -64,18 +64,18 @@ public class Frame extends JFrame
 	IconLock iconlock = new IconLock();
 	
 
-	IconBase iconcontact = new IconBase("images/icones/contact.png", 100,100);
-	IconBase icongallery = new IconBase("images/icones/gallery.png", 100,100);
-	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
-	IconBase iconmusic = new IconBase("images/icones/music.png", 100,100);
-	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 100,100);
-	IconBase iconhorloge = new IconBase("images/icones/horloge.png", 100,100);
-	IconBase iconyoutube = new IconBase("images/icones/youtube.png", 100,100);
-	IconBase iconfacebook = new IconBase("images/icones/facebook.png", 100,100);
-	IconBase iconinstagram = new IconBase("images/icones/instagram.png", 100,100);
-	IconBase iconagenda = new IconBase("images/icones/agenda.png", 100,100);
-	IconBase iconphoto = new IconBase("images/icones/photo.png", 100,100);
-	IconBase lockMain = new IconBase("images/icones/lockmain.png", 100,100);
+	IconBase iconcontact = new IconBase("images/icones/contact.png", 60,60);
+	IconBase icongallery = new IconBase("images/icones/gallery.png", 60,60);
+	IconBase iconpower = new IconBase("images/icones/power.png", 60,60);
+	IconBase iconmusic = new IconBase("images/icones/music.png",  60,60);
+	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 60,60);
+	IconBase iconhorloge = new IconBase("images/icones/horloge.png",  60,60);
+	IconBase iconyoutube = new IconBase("images/icones/youtube.png",  60,60);
+	IconBase iconfacebook = new IconBase("images/icones/facebook.png",  60,60);
+	IconBase iconinstagram = new IconBase("images/icones/instagram.png",  60,60);
+	IconBase iconagenda = new IconBase("images/icones/agenda.png", 60,60);
+	IconBase iconphoto = new IconBase("images/icones/photo.png",  60,60);
+	IconBase lockMain = new IconBase("images/icones/lockmain.png",  60,60);
 
 	
 	
@@ -147,8 +147,21 @@ public class Frame extends JFrame
 		iconcalculette.addActionListener(new ClickCalculette());
 		lockMain.addActionListener(new ClickLockMain());
 		iconhorloge.addActionListener(new ClickHorloge());
+		iconphoto.addActionListener(new ClickPhoto());
 		}
 	
+	private class ClickPhoto implements ActionListener
+	{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			
+			
+		}
+		
+	}
 	private class ClickHorloge implements ActionListener
 	{
 
