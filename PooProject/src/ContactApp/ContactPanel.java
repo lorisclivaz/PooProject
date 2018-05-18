@@ -37,7 +37,7 @@ import MainFrame.Frame;
 
 
 public class ContactPanel extends JPanel{
-		//Création frame
+		//Création framee
 		private Frame frame;
 	
 		//Création du tableau de contact
