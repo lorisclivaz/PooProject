@@ -78,9 +78,9 @@ public class ContactPanel extends JPanel{
 			
 			this.add(menuh1panel, BorderLayout.NORTH);
 			
-			allContact.setLayout(new GridLayout(0,1));
+			allContact.setLayout(new GridLayout(7,1));
 
-			center.setLayout(new GridLayout(6,2,0,0));
+//			center.setLayout(new GridLayout(6,2,0,0));
 			
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
@@ -111,6 +111,7 @@ public class ContactPanel extends JPanel{
 				bouton.addActionListener(new ClickContact(current));
 				bouton.setText(current.getNom()+" "+current.getPrenom());
 				bouton.setPreferredSize(new Dimension(400,120));
+//				allContact.setLayout(new GridLayout(i,1));
 				allContact.add(bouton);
 			  }
 			}

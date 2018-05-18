@@ -67,7 +67,7 @@ public class Frame extends JFrame
 	IconBase iconpower = new IconBase("images/icones/power.png", 100,100);
 	IconBase iconmusic = new IconBase("images/icones/music.png", 100,100);
 	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 100,100);
-	IconBase iconmail = new IconBase("images/icones/mail.png", 100,100);
+	IconBase iconhorloge = new IconBase("images/icones/horloge.png", 100,100);
 	IconBase iconyoutube = new IconBase("images/icones/youtube.png", 100,100);
 	IconBase iconfacebook = new IconBase("images/icones/facebook.png", 100,100);
 	IconBase iconinstagram = new IconBase("images/icones/instagram.png", 100,100);
@@ -125,7 +125,7 @@ public class Frame extends JFrame
 		imagefond.add(iconpower);
 		imagefond.add(iconmusic);
 		imagefond.add(iconcalculette);
-		imagefond.add(iconmail);
+		imagefond.add(iconhorloge);
 		imagefond.add(iconyoutube);
 		imagefond.add(iconfacebook);
 		imagefond.add(iconinstagram);		
@@ -160,6 +160,7 @@ public class Frame extends JFrame
 
 			cardLayout.show(triPanel, "verroupanel");
 			
+			lockFrame = false;
 		}
 		
 	}
@@ -267,7 +268,7 @@ public class Frame extends JFrame
 
 				// Date
 				timerDate.start();
-				imagefond.add(date, BorderLayout.SOUTH);
+				imagefond.add(date, BorderLayout.CENTER);
 				date.setHorizontalAlignment(JLabel.CENTER);
 				date.setForeground(Color.WHITE);
 				date.setFont(new Font("Montserrat", Font.BOLD, 30));
