@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  */
 public class ImageFond extends JPanel
 {
-	String changeImage="images/background/imagefond.png";
+	String changeImage="images/background/imagefond.jpg";
 
 
 	public ImageFond() {

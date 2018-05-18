@@ -73,7 +73,7 @@ public class Frame extends JFrame
 	IconBase iconinstagram = new IconBase("images/icones/instagram.png", 100,100);
 	IconBase iconagenda = new IconBase("images/icones/agenda.png", 100,100);
 	IconBase iconphoto = new IconBase("images/icones/photo.png", 100,100);
-	IconBase iconhorloge = new IconBase("images/icones/horloge.png", 100,100);
+	IconBase lockMain = new IconBase("images/icones/lockmain.png", 100,100);
 
 	
 	
@@ -93,7 +93,7 @@ public class Frame extends JFrame
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setUndecorated(true);
 		this.setLocationRelativeTo(null);
-		
+		this.setBackground(new Color(0, 0, 0));
 		this.setLayout(new BorderLayout());
 		
 		//ajout du panel du haut
@@ -131,7 +131,7 @@ public class Frame extends JFrame
 		imagefond.add(iconinstagram);		
 		imagefond.add(iconagenda);
 		imagefond.add(iconphoto);
-		imagefond.add(iconhorloge);
+		imagefond.add(lockMain);
 		
 		
 		triPanel.add(gallerypanel, "gallerypanel");
@@ -142,6 +142,7 @@ public class Frame extends JFrame
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
 		iconcalculette.addActionListener(new ClickCalculette());
+		lockMain.addActionListener(new ClickLockMain());
 		}
 	
 	
@@ -149,7 +150,19 @@ public class Frame extends JFrame
 	
 	
 	
+	class ClickLockMain implements ActionListener
+	{
 
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) 
+		{
+
+			cardLayout.show(triPanel, "verroupanel");
+			
+		}
+		
+	}
 
 
 

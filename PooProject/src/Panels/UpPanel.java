@@ -19,10 +19,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 
 /**
@@ -64,6 +64,7 @@ public class UpPanel extends JPanel{
 		heure.setForeground(Color.WHITE);
 		
 		fourni.setForeground(Color.WHITE);
+		fourni.setFont(new Font("Arial", Font.BOLD, 15));
 		this.add(fourni, BorderLayout.WEST);
 		this.add(heure, BorderLayout.EAST);
 	}
