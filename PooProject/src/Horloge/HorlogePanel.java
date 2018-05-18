@@ -36,7 +36,7 @@ public class HorlogePanel extends JPanel
 	
 	JPanel center = new JPanel ();
 
-	//Heure
+	//Heures
 		private JLabel heure = new JLabel();
 		final private DateFormat DATEFORMAT = new SimpleDateFormat("     HH:mm:ss");
 		private Timer timer = new Timer(0, new CurrentTime());
