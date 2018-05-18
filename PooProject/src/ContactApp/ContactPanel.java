@@ -136,9 +136,10 @@ public class ContactPanel extends JPanel{
 				return null;
 			}
 		}
-
+		
+		private int id=0;
+		
 		public class Contact implements Serializable {
-			private int id=0;
 			private String nom,prenom,adresse,localite,telephone,mail,urlImage;
 			
 			public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage) {
@@ -509,7 +510,7 @@ public class ContactPanel extends JPanel{
 				infosContact.add(phone);
 				infosContact.add(textPhone);
 				infosContact.add(vide2);
-				enregistrement.addActionListener(new ClickEnregistrement());
+				enregistrement.addActionListener(new ClickEnregistrement(contact));
 				infosContact.add(enregistrement);
 				
 				//On affiche les infos
@@ -519,10 +520,17 @@ public class ContactPanel extends JPanel{
 			
 			
 			class ClickEnregistrement implements ActionListener{
-
+				
+				int idContact;
+				public ClickEnregistrement(Contact contact) {
+					// TODO Auto-generated constructor stub
+					this.idContact = contact.getId();
+				}
+				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
+					
 					allContact.removeAll();
 					allContact.revalidate();
 					Contact contactEnCreation = new Contact(textNom.getText(),
@@ -532,7 +540,11 @@ public class ContactPanel extends JPanel{
 															textMail.getText(),
 															textPhone.getText(),
 															urlImage);
+					//On supprime l'ancien contact
+					File filedeleted = new File("serialisation\\contact-"+idContact+".ser");
+					filedeleted.delete();
 					this.serializeObject(contactEnCreation);
+					
 					//On actualise la liste des contact et on affiche cette dernière
 					actualiseContact();
 					getCardLayout().show(getTriPanel(), "scroll");
@@ -679,8 +691,8 @@ public class ContactPanel extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-//					allContact.removeAll();
-//					allContact.revalidate();
+					allContact.removeAll();
+					allContact.revalidate();
 					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
 					filedeleted.delete();
 					//On actualise la liste des contact et on affiche cette dernière
