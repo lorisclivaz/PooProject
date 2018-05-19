@@ -284,7 +284,7 @@ public class Frame extends JFrame
 				boutonlock.setLayout(new BorderLayout());
 				boutonlock.add(imagefond2);
 
-				imagefond2.setLayout(new FlowLayout(100,215,20));
+				imagefond2.setLayout(new FlowLayout(100,200,20));
 				imagefond2.add(lock);
 
 
