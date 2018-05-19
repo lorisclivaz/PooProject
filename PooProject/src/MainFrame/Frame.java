@@ -76,7 +76,8 @@ public class Frame extends JFrame
 	IconBase iconagenda = new IconBase("images/icones/agenda.png", 60,60);
 	IconBase iconphoto = new IconBase("images/icones/photo.png",  60,60);
 	IconBase lockMain = new IconBase("images/icones/lockmain.png",  60,60);
-
+	IconBase vide ;
+	
 	
 	
 	//tri des panels static pour avoir accès dans le panel d'accueil
@@ -119,21 +120,32 @@ public class Frame extends JFrame
 		
 		mainpanel.setLayout(new BorderLayout());
 		mainpanel.setPreferredSize(new Dimension(480, 40));
-		mainpanel.add(imagefond);
+		mainpanel.add(imagefond, BorderLayout.CENTER);
 		
-		imagefond.setLayout(new FlowLayout(30,45,70));
-		imagefond.add(iconcontact);
+		imagefond.setLayout(new FlowLayout(30,50,70));
+		
 		imagefond.add(icongallery);
-		imagefond.add(iconpower);
+		
 		imagefond.add(iconmusic);
 		imagefond.add(iconcalculette);
-		imagefond.add(iconhorloge);
 		imagefond.add(iconyoutube);
 		imagefond.add(iconfacebook);
 		imagefond.add(iconinstagram);		
 		imagefond.add(iconagenda);
 		imagefond.add(iconphoto);
-		imagefond.add(lockMain);
+		
+	
+		for (int i = 0; i < 8; i++) 
+		{
+			imagefond.add(new IconBase("images/icones/vide.png",  60,60));
+		}
+		
+		imagefond.add(iconpower);
+		imagefond.add(iconhorloge);
+		imagefond.add(iconcontact);
+		imagefond.add(lockMain );
+
+		
 		
 		
 		triPanel.add(gallerypanel, "gallerypanel");
