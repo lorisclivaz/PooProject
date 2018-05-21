@@ -42,12 +42,15 @@ import Images.IconBase;
 import Images.ImageContact;
 import Images.ImageFond;
 import MainFrame.Frame;
+/**
+ * Classe qui va gérer toute l'application Contact
+ * 
+ * @author Vivian
+ *
+ */
 
-
-public class ContactPanel extends JPanel{
-		//Création frame
-//		private Frame frame;
-	
+public class ContactPanel extends JPanel
+{
 		//Création du tableau de contact
 		private ArrayList<Contact> listContact = new ArrayList<Contact>();
 
@@ -62,12 +65,14 @@ public class ContactPanel extends JPanel{
 		public   CardLayout cardLayout = new CardLayout();
 		public  JPanel triPanel = new JPanel(cardLayout);
 		
-		public CardLayout getCardLayout() {
+		public CardLayout getCardLayout()
+		{
 			return cardLayout;
 		}
 
 
-		public JPanel getTriPanel() {
+		public JPanel getTriPanel()
+		{
 			return triPanel;
 		}
 
@@ -78,9 +83,15 @@ public class ContactPanel extends JPanel{
 		JScrollPane scroll = new  JScrollPane(allContact);
 		
 		
-		public ContactPanel() {
-			// TODO Auto-generated constructor stub
-//			this.frame = frame;
+		/**
+		 * Constructeur de la classe ContactPanel
+		 * - définit la taille du Panel et son layout
+		 * - ajoute et affiche les différents panels
+		 * 
+		 * @author Vivian
+		 */
+		public ContactPanel()
+		{
 			//Choix du layout et de la dimension du panel
 
 			this.setPreferredSize(new Dimension(480, 40));
@@ -89,8 +100,6 @@ public class ContactPanel extends JPanel{
 			this.add(menuh1panel, BorderLayout.NORTH);
 						
 			allContact.setLayout(new GridLayout(10,1));
-
-//			center.setLayout(new GridLayout(6,2,0,0));
 			
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
@@ -106,7 +115,17 @@ public class ContactPanel extends JPanel{
 
 		}
 		
-		public void actualise() {
+		/**
+		 * Permet d'actualiser la liste des contacts :
+		 * - parcourt le dossier serialisation
+		 * - crée un bouton par fichier
+		 * - ajoute et affiche le panel
+		 * 
+		 * @author Vivian
+		 */
+		
+		public void actualise()
+		{
 			//On calcule le nombre de contact dans le dossier serialisation
 			File dossier = new File("serialisation");
 			File[] f = dossier.listFiles();
@@ -129,8 +148,18 @@ public class ContactPanel extends JPanel{
 			triPanel.add(scroll, "scroll");
 		}
 		
+		/**
+		 * Méthode permettant de déserialiser un contact
+		 * 
+		 * @param path : le chemin vers le fichier sérialisé
+		 * @return : le contact déserialisé qui sera retourné
+		 * 
+		 * @author Vivian
+		 */
 		
-		public Contact deSerializeObject(String path) {
+		
+		public Contact deSerializeObject(String path)
+		{
 
 			try {
 				FileInputStream fichier = new FileInputStream(path);
@@ -138,23 +167,42 @@ public class ContactPanel extends JPanel{
 				Contact cs = (Contact)ois.readObject();
 				return cs;
 			}
-			catch (java.io.IOException e) {
+			catch (java.io.IOException e)
+			{
 				e.printStackTrace();
 				return null;
 			}
-			catch (ClassNotFoundException e) {
+			catch (ClassNotFoundException e)
+			{
 				e.printStackTrace();
 				return null;
 			}
 		}
 		
-		private int id=0;
 		
-		public class Contact implements Serializable {
+		private int id=0; 	//Variable qui va stocker le numéro du contact en création
+		
+		/**
+		 * Classe contact qui sera sérialisée et qui contient les variables suivantes
+		 * - nom
+		 * - prénom
+		 * - adresse
+		 * - localite
+		 * - telephone
+		 * - mail
+		 * - urlImage
+		 * 
+		 * Chaque variable possède son getter et setter
+		 * 
+		 * @author Vivian
+		 */
+		
+		public class Contact implements Serializable 
+		{
 			private String nom,prenom,adresse,localite,telephone,mail,urlImage;
 			
-			public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage) {
-				// TODO Auto-generated constructor stub
+			public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage)
+			{
 				setId();
 				setNom(nom);
 				setPrenom(prenom);
@@ -165,81 +213,113 @@ public class ContactPanel extends JPanel{
 				setUrlImage(urlImage);
 			}
 			
-			public int getId() {
+			public int getId()
+			{
 				return id;
 			}
 			
-			public void setId() {
+			public void setId()
+			{
 				id++;
 			}
 
-			public String getNom() {
+			public String getNom()
+			{
 				return nom;
 			}
 
-			public void setNom(String nom) {
+			public void setNom(String nom)
+			{
 				this.nom = nom;
 			}
 			
-			public String getUrlImage() {
+			public String getUrlImage()
+			{
 				return urlImage;
 			}
 
-			public void setUrlImage(String urlImage) {
+			public void setUrlImage(String urlImage)
+			{
 				this.urlImage = urlImage;
 			}
 
-			public String getPrenom() {
+			public String getPrenom()
+			{
 				return prenom;
 			}
 
-			public void setPrenom(String prenom) {
+			public void setPrenom(String prenom)
+			{
 				this.prenom = prenom;
 			}
 
-			public String getAdresse() {
+			public String getAdresse()
+			{
 				return adresse;
 			}
 
-			public void setAdresse(String adresse) {
+			public void setAdresse(String adresse)
+			{
 				this.adresse = adresse;
 			}
 			
-			public String getLocalite() {
+			public String getLocalite()
+			{
 				return localite;
 			}
 
-			public void setLocalite(String localite) {
+			public void setLocalite(String localite)
+			{
 				this.localite = localite;
 			}
 
-			public String getTelephone() {
+			public String getTelephone()
+			{
 				return telephone;
 			}
 
-			public void setTelephone(String telephone) {
+			public void setTelephone(String telephone)
+			{
 				this.telephone = telephone;
 			}
 
-			public String getMail() {
+			public String getMail()
+			{
 				return mail;
 			}
 
-			public void setMail(String mail) {
+			public void setMail(String mail)
+			{
 				this.mail = mail;
 			}
 		}
 		
-		public class ClickContact implements ActionListener{
+		/**
+		 * 
+		 * ActionListener qui se déclenche quand on clique sur un contact
+		 * On affiche la fiche du contact conserné
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		public class ClickContact implements ActionListener
+		{
 
 			Contact contact;
-			public ClickContact(Contact contact) {
-				// TODO Auto-generated constructor stub
+			
+			/**
+			 * Contructeur de la class ClickContact
+			 * 
+			 * @param contact
+			 * @Vivian
+			 */
+			public ClickContact(Contact contact)
+			{
 				this.contact = contact;
 			}
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+			public void actionPerformed(ActionEvent arg0)
+			{
 				System.out.println("contact "+contact.getNom()+" "+contact.getPrenom()+" cliqué");
 				//j'ai accès au contact cliqué je dois donc afficher le panel modifcontact avec pour paramètre ce contact
 				ModifContact modifcontact = new ModifContact(contact);
@@ -250,8 +330,23 @@ public class ContactPanel extends JPanel{
 			
 		}
 		
-		public class FlatButton extends JButton {
-			public FlatButton() {
+		/**
+		 * 
+		 * Classe FlatButton utilisée pour les boutons contact
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		
+		public class FlatButton extends JButton 
+		{
+			/**
+			 * Constructeur de la class FlatButton
+			 * 
+			 * @author Vivian
+			 */
+			public FlatButton() 
+			{
 				// TODO Auto-generated constructor stub
 				this.setBackground(Color.WHITE);
 				this.setFont(new Font("2.TimesRoman ",Font.BOLD,50));
@@ -259,48 +354,80 @@ public class ContactPanel extends JPanel{
 			}
 		}
 		
-		public class MouseMovement implements MouseListener{
-
-			FlatButton bouton;
-			public MouseMovement(FlatButton bouton) {
-				// TODO Auto-generated constructor stub
+		/**
+		 * 
+		 * Classe MouseMovement qui change la couleur du bouton contact :
+		 * - quand on passe dessus
+		 * - quand on ne passe plus dessus
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		public class MouseMovement implements MouseListener
+		{
+			FlatButton bouton; 			//On récupère la variable du bouton survolé
+			
+			/**
+			 * Constructeur de la classe MouseMovement
+			 * 
+			 * @param bouton : le bouton survolé
+			 * @author Vivian
+			 */
+			public MouseMovement(FlatButton bouton)
+			{
 				this.bouton = bouton;
 			}
 			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mouseClicked(MouseEvent arg0)
+			{
 			}
 
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mouseEntered(MouseEvent arg0)
+			{
 				bouton.setBackground(Color.LIGHT_GRAY);
 			}
 
 			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mouseExited(MouseEvent arg0)
+			{
 				bouton.setBackground(Color.WHITE);
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mousePressed(MouseEvent arg0)
+			{
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+			public void mouseReleased(MouseEvent arg0)
+			{
 			}
 			
 		}
 		
-		public class ChampLabel extends JLabel {
+		/**
+		 * 
+		 * Classe ChampLabel utilisée pour afficher le champ d'informations d'un contact
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		
+		public class ChampLabel extends JLabel
+		{
 			
 			Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
 			
-			public ChampLabel(String nom,String type) {
+			/**
+			 * Constructeur de la classe ChampLabel
+			 * 
+			 * @param nom : le nom du champ du contact
+			 * @param type : le type de donnée voulue dans ce champ
+			 */
+			public ChampLabel(String nom,String type)
+			{
 				// TODO Auto-generated constructor stubs
 				super(nom);
 				//Design des champs
@@ -310,16 +437,46 @@ public class ContactPanel extends JPanel{
 			}
 		}
 
+		/**
+		 * 
+		 * Classe ChampTextField qui permet d'écrire le champ du contact
+		 * 
+		 * @author Vivian
+		 *
+		 */
 		public class ChampTextField extends JTextField{
 			
 			Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
 			
+			/**
+			 * Constructeur de la classe ChampTextField
+			 * 
+			 * 
+			 * @param text : le text du champ
+			 * @author Vivian
+			 */
 			public ChampTextField(String text) {
 				// TODO Auto-generated constructor stubs
 				this.setText(text);
 				this.setFont(globalFontH2);
 			}
 		}
+		
+		
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+		
+		/**
+		 * 
+		 * @param listImage : la liste des url des images
+		 * @Vivian
+		 */
 		
 		public void fillImg(ArrayList<String> listImage) {
 			//On calcule le nombre d'image dans le dossier imagesgallery
@@ -660,6 +817,19 @@ public class ContactPanel extends JPanel{
 						e.printStackTrace();
 					}
 				}
+			}
+		}
+		
+		public void serializeObject(Contact contactEnCreation) {
+			try {
+				FileOutputStream fichier = new FileOutputStream("serialisation\\contact-"+contactEnCreation.getId()+".ser");
+				ObjectOutputStream oos = new ObjectOutputStream(fichier);
+				oos.writeObject(contactEnCreation);
+				oos.flush();
+				oos.close();
+			}
+			catch (java.io.IOException e) {
+				e.printStackTrace();
 			}
 		}
 		
