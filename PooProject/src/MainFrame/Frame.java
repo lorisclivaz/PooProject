@@ -36,6 +36,7 @@ import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
 import Panels.UpPanel;
+import PasswordPanel.PasswordPanel;
 
 /**
  * @author Loris_Clivazs
@@ -54,8 +55,15 @@ public class Frame extends JFrame
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
 	CameraPanel camera = new CameraPanel();
-
+	PasswordPanel psw = new PasswordPanel(this);
+	
 	private boolean lockFrame = false;
+
+
+
+
+
+	
 
 
 
@@ -154,7 +162,7 @@ public class Frame extends JFrame
 		triPanel.add(calculette, "calculette");
 		triPanel.add(horlogepanel, "horlogepanel");
 		triPanel.add(camera,"camera");
-
+		triPanel.add(psw, "psw");
 
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
@@ -163,8 +171,11 @@ public class Frame extends JFrame
 		lockMain.addActionListener(new ClickLockMain());
 		iconhorloge.addActionListener(new ClickHorloge());
 		iconphoto.addActionListener(new ClickPhoto());
+		
+		
 
 	}
+	
 
 
 
@@ -202,7 +213,7 @@ public class Frame extends JFrame
 
 
 
-	class ClickLockMain implements ActionListener
+	private class ClickLockMain implements ActionListener
 	{
 
 
@@ -219,7 +230,7 @@ public class Frame extends JFrame
 
 
 
-	class ClickCalculette implements ActionListener
+	private class ClickCalculette implements ActionListener
 	{
 
 
@@ -347,9 +358,11 @@ public class Frame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				cardLayout.show(triPanel, "mainpanel");
-				lockFrame = true;
-				System.out.println("cliqué");
+				
+				cardLayout.show(triPanel, "psw");
+				
+				
+
 
 			}
 
@@ -444,6 +457,10 @@ public class Frame extends JFrame
 
 	public void setTriPanel(JPanel triPanel) {
 		this.triPanel = triPanel;
+	}
+	
+	public void setLockFrame(boolean lockFrame) {
+		this.lockFrame = lockFrame;
 	}
 
 }
