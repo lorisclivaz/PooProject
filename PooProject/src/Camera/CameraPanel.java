@@ -17,7 +17,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -26,6 +29,7 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 
+import ContactApp.ContactPanel.SaveButton;
 import Panels.PanelCamera;
 
 /**
@@ -36,6 +40,7 @@ public class CameraPanel extends JPanel {
 	NewCenter center1= new NewCenter();
 	Timer timer;
 
+
 	PanelCamera panelcamera = new PanelCamera("Camera", "Camera");
 
 	public CameraPanel(){
@@ -44,10 +49,12 @@ public class CameraPanel extends JPanel {
 
 		this.add(panelcamera, BorderLayout.NORTH);
 		this.add(center1,BorderLayout.CENTER);
+
 		this.setBackground(new Color(0,191,255));
 
 		//setBounds(0, 0, 1280, 720);
 		this.setVisible(true);
+
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,6 +74,8 @@ public class CameraPanel extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				//	ticktack();
+
+
 			}
 		});
 		timer.setRepeats(true);
@@ -74,7 +83,7 @@ public class CameraPanel extends JPanel {
 		timer.setInitialDelay(0);
 		timer.start();
 
-		
+
 	}
 
 
@@ -89,7 +98,7 @@ public class CameraPanel extends JPanel {
 			center1.repaint();
 	}
 
-
+	
 
 	class MyThread extends Thread{
 		@Override
@@ -142,9 +151,12 @@ class VideoCap {
 	}
 	BufferedImage getOneFrame() {
 		cap.read(mat2Img.mat);
+
 		return mat2Img.getImage(mat2Img.mat);
 	}
 }
+
+
 class Mat2Image {
 	Mat mat = new Mat();
 	BufferedImage img;
@@ -174,4 +186,12 @@ class Mat2Image {
 	static{
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	}
+
+
+
 }
+
+
+
+
+
