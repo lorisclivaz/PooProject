@@ -42,6 +42,16 @@ public class IconBase extends JButton
 		this.width = width;
 		this.heigth = heigth;
 	}
+	
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
 
 	public void paintComponent(Graphics g){
 

@@ -26,6 +26,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -320,15 +321,30 @@ public class ContactPanel extends JPanel{
 			}
 		}
 		
+		public void fillImg(ArrayList<String> listImage) {
+			//On calcule le nombre d'image dans le dossier imagesgallery
+			File dossier = new File("imagesgallery");
+			File[] f = dossier.listFiles();
+			String path;
+			Contact current;
+						
+			for (int i = 0 ; i < f.length ; i++) {
+			  if (f[i].isFile()) {
+				path = f[i].getAbsolutePath();
+				listImage.add(path);
+			  }
+			}
+		}
+		
 		public class NewContact extends JPanel 
 		{	
+			private ArrayList<String> listImage = new ArrayList<String>();
 			
 			IconBase create = new IconBase("images/icones/plus.png",40,40);
 			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 			private MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact("Nouv. Contact", getClass().getSimpleName());
 			String urlImage = "images/photos/contact-1.png";
 			private IconBase imageContact = new IconBase(urlImage,480,300);
-//			private PhotoPanel imageDuContact = new PhotoPanel();
 			private JPanel infosContact = new JPanel();
 			
 			private ChampLabel nom = new ChampLabel("Nom :","text");
@@ -355,9 +371,13 @@ public class ContactPanel extends JPanel{
 				//On affiche titre H1 dans le panel UP
 				this.add(menuh1panel2);
 				
+				//On remplit le tableau des liens d'images
+				fillImg(listImage);
+				ListIterator li = listImage.listIterator();
+				
 				//On définit la taille de l'image et on l'implémentes
 				this.add(imageContact);
-//				imageContact.addActionListener(new ClickImage());
+				imageContact.addActionListener(new ClickImage(li));
 				//On met les infos dans le gridpanel
 				infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
 				
@@ -387,11 +407,26 @@ public class ContactPanel extends JPanel{
 			
 			class ClickImage implements ActionListener{
 
+				ListIterator li;
+				
+				public ClickImage(ListIterator li) {
+					// TODO Auto-generated constructor stub
+					this.li = li;
+				}
+				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
-					System.out.println("click sur image");
-//					frame.getCardLayout().show(frame.getTriPanel(), "Gallery");
+						if (li.hasNext()) {
+								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
+								System.out.println("image cliqué");
+						}else {
+							for(int i=0;i<listImage.size();i++) {
+								imageContact.setUrl((String)li.previous());	//on revient au début
+								System.out.println("on revient au début");
+							}
+						}
+
 				}
 				
 			}
@@ -407,7 +442,8 @@ public class ContactPanel extends JPanel{
 															textLocalite.getText(),
 															textMail.getText(),
 															textPhone.getText(),
-															urlImage);
+															imageContact.getUrl());
+					System.out.println(imageContact.getUrl());
 					//On remet tout à zérp
 					textNom.setText("");
 					textPrenom.setText("");
@@ -472,8 +508,7 @@ public class ContactPanel extends JPanel{
 		}
 
 		public class ModifContact extends JPanel{
-			String urlImage = "images/photos/contact-1.png";
-			private IconBase imageContact = new IconBase(urlImage,480,300);
+			private ArrayList<String> listImage = new ArrayList<String>();
 			private JPanel infosContact = new JPanel();
 			public   CardLayout cardLayout;
 			public  JPanel triPanel;
@@ -486,6 +521,14 @@ public class ContactPanel extends JPanel{
 				// TODO Auto-generated constructor stub
 				this.setBackground(Color.decode("#EFEFEF")); 
 				
+				//On remplit le tableau des liens d'images
+				fillImg(listImage);
+				ListIterator li = listImage.listIterator();
+				
+				//On affiche l'image courante du contact
+				String urlImage = contact.getUrlImage();
+				IconBase imageContact = new IconBase(urlImage,480,300);
+				
 				//On remplit le menuh1
 				MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact(contact.getPrenom(), getClass().getSimpleName(),contact);
 				
@@ -494,6 +537,7 @@ public class ContactPanel extends JPanel{
 				
 				//On définit la taille de l'image et on l'implémentes
 				this.add(imageContact);
+				imageContact.addActionListener(new ClickImage(li,imageContact));
 				
 				//On met les infos dans le gridpanel
 				infosContact.setLayout(new GridLayout(7,2,10,10)); 		//(ligne,colonne,espace,espace)
@@ -533,21 +577,49 @@ public class ContactPanel extends JPanel{
 				infosContact.add(phone);
 				infosContact.add(textPhone);
 				infosContact.add(vide2);
-				enregistrement.addActionListener(new ClickEnregistrement(contact));
+				enregistrement.addActionListener(new ClickEnregistrement(contact,imageContact));
 				infosContact.add(enregistrement);
 				
 				//On affiche les infos
 				this.add(infosContact);
 			}
 			
-			
+			class ClickImage implements ActionListener{
+
+				ListIterator li;
+				IconBase imageContact;
+				
+				public ClickImage(ListIterator li,IconBase imageContact) {
+					// TODO Auto-generated constructor stub
+					this.li = li;
+					this.imageContact = imageContact;
+				}
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+						if (li.hasNext()) {
+								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
+								System.out.println("image cliqué");
+						}else {
+							for(int i=0;i<listImage.size();i++) {
+								imageContact.setUrl((String)li.previous());	//on revient au début
+								System.out.println("on revient au début");
+							}
+						}
+
+				}
+				
+			}
 			
 			class ClickEnregistrement implements ActionListener{
 				
-				int idContact;
-				public ClickEnregistrement(Contact contact) {
+				Contact contact;
+				IconBase imageContact;
+				public ClickEnregistrement(Contact contact,IconBase imageContact) {
 					// TODO Auto-generated constructor stub
-					this.idContact = contact.getId();
+					this.contact = contact;
+					this.imageContact = imageContact;
 				}
 				
 				@Override
@@ -562,9 +634,9 @@ public class ContactPanel extends JPanel{
 															textLocalite.getText(),
 															textMail.getText(),
 															textPhone.getText(),
-															urlImage);
+															imageContact.getUrl());
 					//On supprime l'ancien contact
-					File filedeleted = new File("serialisation\\contact-"+idContact+".ser");
+					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
 					filedeleted.delete();
 					this.serializeObject(contactEnCreation);
 					
