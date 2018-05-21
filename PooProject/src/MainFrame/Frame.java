@@ -16,15 +16,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import Calculette.Calculette;
@@ -35,6 +38,7 @@ import Horloge.HorlogePanel;
 import Images.IconBase;
 import Images.IconLock;
 import Images.ImageFond;
+import Panels.PanelSettings;
 import Panels.UpPanel;
 import PasswordPanel.PasswordPanel;
 
@@ -48,6 +52,8 @@ public class Frame extends JFrame
 	ContactPanel contactpanel = new ContactPanel();
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
+	SettingsPanel settingspanel = new SettingsPanel();
+	
 	Calculette calculette = new Calculette();
 	HorlogePanel horlogepanel = new HorlogePanel();
 	JPanel backpanel = new JPanel();
@@ -56,6 +62,7 @@ public class Frame extends JFrame
 	ImageFond imagefond = new ImageFond();
 	CameraPanel camera = new CameraPanel();
 	PasswordPanel psw = new PasswordPanel(this);
+	changePswdPanel changepswdpanel = new changePswdPanel(psw, this);
 	
 	private boolean lockFrame = false;
 
@@ -76,7 +83,7 @@ public class Frame extends JFrame
 	IconBase iconcontact = new IconBase("images/icones/contact.png", 60,60);
 	IconBase icongallery = new IconBase("images/icones/gallery.png", 60,60);
 	IconBase iconpower = new IconBase("images/icones/power.png", 60,60);
-	IconBase iconmusic = new IconBase("images/icones/music.png",  60,60);
+	IconBase iconsettings = new IconBase("images/icones/settings.png",  60,60);
 	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 60,60);
 	IconBase iconhorloge = new IconBase("images/icones/horloge.png",  60,60);
 	IconBase iconyoutube = new IconBase("images/icones/youtube.png",  60,60);
@@ -85,6 +92,7 @@ public class Frame extends JFrame
 	IconBase iconagenda = new IconBase("images/icones/agenda.png", 60,60);
 	IconBase iconphoto = new IconBase("images/icones/photo.png",  60,60);
 	IconBase lockMain = new IconBase("images/icones/lockmain.png",  60,60);
+
 	IconBase vide ;
 
 
@@ -135,7 +143,7 @@ public class Frame extends JFrame
 
 		imagefond.add(icongallery);
 
-		imagefond.add(iconmusic);
+		imagefond.add(iconsettings);
 		imagefond.add(iconcalculette);
 		imagefond.add(iconyoutube);
 		imagefond.add(iconfacebook);
@@ -163,7 +171,9 @@ public class Frame extends JFrame
 		triPanel.add(horlogepanel, "horlogepanel");
 		triPanel.add(camera,"camera");
 		triPanel.add(psw, "psw");
-
+		triPanel.add(settingspanel, "settingspanel");
+		triPanel.add(changepswdpanel, "changepswdpanel");
+		
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
@@ -171,13 +181,24 @@ public class Frame extends JFrame
 		lockMain.addActionListener(new ClickLockMain());
 		iconhorloge.addActionListener(new ClickHorloge());
 		iconphoto.addActionListener(new ClickPhoto());
-		
+		iconsettings.addActionListener(new ClickSettings());
 		
 
 	}
 	
 
+	private class ClickSettings implements ActionListener
+	{
 
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+
+			cardLayout.show(triPanel, "settingspanel");
+		}
+		
+	}
 
 	private class ClickPhoto implements ActionListener
 	{
@@ -280,8 +301,120 @@ public class Frame extends JFrame
 		}
 
 	}
+	
+	
+	private class SettingsPanel extends JPanel
+	{
+		
+		PanelSettings panelsettings = new PanelSettings("Settings", "Settings");
+		
+		JButton button = new JButton("Change password");
+		JPanel grid = new JPanel();
+		
+		
+		public SettingsPanel() 
+		{
 
-	public class VerrouPanel extends JPanel
+			this.setPreferredSize(new Dimension(480, 40));
+			this.setLayout(new BorderLayout());
+			
+			button.setPreferredSize(new Dimension(480, 40));
+			button.addActionListener(new ClickChange());
+			grid.setLayout(new GridLayout(4, 1));
+			grid.add(button);
+			
+			this.add(panelsettings, BorderLayout.NORTH);
+			this.add(grid, BorderLayout.CENTER);
+		}
+	}
+	
+	private class changePswdPanel extends JPanel
+	{
+		
+		PasswordPanel changePsw;
+		Frame frame;
+		
+		PanelSettings change = new PanelSettings("Change", "Change");
+
+		JPanel grid = new JPanel();
+		JTextField ecrire = new JTextField();
+		JTextField ecrire2 = new JTextField();
+
+		JLabel label1 = new JLabel("Entrer l'ancien mot de passe :");
+		JLabel label2 = new JLabel("Entrer le nouveau mot de passe : ");
+		
+		String nouveau ;
+		
+		JButton button = new JButton("Change");
+		
+		
+		public changePswdPanel(PasswordPanel changePsw, Frame frame) 
+		{
+
+			this.frame = frame;
+			this.changePsw = changePsw;
+			this.setPreferredSize(new Dimension(480, 40));
+			this.setLayout(new BorderLayout());
+			
+			grid.setLayout(new FlowLayout(50, 70, 50));
+			
+			ecrire.setPreferredSize(new Dimension(360, 20));
+			ecrire2.setPreferredSize(new Dimension(360, 20));
+
+
+			label1.setFont(new Font("Arial", Font.BOLD, 15));
+			label2.setFont(new Font("Arial", Font.BOLD, 15));
+			
+			grid.add(label1);
+			grid.add(ecrire);
+			grid.add(label2);
+			grid.add(ecrire2);
+			grid.add(button);
+			
+			this.add(change, BorderLayout.NORTH);
+			this.add(grid, BorderLayout.CENTER);
+			
+			
+			button.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					nouveau = ecrire2.getText();
+					
+					System.out.println(nouveau);
+					
+					
+					ecrire2.setText(null);
+					ecrire.setText(null);
+					
+					frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
+					
+					changePsw.fichier(nouveau);
+					changePsw.lecturePswd();
+				}
+			});
+			
+			
+			
+		
+		}
+	}
+	private class ClickChange implements ActionListener
+	{
+
+		
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+
+			cardLayout.show(triPanel, "changepswdpanel");
+			
+		}
+		
+	}
+
+	private class VerrouPanel extends JPanel
 	{
 
 		ImageFond imagefond = new ImageFond();

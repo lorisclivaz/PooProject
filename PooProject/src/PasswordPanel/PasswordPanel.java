@@ -16,6 +16,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Reader;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -32,7 +42,9 @@ import MainFrame.Frame;
 public class PasswordPanel extends JPanel
 {
 
-	String resultat = "tdp";
+	String resultat ;
+
+	
 	
 	JLabel label = new JLabel("Password :");
 	JTextField ecrire = new JTextField();
@@ -43,12 +55,19 @@ public class PasswordPanel extends JPanel
 	
 	Frame frame;
 	
-	public PasswordPanel(Frame frame)
+	public PasswordPanel(Frame frame) 
 	{
+		
+
+		
+		lecturePswd();
+		
 		this.frame = frame;
 		
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
+		
+		
 		
 		label.setFont(new Font("Arial", Font.BOLD, 70));
 		ecrire.setPreferredSize(new Dimension(360, 20));
@@ -70,6 +89,60 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	public String lecturePswd()
+	{
+		File dossier = new File("password");
+		dossier.mkdir();
+		
+		File fichier = new File(dossier,"loris.txt");
+		
+		try {
+		
+			FileReader read = new FileReader(fichier);
+			BufferedReader bfread = new BufferedReader(read);
+			resultat = bfread.readLine();
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		
+		return resultat;
+		
+	}
+	
+	
+	public void fichier(String reponse)
+	{
+		
+		resultat = lecturePswd();
+		
+		File dossier = new File("password");
+		dossier.mkdir();
+		
+		File fichier = new File(dossier,"loris.txt");
+	
+		
+		try {
+			fichier.createNewFile();
+			
+			
+			FileWriter ecriture = new FileWriter(fichier);
+			BufferedWriter bfwrite = new BufferedWriter(ecriture);
+			bfwrite.write(reponse); 
+			bfwrite.close();
+		
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 	class ClickEnter implements ActionListener
 	{
 
@@ -78,9 +151,6 @@ public class PasswordPanel extends JPanel
 		public void actionPerformed(ActionEvent e)
 		{
 
-			
-			
-			
 			
 			if(getReponse().equals(resultat))
 			{
@@ -108,4 +178,9 @@ public class PasswordPanel extends JPanel
 		
 		return reponse;
 	}
+	
+	public void setResultat(String resultat) {
+		this.resultat = resultat;
+	}
+
 }

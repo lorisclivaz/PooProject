@@ -25,6 +25,7 @@ public class MainTest
 
 		Frame frame = new Frame();
 		
+		
 		frame.setVisible(true);
 		
 	}
