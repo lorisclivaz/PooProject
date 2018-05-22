@@ -496,7 +496,7 @@ public class ContactPanel extends JPanel
 		/**
 		 * Méthode qui contrôle si un numéro de téléphone est valide
 		 * 
-		 * @param phone : le numéro de téléphone à vérifié
+		 * @param phone : le numéro de téléphone à vérifier
 		 * @return : on retourne si oui ou non le numéro est vérifié
 		 */
 		public boolean checkPhone(String phone)
@@ -506,7 +506,12 @@ public class ContactPanel extends JPanel
 			return false;
 		}
 		
-		
+		/**
+		 * Méthode qui contrôle si un mail est valide
+		 * 
+		 * @param mail : le mail à vérifier
+		 * @return : on retourne si oui ou non le mail est verifié
+		 */
 		
 		public boolean checkMail(String mail)
 		{
