@@ -382,7 +382,7 @@ public class ContactPanel extends JPanel
 			public void mouseClicked(MouseEvent arg0)
 			{
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent arg0)
 			{
@@ -425,6 +425,8 @@ public class ContactPanel extends JPanel
 			 * 
 			 * @param nom : le nom du champ du contact
 			 * @param type : le type de donnée voulue dans ce champ
+			 * 
+			 * @author Vivian
 			 */
 			public ChampLabel(String nom,String type)
 			{
@@ -444,7 +446,8 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 *
 		 */
-		public class ChampTextField extends JTextField{
+		public class ChampTextField extends JTextField
+		{
 			
 			Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
 			
@@ -455,43 +458,47 @@ public class ContactPanel extends JPanel
 			 * @param text : le text du champ
 			 * @author Vivian
 			 */
-			public ChampTextField(String text) {
+			public ChampTextField(String text)
+			{
 				// TODO Auto-generated constructor stubs
 				this.setText(text);
 				this.setFont(globalFontH2);
 			}
 		}
 		
-		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-		
 		/**
+		 * 
+		 * Méthode qui remplit un tableau avec toutes les urls des images de la galerie
 		 * 
 		 * @param listImage : la liste des url des images
 		 * @Vivian
 		 */
 		
-		public void fillImg(ArrayList<String> listImage) {
+		public void fillImg(ArrayList<String> listImage)
+		{
 			//On calcule le nombre d'image dans le dossier imagesgallery
 			File dossier = new File("imagesgallery");
 			File[] f = dossier.listFiles();
 			String path;
 			Contact current;
 						
-			for (int i = 0 ; i < f.length ; i++) {
-			  if (f[i].isFile()) {
+			for (int i = 0 ; i < f.length ; i++)
+			{
+			  if (f[i].isFile()) 
+			  {
 				path = f[i].getAbsolutePath();
 				listImage.add(path);
 			  }
 			}
 		}
+		
+		/**
+		 * 
+		 * Classe qui est appelée lors de la création d'un nouveau contact
+		 * 
+		 * @author Vivian
+		 *
+		 */
 		
 		public class NewContact extends JPanel 
 		{	
@@ -520,9 +527,14 @@ public class ContactPanel extends JPanel
 			
 			private SaveButton enregistrement = new SaveButton("Sauver le contact !");
 			
-			public NewContact() {
-				// TODO Auto-generated constructor stub
-				
+			/**
+			 * Constructeur de la classe NewContact
+			 * 
+			 * @author Vivian
+			 */
+			
+			public NewContact() 
+			{
 				this.setBackground(Color.decode("#EFEFEF")); 
 				
 				//On affiche titre H1 dans le panel UP
@@ -557,28 +569,46 @@ public class ContactPanel extends JPanel
 				
 				//On affiche les infos
 				this.add(infosContact);
-				
-
-				
 			}
 			
-			class ClickImage implements ActionListener{
+			/**
+			 * 
+			 * ActionListener qui est appelé lors d'un click sur l'image d'un contact
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickImage implements ActionListener
+			{
 
 				ListIterator li;
 				
-				public ClickImage(ListIterator li) {
+				/**
+				 * 
+				 * Constructeur de la class ClickImage
+				 * 
+				 * @param li
+				 * @author Vivian
+				 */
+				public ClickImage(ListIterator li)
+				{
 					// TODO Auto-generated constructor stub
 					this.li = li;
 				}
 				
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0)
+				{
 					// TODO Auto-generated method stub
-						if (li.hasNext()) {
-								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
+						if (li.hasNext())
+						{
+								imageContact.setUrl((String)li.next()); 	//On caste en String
 								System.out.println("image cliqué");
-						}else {
-							for(int i=0;i<listImage.size();i++) {
+						}else 
+						{
+							for(int i=0;i<listImage.size();i++)
+							{
 								imageContact.setUrl((String)li.previous());	//on revient au début
 								System.out.println("on revient au début");
 							}
@@ -588,10 +618,20 @@ public class ContactPanel extends JPanel
 				
 			}
 			
-			class ClickEnregistrement implements ActionListener{
+			/**
+			 * 
+			 * ActionListener qui est actif lors d'un click sur le bouton enregistrement d'un contact
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickEnregistrement implements ActionListener
+			{
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0)
+				{
 					// TODO Auto-generated method stub
 					Contact contactEnCreation = new Contact(textNom.getText(),
 															textPrenom.getText(),
@@ -618,15 +658,26 @@ public class ContactPanel extends JPanel
 					
 				}
 				
-				public void serializeObject(Contact contactEnCreation) {
-					try {
+				/**
+				 * 
+				 * Méthode qui va sérialiser un contact
+				 * 
+				 * @param contactEnCreation : le contact qui va être sérialisé
+				 * @author Vivian
+				 */
+				
+				public void serializeObject(Contact contactEnCreation)
+				{
+					try
+					{
 						FileOutputStream fichier = new FileOutputStream("serialisation\\contact-"+contactEnCreation.getId()+".ser");
 						ObjectOutputStream oos = new ObjectOutputStream(fichier);
 						oos.writeObject(contactEnCreation);
 						oos.flush();
 						oos.close();
 					}
-					catch (java.io.IOException e) {
+					catch (java.io.IOException e)
+					{
 						e.printStackTrace();
 					}
 				}
@@ -634,15 +685,24 @@ public class ContactPanel extends JPanel
 			}
 		}
 		
-		public void actualiseContact() {
+		/**
+		 * Méthode qui va actualiser l'affichage de la liste de contact
+		 * 
+		 * @author Vivian
+		 */
+		
+		public void actualiseContact() 
+		{
 			allContact.removeAll();
 			allContact.revalidate();
 			File dossierActu = new File("serialisation");
 			File[] fActu = dossierActu.listFiles();
 			String path;
 			Contact currentActu;
-			for (int i = 0 ; i < fActu.length ; i++) {
-			  if (fActu[i].isFile()) {
+			for (int i = 0 ; i < fActu.length ; i++)
+			{
+			  if (fActu[i].isFile())
+			  {
 				path = fActu[i].getAbsolutePath();
 				System.out.println(path);
 				currentActu = deSerializeObject(path);
@@ -656,15 +716,32 @@ public class ContactPanel extends JPanel
 			
 		}
 		
-		public class SaveButton extends JButton{
-			public SaveButton(String text) {
+		/**
+		 * Classe qui définit le look du bouton enregistrer
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		
+		public class SaveButton extends JButton
+		{
+			public SaveButton(String text)
+			{
 				// TODO Auto-generated constructor stub
 				super(text);
 				setBackground(Color.LIGHT_GRAY);
 			}
 		}
 
-		public class ModifContact extends JPanel{
+		/**
+		 * Classe responsable d'afficher un contact et de permettre sa modification
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		
+		public class ModifContact extends JPanel
+		{
 			private ArrayList<String> listImage = new ArrayList<String>();
 			private JPanel infosContact = new JPanel();
 			public   CardLayout cardLayout;
@@ -674,8 +751,16 @@ public class ContactPanel extends JPanel
 			//Champ du formulaire
 			private ChampTextField textNom,textPrenom,textAdresse,textLocalite,textMail,textPhone;
 			
-			public ModifContact(Contact contact) {
-				// TODO Auto-generated constructor stub
+			/**
+			 * 
+			 * Constructeur de la classe ModifContact
+			 * 
+			 * @param contact : le contact affiché et modifiable
+			 * @author Vivian
+			 */
+			
+			public ModifContact(Contact contact) 
+			{
 				this.setBackground(Color.decode("#EFEFEF")); 
 				
 				//On remplit le tableau des liens d'images
@@ -741,20 +826,36 @@ public class ContactPanel extends JPanel
 				this.add(infosContact);
 			}
 			
-			class ClickImage implements ActionListener{
+			/**
+			 * ActionListener qui se déclenche lors d'un click sur l'image du contact
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickImage implements ActionListener
+			{
 
 				ListIterator li;
 				IconBase imageContact;
 				
-				public ClickImage(ListIterator li,IconBase imageContact) {
-					// TODO Auto-generated constructor stub
+				/**
+				 * Constructeur de la classe ClickImage
+				 * 
+				 * @param li : la liste des images à disposition du contact
+				 * @param imageContact : l'image actuelle du contact
+				 * @author Vivian
+				 */
+				
+				public ClickImage(ListIterator li,IconBase imageContact)
+				{
 					this.li = li;
 					this.imageContact = imageContact;
 				}
 				
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
+				public void actionPerformed(ActionEvent arg0)
+				{
 						if (li.hasNext()) {
 								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
 								System.out.println("image cliqué");
@@ -769,19 +870,35 @@ public class ContactPanel extends JPanel
 				
 			}
 			
-			class ClickEnregistrement implements ActionListener{
-				
+			/**
+			 * ActionListener déclenché par le click du bouton enregistrement
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickEnregistrement implements ActionListener
+			{
 				Contact contact;
 				IconBase imageContact;
-				public ClickEnregistrement(Contact contact,IconBase imageContact) {
-					// TODO Auto-generated constructor stub
+				
+				/**
+				 * Constructeur de la classe CLickEnregistrement
+				 * 
+				 * @param contact : le contact qui est modifié
+				 * @param imageContact : l'image du contact modifié
+				 * @author Vivian
+				 */
+				
+				public ClickEnregistrement(Contact contact,IconBase imageContact)
+				{
 					this.contact = contact;
 					this.imageContact = imageContact;
 				}
 				
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
+				public void actionPerformed(ActionEvent arg0)
+				{
 					
 					allContact.removeAll();
 					allContact.revalidate();
@@ -805,35 +922,40 @@ public class ContactPanel extends JPanel
 					
 				}
 				
-				public void serializeObject(Contact contactEnCreation) {
-					try {
+				/**
+				 * Méthode qui va sérialisé un contact
+				 * 
+				 * @param contactEnCreation : le contact qui va être sérialisé
+				 * @author Vivian
+				 */
+				
+				public void serializeObject(Contact contactEnCreation)
+				{
+					try
+					{
 						FileOutputStream fichier = new FileOutputStream("serialisation\\contact-"+contactEnCreation.getId()+".ser");
 						ObjectOutputStream oos = new ObjectOutputStream(fichier);
 						oos.writeObject(contactEnCreation);
 						oos.flush();
 						oos.close();
 					}
-					catch (java.io.IOException e) {
+					catch (java.io.IOException e) 
+					{
 						e.printStackTrace();
 					}
 				}
 			}
 		}
 		
-		public void serializeObject(Contact contactEnCreation) {
-			try {
-				FileOutputStream fichier = new FileOutputStream("serialisation\\contact-"+contactEnCreation.getId()+".ser");
-				ObjectOutputStream oos = new ObjectOutputStream(fichier);
-				oos.writeObject(contactEnCreation);
-				oos.flush();
-				oos.close();
-			}
-			catch (java.io.IOException e) {
-				e.printStackTrace();
-			}
-		}
+		/**
+		 * Classe reponsable de l'affichage du menu en haut de chaque panel
+		 * 
+		 * @author Vivian
+		 *
+		 */
 		
-		public class MenuH1PanelContact extends JPanel{
+		public class MenuH1PanelContact extends JPanel
+		{
 
 			//Définit un titre sur le panel avec une couleurs
 			JLabel titrePanel;
@@ -847,8 +969,15 @@ public class ContactPanel extends JPanel
 			
 			String titre, nomClass;
 
+			/**
+			 * Constructeur de la classe MenuH1PanelContact avec deux paramètres
+			 * 
+			 * @param titre : le titre du panel afficher
+			 * @param nomClass : le nom de la classe utilisée
+			 * @author Vivian
+			 */
+			
 			public MenuH1PanelContact(String titre, String nomClass)
-			// TODO Auto-generated constructor stube
 			{
 				this.titre = titre;
 				this.nomClass = nomClass;
@@ -859,9 +988,10 @@ public class ContactPanel extends JPanel
 				this.setBackground(Color.decode("#DFDFDF"));
 
 				this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
-				if(nomClass.equals("ContactPanel")) {
-//					this.add(vide, BorderLayout.WEST);
-				}else {
+				if(nomClass.equals("ContactPanel"))
+				{
+				}else 
+				{
 					this.add(previous, BorderLayout.WEST);
 				}
 				//On met le titre au centre
@@ -879,8 +1009,16 @@ public class ContactPanel extends JPanel
 
 			}
 			
+			/**
+			 * Constructeur de la classe MenuH1PanelContact avec trois paramètres
+			 * 
+			 * @param titre : le titre du panel afficher
+			 * @param nomClass : le nom de la classe utilisée
+			 * @param contact : le contact affiché
+			 * @author Vivian
+			 */
+			
 			public MenuH1PanelContact(String titre, String nomClass, Contact contact)
-			// TODO Auto-generated constructor stube
 			{
 				this.titre = titre;
 				this.nomClass = nomClass;
@@ -891,9 +1029,10 @@ public class ContactPanel extends JPanel
 				this.setBackground(Color.decode("#DFDFDF"));
 
 				this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
-				if(nomClass.equals("ContactPanel")) {
-//					this.add(vide, BorderLayout.WEST);
-				}else {
+				if(nomClass.equals("ContactPanel"))
+				{
+				}else
+				{
 					this.add(previous, BorderLayout.WEST);
 				}
 				//On met le titre au centre
@@ -910,21 +1049,29 @@ public class ContactPanel extends JPanel
 
 			}
 
-			public void setTitre(String titre) {
+			public void setTitre(String titre)
+			{
 				this.titre = titre;
 			}
 			
-			public String getTitre() {
+			public String getTitre() 
+			{
 				return titre;
 			}
 			
-			//quand on clique sur le bouton previous
+			/**
+			 * ActionListener qui est déclenché par le click sur le bouton précédent
+			 * 
+			 * @author Vivian
+			 *
+			 */
 			
 			class ClickPrevious implements ActionListener
 			{
 
 				@Override
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e)
+				{
 					cardLayout.show(triPanel, "scroll");
 					menuh1panel.setVisible(true);
 					
@@ -932,29 +1079,50 @@ public class ContactPanel extends JPanel
 				
 			}
 
-			//quand on clique sur le bouton create
-			class ClickCreate implements ActionListener{
+			/**
+			 * ActionListener qui est déclenché par le click sur le bouton create
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickCreate implements ActionListener
+			{
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
+				public void actionPerformed(ActionEvent arg0)
+				{
 					cardLayout.show(triPanel, "newcontact");
 					menuh1panel.setVisible(false);
 					System.out.println("create cliqué");
 				}
 			}
 			
-			//quand on clique sur le bouton delete
-			class ClickDelete implements ActionListener{
+			/**
+			 * ActionListener qui est déclenché par le click sur le bouton delete
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			class ClickDelete implements ActionListener
+			{
 
 				Contact contact;
-				public ClickDelete(Contact contact) {
-					// TODO Auto-generated constructor stub
+				
+				/**
+				 * Constructeur de la classe ClickDelete
+				 * 
+				 * @param contact : le contact supprimé
+				 */
+				public ClickDelete(Contact contact)
+				{
 					this.contact = contact;
 				}
 				
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
+				public void actionPerformed(ActionEvent arg0)
+				{
 					// TODO Auto-generated method stub
 					allContact.removeAll();
 					allContact.revalidate();
@@ -967,128 +1135,5 @@ public class ContactPanel extends JPanel
 					System.out.println("delete cliqué");
 				}
 			}
-		}
-
-		public  class PhotoPanel extends JPanel {
-
-			private ImageFond imageFond ;
-
-			private GalleryPanel photo;
-			private  Picture image;
-			private MouseAdapter ma;
-			private String changeImage;
-
-			
-
-
-			JPanel up = new JPanel();
-
-			IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-		
-			IconBase delete = new IconBase("images/icones/delete.png",40,40);
-
-			
-			public PhotoPanel(GalleryPanel photo, Picture image) {
-
-				this.photo = photo;
-				this.image = image;
-
-				BorderLayout fl = new BorderLayout();
-				this.setLayout(fl);
-				this.setBackground(Color.BLACK);
-
-				up.setLayout(new BorderLayout());
-				up.setBackground(Color.BLACK);
-				this.add(up, BorderLayout.NORTH);
-
-				up.add(previous, BorderLayout.WEST);
-				up.add(delete, BorderLayout.EAST);
-
-				//Swiper de photo grace au clique
-				ma = new MouseAdapter() {
-					private Point origin;
-
-					@Override
-					public void mousePressed(MouseEvent e) {
-						origin = new Point(e.getPoint());
-						
-					}
-
-					@Override
-					public void mouseReleased(MouseEvent e) {
-					}
-
-					@Override
-					public void mouseDragged(MouseEvent e) {
-						if (origin != null) {
-							int deltaX = origin.x - e.getX();
-							if(deltaX>=200){
-								changeImg(1);
-								origin=null;
-							}
-							else if(deltaX<=-200){
-								changeImg(-1);
-								origin=null;
-							}
-						}
-					}
-
-					
-				};
-
-				
-				this.addMouseListener(ma);
-				this.addMouseMotionListener(ma);
-
-			}
-			private void changeImg(int i) {
-
-				int idImg = photo.getVoisin(image)+i;
-				ArrayList<Picture> list = photo.getListImg();
-				if(idImg==-1){
-					idImg=list.size()-1;
-				}
-				else if(idImg==list.size()){
-					idImg=0;
-				}
-				image = list.get(idImg);
-				PhotoPanel.this.revalidate();
-				PhotoPanel.this.repaint();
-				
-			}
-			
-			
-		
-
-			public String getChangeImage() {
-			return changeImage;
-		}
-
-
-			public void paintComponent(Graphics g) 
-			{
-				super.paintComponent(g);
-				
-				BufferedImage pic = image.getPicture();
-				
-				int nH = (int) (pic.getHeight() / ((double) pic.getWidth() / getWidth()));
-				
-				if (nH > getHeight()) 
-				{
-					int nW = (int) (pic.getWidth() / ((double) pic.getHeight() / getHeight()));
-					int x = (getWidth() - nW) / 2;
-					g.drawImage(pic, x, 0, nW, getHeight(), this);
-				} 
-				else 
-				{
-
-					int y = (getHeight() - nH) / 2;
-					g.drawImage(pic, 0, y, getWidth(), nH, this);
-				}
-
-			}
-			
-			
-		}
-			
+		}			
 }
