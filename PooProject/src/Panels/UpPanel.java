@@ -57,8 +57,8 @@ public class UpPanel extends JPanel{
 	{
 		this.setLayout(new BorderLayout(2,1));
 		this.setPreferredSize(new Dimension(480, 50));
-//		this.setBorder(new MyBoder());
-		this.setBackground(Color.BLACK);
+		this.setOpaque(false);
+		
 
 		//heure
 		Calendar now = Calendar.getInstance();

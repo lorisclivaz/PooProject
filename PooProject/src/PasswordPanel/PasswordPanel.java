@@ -71,6 +71,7 @@ public class PasswordPanel extends JPanel
 		
 		label.setFont(new Font("Arial", Font.BOLD, 70));
 		ecrire.setPreferredSize(new Dimension(360, 20));
+		
 		texteLabel.setLayout(new FlowLayout(50, 70, 50));
 		
 		button.setBackground(Color.GRAY);
@@ -89,6 +90,8 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	
+
 	public String lecturePswd()
 	{
 		File dossier = new File("password");
@@ -181,6 +184,10 @@ public class PasswordPanel extends JPanel
 	
 	public void setResultat(String resultat) {
 		this.resultat = resultat;
+	}
+	
+	public JTextField getEcrire() {
+		return ecrire;
 	}
 
 }

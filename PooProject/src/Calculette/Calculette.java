@@ -144,6 +144,7 @@ public class Calculette extends JPanel
 			tab_button[i].setPreferredSize(dim);
 			tab_button[i].setBackground(Color.darkGray);
 			tab_button[i].setFont(police2);
+			tab_button[i].setForeground(Color.WHITE);
 			switch(i){
 
 			//Pour chaque élément situé à la fin du tableau

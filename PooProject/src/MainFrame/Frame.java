@@ -29,7 +29,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
+import BordsSmartphone.PanelSmartphone;
 import Calculette.Calculette;
 import Camera.CameraPanel;
 import ContactApp.ContactPanel;
@@ -53,7 +55,7 @@ public class Frame extends JFrame
 	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
 	SettingsPanel settingspanel = new SettingsPanel();
-	
+
 	Calculette calculette = new Calculette();
 	HorlogePanel horlogepanel = new HorlogePanel();
 	JPanel backpanel = new JPanel();
@@ -63,14 +65,15 @@ public class Frame extends JFrame
 	CameraPanel camera = new CameraPanel();
 	PasswordPanel psw = new PasswordPanel(this);
 	changePswdPanel changepswdpanel = new changePswdPanel(psw, this);
-	
+	PanelSmartphone smartphone = new PanelSmartphone();
+
 	private boolean lockFrame = false;
 
 
 
 
 
-	
+
 
 
 
@@ -109,29 +112,31 @@ public class Frame extends JFrame
 
 
 
-		this.setSize(480, 860);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setUndecorated(true);
-		this.setLocationRelativeTo(null);
-		this.setBackground(new Color(0, 0, 0));
-		this.setLayout(new BorderLayout());
+
+		// Paramètres de la frame
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(480, 860);
+		setLocationRelativeTo(null);
+		setAlwaysOnTop(true);
+		setUndecorated(true); // Ne pas afficher les boutons de la frame
+		setBackground(new Color(0, 0, 0, 0)); // Fond transparent Rouge,Bleu,Vert,Opacite
 
 		//ajout du panel du haut
-		this.add(uppanel, BorderLayout.NORTH);
+		smartphone.add(uppanel, BorderLayout.NORTH);
 
 
 		//ajout du panel du bas
-		this.add(backpanel, BorderLayout.SOUTH);
+		smartphone.add(backpanel, BorderLayout.SOUTH);
 
 		//choisir la taille
 		backpanel.setPreferredSize(new Dimension(480, 80));
-		backpanel.setBackground(Color.BLACK);
-		backpanel.setLayout(new FlowLayout(30,165,10));
+		backpanel.setOpaque(false);
+		backpanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+		backpanel.setLayout(new FlowLayout(30,150,10));
 		backpanel.add(iconlock);
 		iconlock.addActionListener(new ClickLock());
 
-
-		this.add(triPanel);
+		smartphone.add(triPanel);
 		triPanel.add(verroupanel, "verroupanel");
 		triPanel.add(mainpanel, "mainpanel");
 
@@ -173,7 +178,7 @@ public class Frame extends JFrame
 		triPanel.add(psw, "psw");
 		triPanel.add(settingspanel, "settingspanel");
 		triPanel.add(changepswdpanel, "changepswdpanel");
-		
+
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
@@ -182,23 +187,25 @@ public class Frame extends JFrame
 		iconhorloge.addActionListener(new ClickHorloge());
 		iconphoto.addActionListener(new ClickPhoto());
 		iconsettings.addActionListener(new ClickSettings());
-		
-		
+
+		this.add(smartphone);
+	
+
 
 	}
-	
+
 
 	private class ClickSettings implements ActionListener
 	{
 
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
 
 			cardLayout.show(triPanel, "settingspanel");
 		}
-		
+
 	}
 
 	private class ClickPhoto implements ActionListener
@@ -302,39 +309,39 @@ public class Frame extends JFrame
 		}
 
 	}
-	
-	
+
+
 	private class SettingsPanel extends JPanel
 	{
-		
+
 		PanelSettings panelsettings = new PanelSettings("Settings", "Settings");
-		
+
 		JButton button = new JButton("Change password");
 		JPanel grid = new JPanel();
-		
-		
+
+
 		public SettingsPanel() 
 		{
 
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
-			
+
 			button.setPreferredSize(new Dimension(480, 40));
 			button.addActionListener(new ClickChange());
 			grid.setLayout(new GridLayout(4, 1));
 			grid.add(button);
-			
+
 			this.add(panelsettings, BorderLayout.NORTH);
 			this.add(grid, BorderLayout.CENTER);
 		}
 	}
-	
+
 	private class changePswdPanel extends JPanel
 	{
-		
+
 		PasswordPanel changePsw;
 		Frame frame;
-		
+
 		PanelSettings change = new PanelSettings("Change", "Change");
 
 		JPanel grid = new JPanel();
@@ -343,12 +350,12 @@ public class Frame extends JFrame
 
 		JLabel label1 = new JLabel("Entrer l'ancien mot de passe :");
 		JLabel label2 = new JLabel("Entrer le nouveau mot de passe : ");
-		
+
 		String nouveau ;
-		
+
 		JButton button = new JButton("Change");
-		
-		
+
+
 		public changePswdPanel(PasswordPanel changePsw, Frame frame) 
 		{
 
@@ -356,58 +363,58 @@ public class Frame extends JFrame
 			this.changePsw = changePsw;
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
-			
+
 			grid.setLayout(new FlowLayout(50, 70, 50));
-			
+
 			ecrire.setPreferredSize(new Dimension(360, 20));
 			ecrire2.setPreferredSize(new Dimension(360, 20));
 
 
 			label1.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setFont(new Font("Arial", Font.BOLD, 15));
-			
-			
+
+
 			//Ancien mot de passe
 			grid.add(label1);
 			grid.add(ecrire);
-			
-			
-			
-			
-			
+
+
+
+
+
 			//nouveau mot de passe
 			grid.add(label2);
 			grid.add(ecrire2);
-			
-			
+
+
 			grid.add(button);
-			
+
 			this.add(change, BorderLayout.NORTH);
 			this.add(grid, BorderLayout.CENTER);
-			
-			
+
+
 			button.addActionListener(new ActionListener() {
-				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-					
+
 					if(ecrire.getText().equals(changePsw.lecturePswd()))
 					{
-					
-					nouveau = ecrire2.getText();
-					
-					System.out.println(nouveau);
-					
-					
-					ecrire2.setText(null);
-					ecrire.setText(null);
-					
-					frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
-					
-					changePsw.fichier(nouveau);
-					changePsw.lecturePswd();
-					
+
+						nouveau = ecrire2.getText();
+
+						System.out.println(nouveau);
+
+
+						ecrire2.setText(null);
+						ecrire.setText(null);
+
+						frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
+
+						changePsw.fichier(nouveau);
+						changePsw.lecturePswd();
+
 					}else
 					{
 						System.out.println("ancien mot de passe incorrect ");
@@ -415,24 +422,24 @@ public class Frame extends JFrame
 					}
 				}
 			});
-			
-			
-			
-		
+
+
+
+
 		}
 	}
 	private class ClickChange implements ActionListener
 	{
 
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
 
 			cardLayout.show(triPanel, "changepswdpanel");
-			
+
 		}
-		
+
 	}
 
 	private class VerrouPanel extends JPanel
@@ -512,10 +519,12 @@ public class Frame extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
+
+
+
 				cardLayout.show(triPanel, "psw");
-				
-				
+
+
 
 
 			}
@@ -612,7 +621,7 @@ public class Frame extends JFrame
 	public void setTriPanel(JPanel triPanel) {
 		this.triPanel = triPanel;
 	}
-	
+
 	public void setLockFrame(boolean lockFrame) {
 		this.lockFrame = lockFrame;
 	}
