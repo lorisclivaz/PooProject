@@ -10,11 +10,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="jarFiles/activation.jar"/>
 	<classpathentry kind="lib" path="jarFiles/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/jxbrowser/license.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/jxbrowser/lib/jxbrowser-6.20.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/jxbrowser/lib/jxbrowser-linux64-6.20.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/jxbrowser/lib/jxbrowser-mac-6.20.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/jxbrowser/lib/jxbrowser-win32-6.20.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/opencv/build/java/opencv-341.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
