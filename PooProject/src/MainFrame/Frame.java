@@ -183,6 +183,7 @@ public class Frame extends JFrame
 		iconphoto.addActionListener(new ClickPhoto());
 		iconsettings.addActionListener(new ClickSettings());
 		
+		
 
 	}
 	
@@ -365,10 +366,20 @@ public class Frame extends JFrame
 			label1.setFont(new Font("Arial", Font.BOLD, 15));
 			label2.setFont(new Font("Arial", Font.BOLD, 15));
 			
+			
+			//Ancien mot de passe
 			grid.add(label1);
 			grid.add(ecrire);
+			
+			
+			
+			
+			
+			//nouveau mot de passe
 			grid.add(label2);
 			grid.add(ecrire2);
+			
+			
 			grid.add(button);
 			
 			this.add(change, BorderLayout.NORTH);
@@ -380,6 +391,10 @@ public class Frame extends JFrame
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
+					
+					if(ecrire.getText().equals(changePsw.lecturePswd()))
+					{
+					
 					nouveau = ecrire2.getText();
 					
 					System.out.println(nouveau);
@@ -392,6 +407,12 @@ public class Frame extends JFrame
 					
 					changePsw.fichier(nouveau);
 					changePsw.lecturePswd();
+					
+					}else
+					{
+						System.out.println("ancien mot de passe incorrect ");
+						ecrire.setText(null);
+					}
 				}
 			});
 			

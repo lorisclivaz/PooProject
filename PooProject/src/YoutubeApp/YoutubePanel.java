@@ -42,7 +42,7 @@ public class YoutubePanel extends JPanel {
         frame.add(view, BorderLayout.CENTER);
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
-        frame.setVisible(false);
+        frame.setVisible(true);
         
     }
 
