@@ -698,20 +698,20 @@ public class ContactPanel extends JPanel
 						return;
 					}
 					
-					//Check du phone
-					if(!checkPhone(phoneSaisi))
-					{
-						System.out.println("problème dans la saisie du téléphone");
-						textPhone.setText("ERREUR");
-						
-						return;
-					}
-					
 					//Check du mail
 					if(!checkMail(mailSaisi))
 					{
 						System.out.println("problème dans la saisie du mail");
 						textMail.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du phone
+					if(!checkPhone(phoneSaisi))
+					{
+						System.out.println("problème dans la saisie du téléphone");
+						textPhone.setText("ERREUR");
 						
 						return;
 					}
