@@ -27,6 +27,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -493,6 +494,28 @@ public class ContactPanel extends JPanel
 		}
 		
 		/**
+		 * Méthode qui contrôle si un numéro de téléphone est valide
+		 * 
+		 * @param phone : le numéro de téléphone à vérifié
+		 * @return : on retourne si oui ou non le numéro est vérifié
+		 */
+		public boolean checkPhone(String phone)
+		{
+			if(Pattern.matches("[0-9]{10}", phone)==true)
+				return true;
+			return false;
+		}
+		
+		
+		
+		public boolean checkMail(String mail)
+		{
+			if(Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail)==true)
+				return true;
+			return false;
+		}
+		
+		/**
 		 * 
 		 * Classe qui est appelée lors de la création d'un nouveau contact
 		 * 
@@ -632,13 +655,73 @@ public class ContactPanel extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent arg0)
 				{
-					// TODO Auto-generated method stub
-					Contact contactEnCreation = new Contact(textNom.getText(),
-															textPrenom.getText(),
-															textAdresse.getText(),
-															textLocalite.getText(),
-															textMail.getText(),
-															textPhone.getText(),
+					String nomSaisi = textNom.getText().trim();
+					String prenomSaisi = textPrenom.getText().trim();
+					String adresseSaisi = textAdresse.getText().trim();
+					String localiteSaisi = textLocalite.getText().trim();
+					String phoneSaisi = textPhone.getText().trim();
+					String mailSaisi = textMail.getText().trim();
+					
+					//Check du nom
+					if(nomSaisi.equals(""))
+					{
+						System.out.println("un champ est vide");
+						textNom.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du prenom
+					if(prenomSaisi.equals(""))
+					{
+						System.out.println("un champ est vide");
+						textPrenom.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check de l'adresse
+					if(adresseSaisi.equals(""))
+					{
+						System.out.println("un champ est vide");
+						textAdresse.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check de la localité
+					if(localiteSaisi.equals(""))
+					{
+						System.out.println("un champ est vide");
+						textLocalite.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du phone
+					if(!checkPhone(phoneSaisi))
+					{
+						System.out.println("problème dans la saisie du téléphone");
+						textPhone.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du mail
+					if(!checkMail(mailSaisi))
+					{
+						System.out.println("problème dans la saisie du mail");
+						textMail.setText("ERREUR");
+						
+						return;
+					}
+					
+					Contact contactEnCreation = new Contact(nomSaisi,
+															prenomSaisi,
+															adresseSaisi,
+															localiteSaisi,
+															mailSaisi,
+															phoneSaisi,
 															imageContact.getUrl());
 					System.out.println(imageContact.getUrl());
 					//On remet tout à zérp
@@ -648,7 +731,8 @@ public class ContactPanel extends JPanel
 					textLocalite.setText("");
 					textMail.setText("");
 					textPhone.setText("");
-					//On sérualise
+					imageContact.setUrl("images/photos/contact-1.png");
+					//On sérialise
 					this.serializeObject(contactEnCreation);
 					//On actualise la liste des contact et on affiche cette dernière
 					actualiseContact();
