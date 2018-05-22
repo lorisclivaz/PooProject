@@ -1114,6 +1114,7 @@ public class ContactPanel extends JPanel
 				 * Constructeur de la classe ClickDelete
 				 * 
 				 * @param contact : le contact supprimé
+				 * @author Vivian
 				 */
 				public ClickDelete(Contact contact)
 				{

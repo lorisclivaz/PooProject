@@ -261,9 +261,8 @@ public class GalleryPanel extends JPanel
 			
 		}
 		
+		
 	
-		
-		
 
 		public String getChangeImage() {
 		return changeImage;
