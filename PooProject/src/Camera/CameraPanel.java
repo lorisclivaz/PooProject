@@ -40,6 +40,7 @@ public class CameraPanel extends JPanel {
 	NewCenter center1= new NewCenter();
 	Timer timer;
 
+	JButton stop = new JButton();
 
 	PanelCamera panelcamera = new PanelCamera("Camera", "Camera");
 
@@ -49,13 +50,13 @@ public class CameraPanel extends JPanel {
 
 		this.add(panelcamera, BorderLayout.NORTH);
 		this.add(center1,BorderLayout.CENTER);
-
+		this.add(stop, BorderLayout.SOUTH);
 		this.setBackground(new Color(0,191,255));
 
 		//setBounds(0, 0, 1280, 720);
 		this.setVisible(true);
 
-
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -67,9 +68,11 @@ public class CameraPanel extends JPanel {
 		});
 
 
-
 		new MyThread().start();
 
+	
+
+		
 		timer = new Timer(5, new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -83,7 +86,8 @@ public class CameraPanel extends JPanel {
 		timer.setInitialDelay(0);
 		timer.start();
 
-
+		
+		
 	}
 
 
@@ -107,6 +111,7 @@ public class CameraPanel extends JPanel {
 				repaint();
 
 				try { Thread.sleep(10);
+			
 				} catch (InterruptedException e) {    }
 			}  
 		} 
@@ -142,6 +147,7 @@ class VideoCap {
 	VideoCap(){
 		cap = new VideoCapture();
 		cap.open(0);
+		
 
 	} 
 	void openCam(int i)
@@ -151,6 +157,8 @@ class VideoCap {
 	}
 	BufferedImage getOneFrame() {
 		cap.read(mat2Img.mat);
+		
+		
 
 		return mat2Img.getImage(mat2Img.mat);
 	}
