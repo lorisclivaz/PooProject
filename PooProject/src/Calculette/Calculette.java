@@ -28,7 +28,7 @@ public class Calculette extends JPanel
 	JPanel center = new JPanel();
 	JPanel bas = new JPanel();
 
-	//Création du panel sur le click
+	//Création du panel sur le clicke
 	JPanel panelCop = new JPanel();
 
 
@@ -48,9 +48,32 @@ public class Calculette extends JPanel
 	private double chiffre1;
 
 	private String operateur;
+	
+	//getter/setter
+	public void setEcran(JLabel ecran) {
+		this.ecran = ecran;
+	}
+
+
+	public void setChiffre1(double chiffre1) {
+		this.chiffre1 = chiffre1;
+	}
+
+
+	public void setOperateur(String operateur) {
+		this.operateur = operateur;
+	}
+
+	public JLabel getEcran() {
+		return ecran;
+	}
+
+
 
 	//choisir la dimension des boutons
 	private Dimension dim = new Dimension(60, 60);
+	
+
 	private Dimension dim2 = new Dimension(90, 90);
 
 	private boolean clicOperateur = false, update = false;
@@ -178,7 +201,7 @@ public class Calculette extends JPanel
 	}
 
 	//Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
-	private void calcul(){
+	public void calcul(){
 		if(operateur.equals("+")){
 			chiffre1 = chiffre1 + 
 					Double.valueOf(ecran.getText()).doubleValue();
@@ -190,7 +213,7 @@ public class Calculette extends JPanel
 			ecran.setText(String.valueOf(chiffre1));
 		}          
 		if(operateur.equals("*")){
-			chiffre1 = chiffre1 * 
+			chiffre1 = chiffre1 *
 					Double.valueOf(ecran.getText()).doubleValue();
 			ecran.setText(String.valueOf(chiffre1));
 		}     
