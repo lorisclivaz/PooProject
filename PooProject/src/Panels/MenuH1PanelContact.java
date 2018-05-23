@@ -1,5 +1,5 @@
 /*
- * Author : Vivian Bridy
+ * Author : Vivian Bridy & Loris Clivaz
  * Date creation : 30 avr. 2018
  */
 package Panels;
@@ -26,6 +26,12 @@ import javax.swing.border.Border;
 import GalerieApp.GalleryPanel;
 import Images.IconBase;
 
+/**
+ * Classe responsable de l'affichage du menu en haut de l'application contact
+ * 
+ * @author Vivian
+ *
+ */
 public class MenuH1PanelContact extends JPanel{
 
 	//Définit un titre sur le panel avec une couleurs
@@ -43,6 +49,14 @@ public class MenuH1PanelContact extends JPanel{
 	CardLayout cardlayout = new CardLayout();
 	JPanel triPanel = new JPanel(cardlayout);
 
+	/**
+	 * Constructeur de la classe MenuH1PanelContact
+	 * 
+	 * @param titre : le titre de la page affichée
+	 * @param nomClass : le nom de la classe précédente
+	 * @author Vivian
+	 */
+	
 	public MenuH1PanelContact(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
@@ -88,7 +102,13 @@ public class MenuH1PanelContact extends JPanel{
 		this.triPanel = triPanel;
 	}
 	
-	//quand on clique sur le bouton previous
+
+	/**
+	 * ActionListener qui se déclenche lors du click sur le bouton "précédent"
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	
 	class ClickPrevious implements ActionListener
 	{
@@ -102,6 +122,12 @@ public class MenuH1PanelContact extends JPanel{
 	}
 
 	//quand on clique sur le bouton create
+	/**
+	 * ActionListener qui se déclenche lors du clique sur le bouton create
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	class ClickCreate implements ActionListener{
 
 		@Override

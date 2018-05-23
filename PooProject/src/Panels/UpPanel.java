@@ -1,10 +1,6 @@
 /*
- * Exercise W2Q3 - 2
- * Author: Clivaz Loris
+ * Author: Clivaz Loris & Vivian Bridy
  * Date creation: 2 mai 2018
- * 
- */
-/**
  * 
  */
 package Panels;
@@ -34,7 +30,9 @@ import MainFrame.MyBoder;
 
 
 /**
- * @author Loris_Clivaz
+ * Class responsable de l'affichage du UpPanel
+ * 
+ * @author Vivian
  *
  */
 public class UpPanel extends JPanel{
@@ -52,7 +50,12 @@ public class UpPanel extends JPanel{
 	private Timer timer = new Timer(0, new CurrentTime());
 	
 	//Constructeur qui définit la taille du panel ou il y aura la batterie l'heures ect...
-
+	/**
+	 * Constructeur de la classe UpPanel
+	 * 
+	 * @author Vivian
+	 * 
+	 */
 	public UpPanel() 
 	{
 		this.setLayout(new BorderLayout(2,1));
@@ -77,7 +80,12 @@ public class UpPanel extends JPanel{
 		this.add(fourni, BorderLayout.WEST);
 		this.add(heure, BorderLayout.EAST);
 	}
-
+	/**
+	 * ActionListener qui va afficher l'heure actuelle
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	class CurrentTime implements ActionListener
 	{
 		@Override
@@ -86,6 +94,13 @@ public class UpPanel extends JPanel{
 			Calendar now = Calendar.getInstance();
 			heure.setText("      4G     "+DATEFORMATHEURE.format(now.getTime())+"    ");		}
 	}
+	
+	/**
+	 * Classe qui s'occupe de l'affichage des bordures de l'UpPanel
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	
 	public class MyBoder implements Border{ 
 

@@ -1,12 +1,9 @@
 /*
 * Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 30 avr. 2018
 * 
 */
-/**
- * 
- */
 package Images;
 
 import java.awt.Dimension;
@@ -19,7 +16,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
- * @author Loris_Clivaza
+ * Classe responsable de l'affichage des icones
+ * 
+ * @author Vivian
  *
  */
 public class IconBase extends JButton
@@ -28,6 +27,15 @@ public class IconBase extends JButton
 	private String url;
 	private int width;
 	private int heigth;
+	
+	/**
+	 * Constructeur de la classe IconBase
+	 * 
+	 * @param url : l'url de l'icone
+	 * @param width : la largeur de l'icone
+	 * @param heigth : la hauteur de l'icone
+	 * @author Vivian
+	 */
 	
 	public IconBase(String url, int width, int heigth) {
 
@@ -42,7 +50,6 @@ public class IconBase extends JButton
 		this.width = width;
 		this.heigth = heigth;
 	}
-	
 
 	public void setUrl(String url) {
 		this.url = url;
@@ -51,7 +58,6 @@ public class IconBase extends JButton
 	public String getUrl() {
 		return url;
 	}
-
 
 	public void paintComponent(Graphics g){
 

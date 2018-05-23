@@ -1,12 +1,8 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 3 mai 2018
 * 
 */
-/**
- * 
- */
 package Images;
 
 import java.awt.Dimension;
@@ -19,7 +15,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * @author Loris_Clivaz
+ * Classe responsable de l'affichage d'une photo dans la gallerie
+ * 
+ * @author Vivian
  *
  */
 public class ImagePhoto extends JPanel
@@ -27,6 +25,12 @@ public class ImagePhoto extends JPanel
 	
 	String url;
 	
+	/**
+	 * Constructeur de la classe ImagePhoto
+	 * 
+	 * @param url : l'url de l'image affichée
+	 * @author Vivian
+	 */
 	public ImagePhoto(String url) {
 
 		setPreferredSize(new Dimension(100, 100));

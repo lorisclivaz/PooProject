@@ -1,12 +1,9 @@
 /*
 * Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 30 avr. 2018
 * 
 */
-/**
- * 
- */
 package Images;
 
 import java.awt.Dimension;
@@ -19,13 +16,19 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 /**
- * @author Loris_Clivaz
+ * Classe responsable de l'affichage de l'icone lock
+ * 
+ * @author Vivian
  *
  */
 public class IconLock extends JButton
 {
 
-	
+	/**
+	 * Constructeur de la classe IconLock
+	 * 
+	 * @author Vivian
+	 */
 	public IconLock( ) {
 
 		setPreferredSize(new Dimension(150, 50));

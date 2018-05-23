@@ -1,5 +1,5 @@
 /*
-* Author : Vivian Bridy
+* Author : Vivian Bridy & Loris Clivaz
 * Date creation : 14 mai 2018
 */
 package ContactApp;
@@ -311,8 +311,8 @@ public class ContactPanel extends JPanel
 			/**
 			 * Contructeur de la class ClickContact
 			 * 
-			 * @param contact
-			 * @Vivian
+			 * @param contact : le contact clické
+			 * @author Vivian
 			 */
 			public ClickContact(Contact contact)
 			{
@@ -472,7 +472,7 @@ public class ContactPanel extends JPanel
 		 * Méthode qui remplit un tableau avec toutes les urls des images de la galerie
 		 * 
 		 * @param listImage : la liste des url des images
-		 * @Vivian
+		 * @author Vivian
 		 */
 		
 		public void fillImg(ArrayList<String> listImage)
@@ -616,7 +616,7 @@ public class ContactPanel extends JPanel
 				 * 
 				 * Constructeur de la class ClickImage
 				 * 
-				 * @param li
+				 * @param li : la liste des images 
 				 * @author Vivian
 				 */
 				public ClickImage(ListIterator li)

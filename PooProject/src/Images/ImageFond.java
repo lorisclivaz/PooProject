@@ -1,10 +1,7 @@
 /*
  * Exercise W2Q3 - 2
- * Author: Clivaz Loris
+ * Author: Clivaz Loris & Vivian Bridy
  * Date creation: 30 avr. 2018
- * 
- */
-/**
  * 
  */
 package Images;
@@ -20,37 +17,48 @@ import javax.swing.JPanel;
 
 
 /**
- * @author Loris_Clivaz
+ * Classe responsable de l'affichage du background du smartphone
+ * 
+ * @author Vivian
  *
  */
 public class ImageFond extends JPanel
 {
 	String changeImage="images/background/imagefond.jpg";
 
-
-	public ImageFond() {
-
-
-
+	/**
+	 * Constructeur avec aucun paramètre de la classe ImageFond
+	 * 
+	 * @author Vivian
+	 */
+	public ImageFond()
+	{
 	}
 
-	public ImageFond(String changeImage) {
-
+	/**
+	 * Constructeur avec un paramètre de la classe ImageFond
+	 * 
+	 * @param changeImage : l'url de l'image de fond
+	 * @author Vivian
+	 */
+	public ImageFond(String changeImage)
+	{
 		this.changeImage=changeImage;
-
 	}
 
 
 
-	public void paintComponent(Graphics g){
-
-		try {
-
+	public void paintComponent(Graphics g)
+	{
+		try
+		{
 
 			Image img = ImageIO.read(new File(changeImage));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			
 			e.printStackTrace();
 		}                
@@ -59,7 +67,8 @@ public class ImageFond extends JPanel
 
 
 	/**
-	 * @param changeImage
+	 * @param changeImage : l'url de l'image changée
+	 * @author Vivian
 	 */
 	public void setUrl(String changeImage) {
 

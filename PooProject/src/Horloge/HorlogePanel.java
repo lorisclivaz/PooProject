@@ -1,6 +1,6 @@
 /*
  * Exercise W2Q3 - 2
- * Author: Clivaz Loris
+ * Author: Clivaz Loris & Vivian Bridy
  * Date creation: 18 mai 2018
  * 
  */
@@ -26,8 +26,9 @@ import javax.swing.Timer;
 import Panels.PanelHorloge;
 
 /**
- * @author Loris_Clivaz
+ *Classe responsable de l'application horloge
  *
+ *@author Vivian
  */
 public class HorlogePanel extends JPanel
 {
@@ -41,6 +42,11 @@ public class HorlogePanel extends JPanel
 		final private DateFormat DATEFORMAT = new SimpleDateFormat("     HH:mm:ss");
 		private Timer timer = new Timer(0, new CurrentTime());
 
+	/**
+	 * Constructeur de la classe HorlogePanel
+	 * 
+	 * @author Vivian
+	 */
 	public HorlogePanel() 
 	{
 
@@ -61,6 +67,13 @@ public class HorlogePanel extends JPanel
 
 		
 	}
+	
+	/**
+	 * ActionListener qui affiche l'heure actuelle dans le panel
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	
 	class CurrentTime implements ActionListener
 	{

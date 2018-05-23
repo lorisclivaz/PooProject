@@ -1,10 +1,6 @@
 /*
- * Exercise W2Q3 - 2
  * Author: Clivaz Loris
  * Date creation: 11 mai 2018
- * 
- */
-/**
  * 
  */
 package Panels;
@@ -22,7 +18,9 @@ import javax.swing.JPanel;
 import Images.IconBase;
 
 /**
- * @author Loris_Clivaz
+ * Classe responsable de l'affichage du PanelGallery
+ * 
+ * @author Vivian
  *
  */
 public class PanelGallery extends JPanel{
@@ -36,6 +34,13 @@ public class PanelGallery extends JPanel{
 
 	public String nomPhoto;
 
+	/**
+	 * Constructeur de la classe PanelGallery
+	 * 
+	 * @param titre : le titre de la page
+	 * @param nomClass : le nom de la classe précédente
+	 * @author Vivian
+	 */
 	public PanelGallery(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
@@ -57,15 +62,6 @@ public class PanelGallery extends JPanel{
 
 		//On met le plus à droite
 		this.add(create, BorderLayout.EAST);
-
-
-		//On met un listener sur le bouton
-//		create.addActionListener(new ClickCreate(nomClass));
-//		previous.addActionListener(new ClickPrevious());
-
-
-
-
 
 	}
 }

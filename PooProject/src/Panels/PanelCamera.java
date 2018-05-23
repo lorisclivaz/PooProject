@@ -1,12 +1,8 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 19 mai 2018
 * 
 */
-/**
- * 
- */
 package Panels;
 
 import java.awt.BorderLayout;
@@ -21,7 +17,9 @@ import javax.swing.JPanel;
 import Images.IconBase;
 
 /**
- * @author Loris_Clivaz
+ * Classe reponsable de l'affichage du PanelCamera
+ * 
+ * @author Vivian
  *
  */
 public class PanelCamera extends JPanel
@@ -34,6 +32,13 @@ public class PanelCamera extends JPanel
 
 	public String nomPhoto;
 
+	/**
+	 * Constructeur de la classe PanelCamera
+	 * 
+	 * @param titre : le titre de la page
+	 * @param nomClass : le nom de la classe précédente
+	 * @author Vivian
+	 */
 	public PanelCamera(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
@@ -50,17 +55,6 @@ public class PanelCamera extends JPanel
 		}
 		//On met le titre au centre
 		this.add(titrePanel, BorderLayout.CENTER);
-
-		//On met le plus à droite
 		
-
-		//On met un listener sur le bouton
-//		create.addActionListener(new ClickCreate(nomClass));
-//		previous.addActionListener(new ClickPrevious());
-
-
-
-
-
 	}
 }

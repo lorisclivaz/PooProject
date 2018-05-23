@@ -1,12 +1,8 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 16 mai 2018
 * 
 */
-/**
- * 
- */
 package Panels;
 
 import java.awt.BorderLayout;
@@ -21,7 +17,9 @@ import javax.swing.JPanel;
 import Images.IconBase;
 
 /**
- * @author Loris_Clivaz
+ * Class responsable de l'affichage du PanelCalculette
+ * 
+ * @author Vivian
  *
  */
 public class PanelCalculette extends JPanel
@@ -34,6 +32,13 @@ public class PanelCalculette extends JPanel
 
 	public String nomPhoto;
 
+	/**
+	 * Constructeur de la classe PanelCalculette
+	 * 
+	 * @param titre : le titre de la page
+	 * @param nomClass : le nom de la classe précédente
+	 * @author Vivian
+	 */
 	public PanelCalculette(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
@@ -50,16 +55,6 @@ public class PanelCalculette extends JPanel
 		}else 
 		//On met le titre au centre
 		this.add(titrePanel, BorderLayout.CENTER);
-
-		
-
-		//On met un listener sur le bouton
-//		create.addActionListener(new ClickCreate(nomClass));
-//		previous.addActionListener(new ClickPrevious());
-
-
-
-
 
 	}
 	

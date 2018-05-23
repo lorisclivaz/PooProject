@@ -1,5 +1,5 @@
 /*
-* Author : Vivian Bridy
+* Author : Vivian Bridy & Loris Clivaz
 * Date creation : 30 avr. 2018
 */
 package Images;
@@ -13,9 +13,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
+/**
+ * Classe responsable de l'affichage de l'image d'un contact
+ * 
+ * @author Vivian
+ *
+ */
 public class ImageContact extends JButton
 {
 	
+	/**
+	 * Constructeur de la classe ImageContact
+	 * 
+	 * @author Vivian
+	 */
 	public ImageContact() {
 
 		setPreferredSize(new Dimension(100, 100));
