@@ -14,8 +14,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ContactApp.ContactPanel.MouseMovement;
 import MainFrame.Frame;
 
 
@@ -46,7 +52,7 @@ public class PasswordPanel extends JPanel
 
 	
 	
-	JLabel label = new JLabel("Password :");
+	JLabel label = new JLabel("Entrer le mot de passe:");
 	JTextField ecrire = new JTextField();
 	JPanel texteLabel = new JPanel();
 	JButton button = new JButton("Enter");
@@ -69,13 +75,16 @@ public class PasswordPanel extends JPanel
 		
 		
 		
-		label.setFont(new Font("Arial", Font.BOLD, 70));
+		label.setFont(new Font("Arial", Font.BOLD, 35));
 		ecrire.setPreferredSize(new Dimension(360, 20));
 		
 		texteLabel.setLayout(new FlowLayout(50, 70, 50));
 		
-		button.setBackground(Color.GRAY);
+		
+		button.setBackground(Color.WHITE);
+		button.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 		button.addActionListener(new ClickEnter());
+		button.addMouseListener(new Button());
 		
 		faux.setVisible(false);
 		
@@ -145,6 +154,35 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	class Button implements MouseListener
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+		}
+		
+		@Override
+		public void mouseEntered(MouseEvent arg0)
+		{
+			button.setBackground(Color.LIGHT_GRAY);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0)
+		{
+			button.setBackground(Color.WHITE);
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0)
+		{
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0)
+		{
+		}
+	}
 	
 	class ClickEnter implements ActionListener
 	{

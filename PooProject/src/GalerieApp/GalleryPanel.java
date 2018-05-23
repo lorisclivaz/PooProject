@@ -39,6 +39,8 @@ import Images.ImageFond;
 
 
 /**
+ * explication
+ * 
  * @author Loris_Clivaz
  *
  */
@@ -62,7 +64,11 @@ public class GalleryPanel extends JPanel
 	//pour le scroll
 	JScrollPane scroll = new  JScrollPane(center);
 
-
+	/**
+	 * Constructeur de la classe GalleryPanel
+	 * 
+	 * @author Loris_Clivaz
+	 */
 	public GalleryPanel()
 	{
 
@@ -96,7 +102,12 @@ public class GalleryPanel extends JPanel
 
 		private Picture pic;
 
-		//Constructeur avec le lien 
+		/**
+		 * EXPLICTATION
+		 * 
+		 * @param path : le chemin de la mini
+		 * @author Loris_Clivaz
+		 */
 		public minipicture(String path) 
 		{
 

@@ -19,6 +19,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,12 +31,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import BordsSmartphone.PanelSmartphone;
 import Calculette.Calculette;
 import Camera.CameraPanel;
 import ContactApp.ContactPanel;
+import ContactApp.ContactPanel.FlatButton;
+import ContactApp.ContactPanel.MouseMovement;
 import GalerieApp.GalleryPanel;
 import Horloge.HorlogePanel;
 import Images.IconBase;
@@ -89,10 +94,6 @@ public class Frame extends JFrame
 	IconBase iconsettings = new IconBase("images/icones/settings.png",  60,60);
 	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 60,60);
 	IconBase iconhorloge = new IconBase("images/icones/horloge.png",  60,60);
-	IconBase iconyoutube = new IconBase("images/icones/youtube.png",  60,60);
-	IconBase iconfacebook = new IconBase("images/icones/facebook.png",  60,60);
-	IconBase iconinstagram = new IconBase("images/icones/instagram.png",  60,60);
-	IconBase iconagenda = new IconBase("images/icones/agenda.png", 60,60);
 	IconBase iconphoto = new IconBase("images/icones/photo.png",  60,60);
 	IconBase lockMain = new IconBase("images/icones/lockmain.png",  60,60);
 
@@ -150,14 +151,10 @@ public class Frame extends JFrame
 
 		imagefond.add(iconsettings);
 		imagefond.add(iconcalculette);
-		imagefond.add(iconyoutube);
-		imagefond.add(iconfacebook);
-		imagefond.add(iconinstagram);		
-		imagefond.add(iconagenda);
 		imagefond.add(iconphoto);
 
 
-		for (int i = 0; i < 8; i++) 
+		for (int i = 0; i < 12; i++) 
 		{
 			imagefond.add(new IconBase("images/icones/vide.png",  60,60));
 		}
@@ -314,10 +311,13 @@ public class Frame extends JFrame
 	private class SettingsPanel extends JPanel
 	{
 
-		PanelSettings panelsettings = new PanelSettings("Settings", "Settings");
+		PanelSettings panelsettings = new PanelSettings("Reglage", "Reglage");
 
-		JButton button = new JButton("Change password");
+		
+		JButton button = new JButton("Changer le mot de passe");
 		JPanel grid = new JPanel();
+		JPanel flow = new JPanel();
+		
 
 
 		public SettingsPanel() 
@@ -326,15 +326,61 @@ public class Frame extends JFrame
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 
-			button.setPreferredSize(new Dimension(480, 40));
+			flow.setLayout(new FlowLayout(40, 10, 10));
+			flow.add(button);
+			
+			button.setPreferredSize(new Dimension(459, 55));
+			button.setBackground(Color.WHITE);
+			button.setFont(new Font("2.TimesRoman ",Font.BOLD,25));
+			button.addMouseListener(new Movement());
+			
+			button.setBackground(Color.GRAY);
 			button.addActionListener(new ClickChange());
+			
 			grid.setLayout(new GridLayout(4, 1));
-			grid.add(button);
+			grid.add(flow);
 
 			this.add(panelsettings, BorderLayout.NORTH);
 			this.add(grid, BorderLayout.CENTER);
 		}
+		
+		
+		class Movement implements MouseListener
+		{
+					//On récupère la variable du bouton survolé
+			
+		
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0)
+			{
+				button.setBackground(Color.LIGHT_GRAY);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0)
+			{
+				button.setBackground(Color.WHITE);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0)
+			{
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+			}
+			
+		}
 	}
+	
+	 
 
 	private class changePswdPanel extends JPanel
 	{
@@ -342,7 +388,7 @@ public class Frame extends JFrame
 		PasswordPanel changePsw;
 		Frame frame;
 
-		PanelSettings change = new PanelSettings("Change", "Change");
+		PanelSettings change = new PanelSettings("Mot de passe", "Mot de passe");
 
 		JPanel grid = new JPanel();
 		JTextField ecrire = new JTextField();
@@ -350,7 +396,7 @@ public class Frame extends JFrame
 
 		JLabel label1 = new JLabel("Entrer l'ancien mot de passe :");
 		JLabel label2 = new JLabel("Entrer le nouveau mot de passe : ");
-
+		JLabel ancienIncorrect = new JLabel("Données saisies incorrectes");
 		String nouveau ;
 
 		JButton button = new JButton("Change");
@@ -364,15 +410,19 @@ public class Frame extends JFrame
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 
+			button.setBackground(Color.WHITE);
+			button.setFont(new Font("2.TimesRoman ",Font.BOLD,30));
+			button.addMouseListener(new MouseMouvement());
+			
 			grid.setLayout(new FlowLayout(50, 70, 50));
 
 			ecrire.setPreferredSize(new Dimension(360, 20));
 			ecrire2.setPreferredSize(new Dimension(360, 20));
 
 
-			label1.setFont(new Font("Arial", Font.BOLD, 15));
-			label2.setFont(new Font("Arial", Font.BOLD, 15));
-
+			label1.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
+			label2.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
+			ancienIncorrect.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 
 			//Ancien mot de passe
 			grid.add(label1);
@@ -419,6 +469,9 @@ public class Frame extends JFrame
 					{
 						System.out.println("ancien mot de passe incorrect ");
 						ecrire.setText(null);
+						ecrire2.setText(null);
+						
+						grid.add(ancienIncorrect);
 					}
 				}
 			});
@@ -426,6 +479,38 @@ public class Frame extends JFrame
 
 
 
+		}
+		
+		class MouseMouvement implements MouseListener
+		{
+
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0)
+			{
+				button.setBackground(Color.LIGHT_GRAY);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0)
+			{
+				button.setBackground(Color.WHITE);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0)
+			{
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+			}
+			
 		}
 	}
 	private class ClickChange implements ActionListener
