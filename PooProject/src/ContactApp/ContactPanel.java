@@ -19,9 +19,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -180,8 +185,32 @@ public class ContactPanel extends JPanel
 			}
 		}
 		
-		
-		private int id=0; 	//Variable qui va stocker le numéro du contact en création
+		public String lecture()
+		{
+			String resultat="";
+			File dossier = new File("src/ContactApp");
+			dossier.mkdir();
+			
+			File fichier = new File(dossier,"id.txt");
+			
+			try {
+			
+				FileReader read = new FileReader(fichier);
+				BufferedReader bfread = new BufferedReader(read);
+				resultat = bfread.readLine();
+				
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			
+			
+			return resultat;
+			
+		}
+//		private int id=0;	//Variable qui va stocker le numéro du contact en création
+
+		private int id=Integer.parseInt(lecture());	//Variable qui va stocker le numéro du contact en création
 		
 		/**
 		 * Classe contact qui sera sérialisée et qui contient les variables suivantes
@@ -214,6 +243,34 @@ public class ContactPanel extends JPanel
 				setUrlImage(urlImage);
 			}
 			
+			public void ecriture(int id)
+			{
+				
+				
+				File dossier = new File("src/ContactApp");
+				dossier.mkdir();
+				
+				File fichier = new File(dossier,"id.txt");
+			
+				
+				try {
+					fichier.createNewFile();
+					
+					
+					FileWriter ecriture = new FileWriter(fichier);
+					BufferedWriter bfwrite = new BufferedWriter(ecriture);
+					bfwrite.write(Integer.toString(id)); 
+					bfwrite.close();
+				
+					
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+				
+				
+			}
+			
 			public int getId()
 			{
 				return id;
@@ -222,6 +279,7 @@ public class ContactPanel extends JPanel
 			public void setId()
 			{
 				id++;
+				this.ecriture(id);
 			}
 
 			public String getNom()
