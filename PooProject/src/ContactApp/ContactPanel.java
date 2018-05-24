@@ -398,6 +398,7 @@ public class ContactPanel extends JPanel
 		
 		public class FlatButton extends JButton 
 		{
+			String remplissage;
 			/**
 			 * Constructeur de la class FlatButton
 			 * 
@@ -413,7 +414,9 @@ public class ContactPanel extends JPanel
 				//text
 				JLabel text = new JLabel();
 				text.setSize(new Dimension(300,100));
-				text.setText(contact.getNom()+" "+contact.getPrenom());
+				remplissage = contact.getNom()+" "+contact.getPrenom();
+				
+				text.setText(remplissage);
 				text.setFont(new Font("2.TimesRoman ",Font.BOLD,50));
 				
 				this.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -422,6 +425,8 @@ public class ContactPanel extends JPanel
 				this.setBackground(Color.WHITE);
 				this.addMouseListener(new MouseMovement(this));
 			}
+			
+		
 		}
 		
 		/**
@@ -755,27 +760,27 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check de l'adresse
-					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR"))
+					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR") || adresseSaisi.length()>18)
 					{
-						System.out.println("un champ est vide");
+						System.out.println("un champ est vide ou trop long");
 						textAdresse.setText("ERREUR");
 						
 						return;
 					}
 					
 					//Check de la localité
-					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR"))
+					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR") || localiteSaisi.length()>18)
 					{
-						System.out.println("un champ est vide");
+						System.out.println("un champ est vide ou trop long");
 						textLocalite.setText("ERREUR");
 						
 						return;
 					}
 					
 					//Check du mail
-					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR"))
+					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR") || mailSaisi.length()>18)
 					{
-						System.out.println("problème dans la saisie du mail");
+						System.out.println("problème dans la saisie du mail ou trop long");
 						textMail.setText("ERREUR");
 						
 						return;
@@ -786,6 +791,18 @@ public class ContactPanel extends JPanel
 					{
 						System.out.println("problème dans la saisie du téléphone");
 						textPhone.setText("ERREUR");
+						
+						return;
+					}
+					
+					String checklongeur = nomSaisi +" "+prenomSaisi;
+					
+					//Check longueur nom/prénom
+					if(checklongeur.length() > 13)
+					{
+						System.out.println("problème de longueur de la châine");
+						textNom.setText("TROP LONG");
+						textPrenom.setText("TROP LONG");
 						
 						return;
 					}
@@ -1057,8 +1074,7 @@ public class ContactPanel extends JPanel
 				public void actionPerformed(ActionEvent arg0)
 				{
 					
-					allContact.removeAll();
-					allContact.revalidate();
+
 					String nomSaisi = textNom.getText().trim();
 					String prenomSaisi = textPrenom.getText().trim();
 					String adresseSaisi = textAdresse.getText().trim();
@@ -1119,6 +1135,21 @@ public class ContactPanel extends JPanel
 						
 						return;
 					}
+					
+					String checklongeur = nomSaisi +" "+prenomSaisi;
+					
+					//Check longueur nom/prénom
+					if(checklongeur.length() > 13)
+					{
+						System.out.println("problème de longueur de la châine");
+						textNom.setText("TROP LONG");
+						textPrenom.setText("TROP LONG");
+						
+						return;
+					}
+					
+					allContact.removeAll();
+					allContact.revalidate();
 					
 					Contact contactEnCreation = new Contact(nomSaisi,
 															prenomSaisi,
