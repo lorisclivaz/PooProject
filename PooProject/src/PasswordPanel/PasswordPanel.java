@@ -77,6 +77,7 @@ public class PasswordPanel extends JPanel
 		
 		label.setFont(new Font("Arial", Font.BOLD, 35));
 		ecrire.setPreferredSize(new Dimension(360, 20));
+		ecrire.addKeyListener(new PressedEnter());
 		
 		texteLabel.setLayout(new FlowLayout(50, 70, 50));
 		
@@ -99,7 +100,43 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
-	
+	public class PressedEnter implements KeyListener
+	{
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+			if(e.getKeyCode() == 10)
+			{
+				if(getReponse().equals(resultat))
+				{
+					frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
+					faux.setVisible(false);
+					frame.setLockFrame(true);
+				}else
+				{
+					faux.setVisible(true);
+				}
+				
+				ecrire.setText(null);
+			}
+			    
+
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 
 	public String lecturePswd()
 	{
