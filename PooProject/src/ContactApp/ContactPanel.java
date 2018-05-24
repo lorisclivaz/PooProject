@@ -726,7 +726,7 @@ public class ContactPanel extends JPanel
 					String mailSaisi = textMail.getText().trim();
 					
 					//Check du nom
-					if(nomSaisi.equals(""))
+					if(nomSaisi.equals("") || nomSaisi.equals("ERREUR"))
 					{
 						System.out.println("un champ est vide");
 						textNom.setText("ERREUR");
@@ -735,7 +735,7 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check du prenom
-					if(prenomSaisi.equals(""))
+					if(prenomSaisi.equals("") || prenomSaisi.equals("ERREUR"))
 					{
 						System.out.println("un champ est vide");
 						textPrenom.setText("ERREUR");
@@ -744,7 +744,7 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check de l'adresse
-					if(adresseSaisi.equals(""))
+					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR"))
 					{
 						System.out.println("un champ est vide");
 						textAdresse.setText("ERREUR");
@@ -753,7 +753,7 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check de la localité
-					if(localiteSaisi.equals(""))
+					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR"))
 					{
 						System.out.println("un champ est vide");
 						textLocalite.setText("ERREUR");
@@ -762,7 +762,7 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check du mail
-					if(!checkMail(mailSaisi))
+					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR"))
 					{
 						System.out.println("problème dans la saisie du mail");
 						textMail.setText("ERREUR");
@@ -771,7 +771,7 @@ public class ContactPanel extends JPanel
 					}
 					
 					//Check du phone
-					if(!checkPhone(phoneSaisi))
+					if(!checkPhone(phoneSaisi) || phoneSaisi.equals("ERREUR"))
 					{
 						System.out.println("problème dans la saisie du téléphone");
 						textPhone.setText("ERREUR");
@@ -1049,14 +1049,76 @@ public class ContactPanel extends JPanel
 					
 					allContact.removeAll();
 					allContact.revalidate();
-					Contact contactEnCreation = new Contact(textNom.getText(),
-															textPrenom.getText(),
-															textAdresse.getText(),
-															textLocalite.getText(),
-															textMail.getText(),
-															textPhone.getText(),
+					String nomSaisi = textNom.getText().trim();
+					String prenomSaisi = textPrenom.getText().trim();
+					String adresseSaisi = textAdresse.getText().trim();
+					String localiteSaisi = textLocalite.getText().trim();
+					String phoneSaisi = textPhone.getText().trim();
+					String mailSaisi = textMail.getText().trim();
+					
+					//Check du nom
+					if(nomSaisi.equals("") || nomSaisi.equals("ERREUR"))
+					{
+						System.out.println("un champ est vide");
+						textNom.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du prenom
+					if(prenomSaisi.equals("") || prenomSaisi.equals("ERREUR"))
+					{
+						System.out.println("un champ est vide");
+						textPrenom.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check de l'adresse
+					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR"))
+					{
+						System.out.println("un champ est vide");
+						textAdresse.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check de la localité
+					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR"))
+					{
+						System.out.println("un champ est vide");
+						textLocalite.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du mail
+					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR"))
+					{
+						System.out.println("problème dans la saisie du mail");
+						textMail.setText("ERREUR");
+						
+						return;
+					}
+					
+					//Check du phone
+					if(!checkPhone(phoneSaisi) || phoneSaisi.equals("ERREUR"))
+					{
+						System.out.println("problème dans la saisie du téléphone");
+						textPhone.setText("ERREUR");
+						
+						return;
+					}
+					
+					Contact contactEnCreation = new Contact(nomSaisi,
+															prenomSaisi,
+															adresseSaisi,
+															localiteSaisi,
+															mailSaisi,
+															phoneSaisi,
 															imageContact.getUrl());
 					//On supprime l'ancien contact
+					System.out.println("suppression contact "+contact.getId());
 					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
 					filedeleted.delete();
 					this.serializeObject(contactEnCreation);
