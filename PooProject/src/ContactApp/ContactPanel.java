@@ -143,9 +143,8 @@ public class ContactPanel extends JPanel
 			  if (f[i].isFile()) {
 				path = f[i].getAbsolutePath();
 				current = deSerializeObject(path);
-				FlatButton bouton = new FlatButton();
+				FlatButton bouton = new FlatButton(current);
 				bouton.addActionListener(new ClickContact(current));
-				bouton.setText(current.getNom()+" "+current.getPrenom());
 				bouton.setPreferredSize(new Dimension(400,120));
 				allContact.add(bouton);
 			  }
@@ -404,11 +403,23 @@ public class ContactPanel extends JPanel
 			 * 
 			 * @author Vivian
 			 */
-			public FlatButton() 
+			public FlatButton(Contact contact) 
 			{
-				// TODO Auto-generated constructor stub
+				//petite image
+				IconBase miniPhoto = new IconBase(contact.getUrlImage(), 100, 100);
+				miniPhoto.addActionListener(new ClickContact(contact));
+				miniPhoto.addMouseListener(new MouseMovement(this));
+				
+				//text
+				JLabel text = new JLabel();
+				text.setSize(new Dimension(300,100));
+				text.setText(contact.getNom()+" "+contact.getPrenom());
+				text.setFont(new Font("2.TimesRoman ",Font.BOLD,50));
+				
+				this.setLayout(new FlowLayout(FlowLayout.LEADING));
+				this.add(miniPhoto);
+				this.add(text);
 				this.setBackground(Color.WHITE);
-				this.setFont(new Font("2.TimesRoman ",Font.BOLD,50));
 				this.addMouseListener(new MouseMovement(this));
 			}
 		}
@@ -853,9 +864,8 @@ public class ContactPanel extends JPanel
 				path = fActu[i].getAbsolutePath();
 				System.out.println(path);
 				currentActu = deSerializeObject(path);
-				FlatButton bouton = new FlatButton();
+				FlatButton bouton = new FlatButton(currentActu);
 				bouton.addActionListener(new ClickContact(currentActu));
-				bouton.setText(currentActu.getNom()+" "+currentActu.getPrenom());
 				bouton.setPreferredSize(new Dimension(400,120));
 				allContact.add(bouton);
 			  }
