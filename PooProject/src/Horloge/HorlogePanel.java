@@ -17,7 +17,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,6 +62,7 @@ public class HorlogePanel extends JPanel
 		heure.setForeground(Color.WHITE);
 		heure.setFont(new Font("Arial", Font.BOLD, 70));
 		
+		
 		center.add(heure);
 		
 		this.add(panelhorloge, BorderLayout.NORTH);
@@ -80,8 +83,11 @@ public class HorlogePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			Calendar now = Calendar.getInstance();
+			Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+			
             heure.setText(DATEFORMAT.format(now.getTime()));
+            
+            
 		}
 	}
 }

@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,6 +27,7 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import Images.IconBase;
 import MainFrame.MyBoder;
 
 
@@ -42,7 +44,9 @@ public class UpPanel extends JPanel{
 	JLabel date = new JLabel();
 	DateFormat formatHeure = new SimpleDateFormat("HH:mm");
 	JLabel fourni = new JLabel("    Swisscom");
-
+	IconBase son = new IconBase("images/icones/son.JPG", 170,40);
+	JPanel flow = new JPanel();
+	
 
 	// Heure
 	private JLabel heure = new JLabel();
@@ -62,7 +66,9 @@ public class UpPanel extends JPanel{
 		this.setPreferredSize(new Dimension(480, 50));
 		this.setOpaque(false);
 		
-
+		flow.setLayout(new FlowLayout(20,60,5));
+		flow.setOpaque(false);
+		flow.add(son);
 		//heure
 		Calendar now = Calendar.getInstance();
 
@@ -78,6 +84,7 @@ public class UpPanel extends JPanel{
 		fourni.setForeground(Color.WHITE);
 		fourni.setFont(new Font("Arial", Font.BOLD, 15));
 		this.add(fourni, BorderLayout.WEST);
+		this.add(flow, BorderLayout.CENTER);
 		this.add(heure, BorderLayout.EAST);
 	}
 	/**

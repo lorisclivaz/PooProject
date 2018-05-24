@@ -56,7 +56,7 @@ public class PasswordPanel extends JPanel
 	JTextField ecrire = new JTextField();
 	JPanel texteLabel = new JPanel();
 	JButton button = new JButton("Enter");
-	JLabel faux = new JLabel("Wrong password, please try again");
+	JLabel faux = new JLabel("Mot de passe incorrect");
 
 	
 	Frame frame;
@@ -88,6 +88,7 @@ public class PasswordPanel extends JPanel
 		button.addMouseListener(new Button());
 		
 		faux.setVisible(false);
+		faux.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 		
 		texteLabel.add(label);
 		texteLabel.add(ecrire);

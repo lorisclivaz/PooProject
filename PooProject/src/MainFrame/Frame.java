@@ -67,7 +67,7 @@ public class Frame extends JFrame
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
 	ImageFond imagefond = new ImageFond();
-//	CameraPanel camera = new CameraPanel();
+	//CameraPanel camera = new CameraPanel();
 	PasswordPanel psw = new PasswordPanel(this);
 	changePswdPanel changepswdpanel = new changePswdPanel(psw, this);
 	PanelSmartphone smartphone = new PanelSmartphone();
@@ -171,7 +171,7 @@ public class Frame extends JFrame
 		triPanel.add(contactpanel,"contactpanel");
 		triPanel.add(calculette, "calculette");
 		triPanel.add(horlogepanel, "horlogepanel");
-//		triPanel.add(camera,"camera");
+		//triPanel.add(camera,"camera");
 		triPanel.add(psw, "psw");
 		triPanel.add(settingspanel, "settingspanel");
 		triPanel.add(changepswdpanel, "changepswdpanel");
@@ -480,6 +480,8 @@ public class Frame extends JFrame
 
 
 		}
+		
+		
 		
 		class MouseMouvement implements MouseListener
 		{
