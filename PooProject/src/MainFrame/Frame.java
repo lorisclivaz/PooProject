@@ -42,7 +42,6 @@ import javax.swing.border.EmptyBorder;
 
 import BordsSmartphone.PanelSmartphone;
 import Calculette.Calculette;
-import Camera.CameraPanel;
 import ContactApp.ContactPanel;
 import ContactApp.ContactPanel.FlatButton;
 import ContactApp.ContactPanel.MouseMovement;
@@ -95,7 +94,6 @@ public class Frame extends JFrame
 	IconBase iconsettings = new IconBase("images/icones/settings.png",  60,60);
 	IconBase iconcalculette = new IconBase("images/icones/calculette.png", 60,60);
 	IconBase iconhorloge = new IconBase("images/icones/horloge.png",  60,60);
-	IconBase iconphoto = new IconBase("images/icones/photo.png",  60,60);
 	IconBase lockMain = new IconBase("images/icones/lockmain.png",  60,60);
 
 	IconBase vide ;
@@ -157,14 +155,12 @@ public class Frame extends JFrame
 		imagefond.setLayout(new FlowLayout(30,50,70));
 
 		imagefond.add(icongallery);
-
 		imagefond.add(iconsettings);
 		imagefond.add(iconcalculette);
-		imagefond.add(iconphoto);
 
 
 		//Ajout des icones vides pour la mise en page (un peu du bricolage)
-		for (int i = 0; i < 12; i++) 
+		for (int i = 0; i < 13; i++) 
 		{
 			imagefond.add(new IconBase("images/icones/vide.png",  60,60));
 		}
@@ -179,7 +175,6 @@ public class Frame extends JFrame
 		triPanel.add(calculette, "calculette");
 		triPanel.add(horlogepanel, "horlogepanel");
 
-		//triPanel.add(camera,"camera");
 
 		triPanel.add(psw, "psw");
 		triPanel.add(settingspanel, "settingspanel");
@@ -192,7 +187,6 @@ public class Frame extends JFrame
 		iconcalculette.addActionListener(new ClickCalculette());
 		lockMain.addActionListener(new ClickLockMain());
 		iconhorloge.addActionListener(new ClickHorloge());
-		iconphoto.addActionListener(new ClickPhoto());
 		iconsettings.addActionListener(new ClickSettings());
 
 		//On ajout le smartphone à la frame
@@ -222,26 +216,7 @@ public class Frame extends JFrame
 
 	}
 
-	/**
-	 * Classe qui va gérer le click sur licone camera
-	 * 
-	 * @author Loris
-	 *
-	 */
-	private class ClickPhoto implements ActionListener
-	{
-
-
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-
-			System.out.println("clique camera");
-
-			cardLayout.show(triPanel, "camera");
-		}
-
-	}
+	
 
 	/**
 	 * Classe qui va gérer le click sur l'icone horloge

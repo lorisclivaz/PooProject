@@ -13,6 +13,7 @@ package MainFrame;
 /**
  * @author Loris_Clivaz
  *
+ *@lienGit https://github.com/lorisclivaz/PooProject.git
  */
 public class MainTest 
 {
