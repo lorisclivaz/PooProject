@@ -15,6 +15,8 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -38,6 +40,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -88,7 +91,6 @@ public class ContactPanel extends JPanel
 		//On crée la scrollBar
 		JScrollPane scroll = new  JScrollPane(allContact);
 		
-		
 		/**
 		 * Constructeur de la classe ContactPanel
 		 * - définit la taille du Panel et son layout
@@ -105,7 +107,8 @@ public class ContactPanel extends JPanel
 			
 			this.add(menuh1panel, BorderLayout.NORTH);
 						
-			allContact.setLayout(new GridLayout(10,1));
+			allContact.setLayout(new GridLayout(100,1));
+//			allContact.setLayout(new FlowLayout());
 			
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
@@ -121,6 +124,19 @@ public class ContactPanel extends JPanel
 
 		}
 		
+		private int nombreFichier = 0;
+		
+		/**
+		 * Getter qui retourne le nombre de fichier contenu dans le dossier serialisation
+		 * 
+		 * @return : le nombre de fichier
+		 * @author Vivian
+		 */
+		public int getNombreFichier() {
+			return nombreFichier;
+		}
+
+
 		/**
 		 * Permet d'actualiser la liste des contacts :
 		 * - parcourt le dossier serialisation
@@ -130,6 +146,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 */
 		
+		
 		public void actualise()
 		{
 			//On calcule le nombre de contact dans le dossier serialisation
@@ -137,7 +154,6 @@ public class ContactPanel extends JPanel
 			File[] f = dossier.listFiles();
 			String path;
 			Contact current;
-			int nombreFichier = 0;
 						
 			for (int i = 0 ; i < f.length ; i++) {
 			  if (f[i].isFile()) {
@@ -145,12 +161,17 @@ public class ContactPanel extends JPanel
 				current = deSerializeObject(path);
 				FlatButton bouton = new FlatButton(current);
 				bouton.addActionListener(new ClickContact(current));
-				bouton.setPreferredSize(new Dimension(400,120));
+//				JPanel p=new JPanel();
+//				p.add(bouton);
+//				p.setMaximumSize(new Dimension(100,20));
 				allContact.add(bouton);
+				nombreFichier++;
 			  }
 			}
 			
+			
 			triPanel.add(scroll, "scroll");
+			
 		}
 		
 		/**
@@ -664,6 +685,7 @@ public class ContactPanel extends JPanel
 				infosContact.add(mail);
 				infosContact.add(textMail);
 				infosContact.add(phone);
+				textPhone.addKeyListener(new PressedEnter(enregistrement));
 				infosContact.add(textPhone);
 				infosContact.add(vide2);
 				enregistrement.addActionListener(new ClickEnregistrement());
@@ -671,6 +693,48 @@ public class ContactPanel extends JPanel
 				
 				//On affiche les infos
 				this.add(infosContact);
+			}
+			
+			/**
+			 * KeyListener qui est activé lorsque l'on touche ENTER
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			public class PressedEnter implements KeyListener
+			{
+				SaveButton enregistrement;
+				public PressedEnter(SaveButton enregistrement)
+				{
+					this.enregistrement = enregistrement;
+				}
+				
+				@Override
+				public void keyPressed(KeyEvent e) 
+				{
+					
+					if(e.getKeyCode() == 10)
+					{
+						System.out.println("touche ENTER");
+						enregistrement.doClick();
+					}
+					    
+
+				}
+
+				@Override
+				public void keyReleased(KeyEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void keyTyped(KeyEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				
 			}
 			
 			/**
@@ -885,9 +949,10 @@ public class ContactPanel extends JPanel
 				bouton.addActionListener(new ClickContact(currentActu));
 				bouton.setPreferredSize(new Dimension(400,120));
 				allContact.add(bouton);
+				nombreFichier++;
 			  }
 			}
-			
+
 		}
 		
 		/**
@@ -978,6 +1043,7 @@ public class ContactPanel extends JPanel
 				ChampLabel phone = new ChampLabel("Téléphone :","text");
 				ChampTextField textPhone = new ChampTextField(contact.getTelephone());
 				this.textPhone = textPhone;
+				this.textPhone.addKeyListener(new PressedEnter(enregistrement));
 				
 				//On ajoute dans les infos contacts
 				infosContact.add(nom);
@@ -998,6 +1064,48 @@ public class ContactPanel extends JPanel
 				
 				//On affiche les infos
 				this.add(infosContact);
+			}
+			
+			/**
+			 * KeyListener qui est activé lorsque l'on touche ENTER
+			 * 
+			 * @author Vivian
+			 *
+			 */
+			
+			public class PressedEnter implements KeyListener
+			{
+				SaveButton enregistrement;
+				public PressedEnter(SaveButton enregistrement)
+				{
+					this.enregistrement = enregistrement;
+				}
+				
+				@Override
+				public void keyPressed(KeyEvent e) 
+				{
+					
+					if(e.getKeyCode() == 10)
+					{
+						System.out.println("touche ENTER");
+						enregistrement.doClick();
+					}
+					    
+
+				}
+
+				@Override
+				public void keyReleased(KeyEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void keyTyped(KeyEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				
 			}
 			
 			/**
