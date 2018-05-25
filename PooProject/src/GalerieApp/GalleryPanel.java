@@ -105,7 +105,7 @@ public class GalleryPanel extends JPanel
 	 *
 	 */
 
-	private class minipicture extends JButton {
+	private class MiniPhoto extends JButton {
 
 		private Picture pic;
 
@@ -118,7 +118,7 @@ public class GalleryPanel extends JPanel
 		 * @author Loris
 		 */
 
-		public minipicture(String path) 
+		public MiniPhoto(String path) 
 		{
 
 			super();
@@ -183,7 +183,7 @@ public class GalleryPanel extends JPanel
 			cardLayout.show(getTriPanel2(), "photo");
 
 			//On va chercher la source du clique de l'image
-			minipicture minsource = (minipicture) e.getSource();
+			MiniPhoto minsource = (MiniPhoto) e.getSource();
 			System.out.println(e.getSource());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
 
@@ -436,7 +436,7 @@ public class GalleryPanel extends JPanel
 		for (File photo : photos) 
 		{
 
-			new minipicture(photo.getAbsolutePath());
+			new MiniPhoto(photo.getAbsolutePath());
 		}
 
 		
@@ -529,7 +529,7 @@ public class GalleryPanel extends JPanel
 				{
 					File file = choisir.getSelectedFile();
 					Picture.copy(file);
-					minipicture newpic = new minipicture("imagesGallery/" + file.getName());
+					MiniPhoto newpic = new MiniPhoto("imagesGallery/" + file.getName());
 					revalidate();
 					repaint();
 				}
