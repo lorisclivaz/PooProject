@@ -23,16 +23,10 @@ import Images.IconBase;
  * @author Vivian
  *
  */
-public class PanelGallery extends JPanel{
+public class PanelGallery extends PanelSettings{
 
-
-	JLabel titrePanel;
-	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	IconBase vide = new IconBase("",40,40);
-
-	public String nomPhoto;
 
 	/**
 	 * Constructeur de la classe PanelGallery
@@ -42,24 +36,13 @@ public class PanelGallery extends JPanel{
 	 * @author Vivian
 	 */
 	public PanelGallery(String titre, String nomClass)
-	// TODO Auto-generated constructor stube
+
 	{
-		titrePanel = new JLabel(titre);
-		titrePanel.setFont(globalFont);
-
-		this.setPreferredSize(new Dimension(480, 78));
-		this.setBackground(Color.decode("#DFDFDF"));
-
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur maxs
-		if(nomClass.equals("ContactPanel")) {
-			//On met le plus à gauche
-			this.add(vide, BorderLayout.WEST);
-		}else {
+		super(titre,nomClass);
+		
+		if(!nomClass.equals("ContactPanel"))
 			this.add(previous, BorderLayout.WEST);
-		}
-		//On met le titre au centre
-		this.add(titrePanel, BorderLayout.CENTER);
-
+		
 		//On met le plus à droite
 		this.add(create, BorderLayout.EAST);
 

@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import Panels.PanelHorloge;
+import Panels.PanelSettings;
 
 /**
  *Classe responsable de l'application horloge
@@ -33,7 +33,7 @@ import Panels.PanelHorloge;
 public class HorlogePanel extends JPanel
 {
 
-	PanelHorloge panelhorloge = new PanelHorloge ("Horloge", "Horloge");
+	PanelSettings panelhorloge = new PanelSettings ("Horloge", "Horloge");
 	
 	JPanel center = new JPanel ();
 

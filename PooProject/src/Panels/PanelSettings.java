@@ -22,16 +22,8 @@ import Images.IconBase;
  * @author Vivian
  *
  */
-public class PanelSettings extends JPanel
+public class PanelSettings extends Panels
 {
-
-	JLabel titrePanel;
-	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
-
-	IconBase vide = new IconBase("",40,40);
-
-	public String nomPhoto;
-
 	/**
 	 * Constructeur de la classe PanelSettings
 	 * 
@@ -40,22 +32,8 @@ public class PanelSettings extends JPanel
 	 * @author Vivian
 	 */
 	public PanelSettings(String titre, String nomClass)
-	// TODO Auto-generated constructor stube
 	{
-		titrePanel = new JLabel(titre);
-		titrePanel.setFont(globalFont);
-
-		this.setPreferredSize(new Dimension(480, 78));
-		this.setBackground(Color.decode("#DFDFDF"));
-
-		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur maxs
-		if(nomClass.equals("ContactPanel")) {
-			//On met le plus à gauche
-			this.add(vide, BorderLayout.WEST);
-		}
-		//On met le titre au centre
-		this.add(titrePanel, BorderLayout.CENTER);
-
+		super(titre,nomClass);
 	}
 }
 

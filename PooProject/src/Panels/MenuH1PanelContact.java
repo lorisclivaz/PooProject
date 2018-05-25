@@ -32,18 +32,12 @@ import Images.IconBase;
  * @author Vivian
  *
  */
-public class MenuH1PanelContact extends JPanel{
-
-	//Définit un titre sur le panel avec une couleurs
-	JLabel titrePanel;
-	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
+public class MenuH1PanelContact extends PanelSettings{
 	
 	//On instancie les icones pour les ajouters sur le panel
 	IconBase create = new IconBase("images/icones/plus.png",40,40);
 	IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
 	IconBase vide = new IconBase("images/icones/left-arrow.png",40,40);
-	
-	String titre, nomClass;
 	
 	//Pour faire le tri des panels
 	CardLayout cardlayout = new CardLayout();
@@ -60,13 +54,7 @@ public class MenuH1PanelContact extends JPanel{
 	public MenuH1PanelContact(String titre, String nomClass)
 	// TODO Auto-generated constructor stube
 	{
-		this.titre = titre;
-		this.nomClass = nomClass;
-		titrePanel = new JLabel(getTitre());
-		titrePanel.setFont(globalFont);
-
-		this.setPreferredSize(new Dimension(480, 78));
-		this.setBackground(Color.decode("#DFDFDF"));
+		super(titre,nomClass);
 
 		this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 	//61 est la valeur max
 		if(nomClass.equals("ContactPanel")) {
@@ -74,27 +62,17 @@ public class MenuH1PanelContact extends JPanel{
 		}else {
 			this.add(previous, BorderLayout.WEST);
 		}
-		//On met le titre au centre
-		this.add(titrePanel, BorderLayout.CENTER);
 
 		//On met le plus à droite
 		if(nomClass.equals("NewContact"))
 			this.remove(create);
 		else
 			this.add(create, BorderLayout.EAST);
-
+		
 		//On met un listener sur le bouton
 		create.addActionListener(new ClickCreate());
 		previous.addActionListener(new ClickPrevious());
 
-	}
-
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
-	
-	public String getTitre() {
-		return titre;
 	}
 	
 	public void setCardLayout(CardLayout cardlayout, JPanel triPanel) {
@@ -138,6 +116,5 @@ public class MenuH1PanelContact extends JPanel{
 			System.out.println("create cliqué");
 		}
 	}
-	
-	//
+
 }

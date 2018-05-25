@@ -1,7 +1,6 @@
 /*
-* Author: Clivaz Loris & Vivian Bridy
-* Date creation: 18 mai 2018
-* 
+* Author : Vivian Bridy
+* Date creation : 25 mai 2018
 */
 package Panels;
 
@@ -17,30 +16,29 @@ import javax.swing.JPanel;
 import Images.IconBase;
 
 /**
- * Classe responsable de l'affichage du PanelHorloge
+ * Classe asbtract responsable des Panels
  * 
  * @author Vivian
  *
  */
-public class PanelHorloge extends JPanel{
 
+public abstract class Panels extends JPanel{
 
 	JLabel titrePanel;
 	Font globalFont = new Font("2.TimesRoman ",Font.BOLD,50);
 
 	IconBase vide = new IconBase("",40,40);
-
+	
 	public String nomPhoto;
 
 	/**
-	 * Constructeur de la classe PanelHorloge
+	 * Constructeur de la classe abstract Panels
 	 * 
 	 * @param titre : le titre de la page
 	 * @param nomClass : le nom de la classe précédente
 	 * @author Vivian
 	 */
-	public PanelHorloge(String titre, String nomClass)
-	// TODO Auto-generated constructor stube
+	public Panels(String titre, String nomClass)
 	{
 		titrePanel = new JLabel(titre);
 		titrePanel.setFont(globalFont);
@@ -55,6 +53,6 @@ public class PanelHorloge extends JPanel{
 		}
 		//On met le titre au centre
 		this.add(titrePanel, BorderLayout.CENTER);
-
 	}
+	
 }

@@ -15,12 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Images.IconBase;
-import Panels.PanelCalculette;
+import Panels.PanelSettings;
 
 public class Calculette extends JPanel
 {
 
-	PanelCalculette panelcalculette = new PanelCalculette("Calculatrice", "Calculatrice");
+	PanelSettings panelcalculette = new PanelSettings("Calculatrice", "Calculatrice");
 	IconBase point = new IconBase("images/icones/points.png", 50,50);
 
 
