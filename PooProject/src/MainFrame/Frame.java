@@ -23,6 +23,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DateFormat;
@@ -44,6 +46,7 @@ import Camera.CameraPanel;
 import ContactApp.ContactPanel;
 import ContactApp.ContactPanel.FlatButton;
 import ContactApp.ContactPanel.MouseMovement;
+import ContactApp.ContactPanel.SaveButton;
 import GalerieApp.GalleryPanel;
 import Horloge.HorlogePanel;
 import Images.IconBase;
@@ -505,7 +508,7 @@ public class Frame extends JFrame
 
 			ecrire.setPreferredSize(new Dimension(360, 20));
 			ecrire2.setPreferredSize(new Dimension(360, 20));
-
+			ecrire2.addKeyListener(new PressedEnter(button));
 			//Design des labels
 			label1.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 			label2.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
@@ -562,9 +565,49 @@ public class Frame extends JFrame
 				}
 			});
 
+			
+		}
+		
+		/**
+		 * KeyListener qui est activé lorsque l'on touche ENTER
+		 * 
+		 * @author Vivian
+		 *
+		 */
+		
+		public class PressedEnter implements KeyListener
+		{
+			JButton enregistrement;
+			public PressedEnter(JButton enregistrement)
+			{
+				this.enregistrement = enregistrement;
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) 
+			{
+				
+				if(e.getKeyCode() == 10)
+				{
+					System.out.println("touche ENTER");
+					enregistrement.doClick();
+				}
+				    
 
+			}
 
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
 
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		}
 
 
