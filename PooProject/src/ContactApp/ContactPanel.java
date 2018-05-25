@@ -108,20 +108,6 @@ public class ContactPanel extends JPanel
 			this.add(menuh1panel, BorderLayout.NORTH);
 			
 			actualise();
-			
-			if(nombreFichier>5)
-			{
-				allContact.setLayout(new GridLayout(getNombreFichier(),1));
-				scroll.setVisible(true);
-			}
-			else
-			{
-				allContact.setLayout(new GridLayout(5,1));
-				scroll.setVisible(false);
-			}
-			
-			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-
 
 			//Ajout du panel center à galleryPanelea
 			this.add(triPanel, BorderLayout.CENTER);
@@ -176,7 +162,9 @@ public class ContactPanel extends JPanel
 			File[] f = dossier.listFiles();
 			String path;
 			Contact current;
-						
+			triPanel.remove(scroll);
+			allContact = new JPanel();
+			
 			for (int i = 0 ; i < f.length ; i++) {
 			  if (f[i].isFile()) {
 				path = f[i].getAbsolutePath();
@@ -187,7 +175,19 @@ public class ContactPanel extends JPanel
 				setNombreFichier(++nombreFichier);
 			  }
 			}
+			
+			if(nombreFichier>5)
+			{
+				allContact.setLayout(new GridLayout(getNombreFichier(),1));
+			}
+			else
+			{
+				allContact.setLayout(new GridLayout(5,1));
+			}
+			scroll = new JScrollPane(allContact);
+			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
+			
 			System.out.println("nombreFichier "+nombreFichier);
 			
 			triPanel.add(scroll, "scroll");
@@ -953,27 +953,46 @@ public class ContactPanel extends JPanel
 		 */
 		
 		public void actualiseContact() 
-		{
+		{	
+			//On calcule le nombre de contact dans le dossier serialisation
 			allContact.removeAll();
 			allContact.revalidate();
-			File dossierActu = new File("serialisation");
-			File[] fActu = dossierActu.listFiles();
+			
+			File dossier = new File("serialisation");
+			File[] f = dossier.listFiles();
 			String path;
-			Contact currentActu;
-			for (int i = 0 ; i < fActu.length ; i++)
-			{
-			  if (fActu[i].isFile())
-			  {
-				path = fActu[i].getAbsolutePath();
-				System.out.println(path);
-				currentActu = deSerializeObject(path);
-				FlatButton bouton = new FlatButton(currentActu);
-				bouton.addActionListener(new ClickContact(currentActu));
-				bouton.setPreferredSize(new Dimension(400,120));
+			Contact current;
+			triPanel.remove(scroll);
+			allContact = new JPanel();
+			nombreFichier = 0;
+			for (int i = 0 ; i < f.length ; i++) {
+			  if (f[i].isFile()) {
+				path = f[i].getAbsolutePath();
+				current = deSerializeObject(path);
+				FlatButton bouton = new FlatButton(current);
+				bouton.addActionListener(new ClickContact(current));
 				allContact.add(bouton);
-				nombreFichier++;
+				setNombreFichier(++nombreFichier);
 			  }
 			}
+			
+			
+			if(nombreFichier>5)
+			{
+				allContact.setLayout(new GridLayout(getNombreFichier(),1));
+			}
+			else
+			{
+				allContact.setLayout(new GridLayout(5,1));
+			}
+			scroll = new JScrollPane(allContact);
+			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+
+			
+			System.out.println("nombreFichier "+nombreFichier);
+			
+			triPanel.add(scroll, "scroll");
+			
 
 		}
 		
