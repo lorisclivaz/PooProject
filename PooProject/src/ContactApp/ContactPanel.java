@@ -106,9 +106,19 @@ public class ContactPanel extends JPanel
 			this.setLayout(new BorderLayout());
 			
 			this.add(menuh1panel, BorderLayout.NORTH);
-						
-			allContact.setLayout(new GridLayout(100,1));
-//			allContact.setLayout(new FlowLayout());
+			
+			actualise();
+			
+			if(nombreFichier>5)
+			{
+				allContact.setLayout(new GridLayout(getNombreFichier(),1));
+				scroll.setVisible(true);
+			}
+			else
+			{
+				allContact.setLayout(new GridLayout(5,1));
+				scroll.setVisible(false);
+			}
 			
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
@@ -116,7 +126,7 @@ public class ContactPanel extends JPanel
 			//Ajout du panel center à galleryPanelea
 			this.add(triPanel, BorderLayout.CENTER);
 			
-			actualise();
+			
 			
 			triPanel.add(newcontact, "newcontact");
 			
@@ -126,6 +136,18 @@ public class ContactPanel extends JPanel
 		
 		private int nombreFichier = 0;
 		
+		/**
+		 * Setter qui définit le nombre de fichier contenu dans le dossier serialisation
+		 * 
+		 * @return : le nombre de fichier
+		 * @author Vivian
+		 */
+		
+		public void setNombreFichier(int nombreFichier) {
+			this.nombreFichier = nombreFichier;
+		}
+
+
 		/**
 		 * Getter qui retourne le nombre de fichier contenu dans le dossier serialisation
 		 * 
@@ -161,16 +183,16 @@ public class ContactPanel extends JPanel
 				current = deSerializeObject(path);
 				FlatButton bouton = new FlatButton(current);
 				bouton.addActionListener(new ClickContact(current));
-//				JPanel p=new JPanel();
-//				p.add(bouton);
-//				p.setMaximumSize(new Dimension(100,20));
 				allContact.add(bouton);
-				nombreFichier++;
+				setNombreFichier(++nombreFichier);
 			  }
 			}
-			
+
+			System.out.println("nombreFichier "+nombreFichier);
 			
 			triPanel.add(scroll, "scroll");
+			
+			
 			
 		}
 		
