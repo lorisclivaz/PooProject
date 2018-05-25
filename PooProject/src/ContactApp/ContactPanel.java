@@ -884,7 +884,7 @@ public class ContactPanel extends JPanel
 					String checklongeur = nomSaisi +" "+prenomSaisi;
 					
 					//Check longueur nom/prénom
-					if(checklongeur.length() > 13)
+					if(checklongeur.length() > 12)
 					{
 						System.out.println("problème de longueur de la châine");
 						textNom.setText("TROP LONG");
@@ -1288,7 +1288,7 @@ public class ContactPanel extends JPanel
 					String checklongeur = nomSaisi +" "+prenomSaisi;
 					
 					//Check longueur nom/prénom
-					if(checklongeur.length() > 13)
+					if(checklongeur.length() > 12)
 					{
 						System.out.println("problème de longueur de la châine");
 						textNom.setText("TROP LONG");
