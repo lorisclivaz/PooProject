@@ -1,12 +1,10 @@
 /*
- * Exercise W2Q3 - 2
+ *
  * Author: Clivaz Loris & Vivian Bridy
  * Date creation: 18 mai 2018
  * 
  */
-/**
- * 
- */
+
 package Horloge;
 
 import java.awt.BorderLayout;
@@ -83,7 +81,7 @@ public class HorlogePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			Calendar now = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+			Calendar now = Calendar.getInstance();
 			
             heure.setText(DATEFORMAT.format(now.getTime()));
             

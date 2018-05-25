@@ -1,5 +1,4 @@
 /*
- * Exercise W2Q3 - 2
  * Author: Clivaz Loris & Vivian Bridy
  * Date creation: 30 avr. 2018
  * 

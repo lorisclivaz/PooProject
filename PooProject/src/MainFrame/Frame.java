@@ -1,6 +1,11 @@
+/*
+ * Author : Vivian Bridy & Loris Clivaz
+ * Date creation : 14 mai 2018
+ */
+
 package MainFrame;
 /*
- * Frame
+
  * Author: Clivaz Loris
  * Date creation: 30 avr. 2018
  * 
@@ -8,7 +13,6 @@ package MainFrame;
 /**
  * 
  */
-
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -50,9 +54,12 @@ import Panels.UpPanel;
 import PasswordPanel.PasswordPanel;
 
 /**
- * @author Loris_Clivazs
+ * Classe qui va gérer tous le smartphone
+ * 
+ * @author Loris
  *
  */
+
 public class Frame extends JFrame
 {
 	//Ajout des panelss
@@ -73,15 +80,6 @@ public class Frame extends JFrame
 	PanelSmartphone smartphone = new PanelSmartphone();
 
 	private boolean lockFrame = false;
-
-
-
-
-
-
-
-
-
 
 
 	//Ajout des icons
@@ -107,12 +105,19 @@ public class Frame extends JFrame
 
 
 
+	/**
+	 * Constructeur de la classe Frame
+	 * 
+	 * -Détermine la size et le background de la frame
+	 * -Definit les icones 
+	 * -UpPanel et BackPanel
+	 * -Récupération de tous les panels créé
+	 * 
+	 * @author loris
+	 */
 
 	public Frame() 
 	{
-
-
-
 
 		// Paramètres de la frame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -137,6 +142,7 @@ public class Frame extends JFrame
 		backpanel.add(iconlock);
 		iconlock.addActionListener(new ClickLock());
 
+		//On ajout le cardLayout au smartphone pour changer de panel facilement
 		smartphone.add(triPanel);
 		triPanel.add(verroupanel, "verroupanel");
 		triPanel.add(mainpanel, "mainpanel");
@@ -154,6 +160,7 @@ public class Frame extends JFrame
 		imagefond.add(iconphoto);
 
 
+		//Ajout des icones vides pour la mise en page (un peu du bricolage)
 		for (int i = 0; i < 12; i++) 
 		{
 			imagefond.add(new IconBase("images/icones/vide.png",  60,60));
@@ -164,18 +171,18 @@ public class Frame extends JFrame
 		imagefond.add(iconcontact);
 		imagefond.add(lockMain );
 
-
-
-
 		triPanel.add(gallerypanel, "gallerypanel");
 		triPanel.add(contactpanel,"contactpanel");
 		triPanel.add(calculette, "calculette");
 		triPanel.add(horlogepanel, "horlogepanel");
+
 		//triPanel.add(camera,"camera");
+
 		triPanel.add(psw, "psw");
 		triPanel.add(settingspanel, "settingspanel");
 		triPanel.add(changepswdpanel, "changepswdpanel");
 
+		//Ajout des listeners pour les différentes icones du smartphone
 		icongallery.addActionListener(new ClickGallery());
 		iconcontact.addActionListener(new ClickContact());	
 		iconpower.addActionListener(new ClickPower());
@@ -185,13 +192,20 @@ public class Frame extends JFrame
 		iconphoto.addActionListener(new ClickPhoto());
 		iconsettings.addActionListener(new ClickSettings());
 
+		//On ajout le smartphone à la frame
 		this.add(smartphone);
-	
+
 
 
 	}
 
 
+	/**
+	 * Classe qui va gérer le click sur l'icone réglage
+	 * 
+	 * @author Loris
+	 *
+	 */
 	private class ClickSettings implements ActionListener
 	{
 
@@ -205,6 +219,12 @@ public class Frame extends JFrame
 
 	}
 
+	/**
+	 * Classe qui va gérer le click sur licone camera
+	 * 
+	 * @author Loris
+	 *
+	 */
 	private class ClickPhoto implements ActionListener
 	{
 
@@ -219,6 +239,14 @@ public class Frame extends JFrame
 		}
 
 	}
+
+	/**
+	 * Classe qui va gérer le click sur l'icone horloge
+	 * 
+	 * @author Loris
+	 *
+	 */
+
 	private class ClickHorloge implements ActionListener
 	{
 
@@ -236,8 +264,12 @@ public class Frame extends JFrame
 	}
 
 
-
-
+	/**
+	 * Classe qui va gérer le click sur l'icone du lock du main
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	private class ClickLockMain implements ActionListener
 	{
@@ -255,6 +287,12 @@ public class Frame extends JFrame
 	}
 
 
+	/**
+	 * Classe qui va gérer le click sur l'icone calculette
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	private class ClickCalculette implements ActionListener
 	{
@@ -271,8 +309,13 @@ public class Frame extends JFrame
 
 
 
-	//quand on clique sur le bouton lock
-	class ClickLock implements ActionListener
+	/**
+	 * Classe qui va gérer le click sur l'icone du lock pour revenir à chaque fois en arrière
+	 * 
+	 * @author Loris
+	 *
+	 */
+	private class ClickLock implements ActionListener
 	{
 
 
@@ -291,7 +334,14 @@ public class Frame extends JFrame
 		}
 
 	}
-	//Quand on clique sur l'icon power
+
+
+	/**
+	 * Classe qui va gérer le click sur l'icone power
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	class ClickPower implements ActionListener{
 
@@ -307,18 +357,32 @@ public class Frame extends JFrame
 
 	}
 
-
+	/**
+	 * Classe qui va gérer l'application réglage
+	 * 
+	 * @author Loris
+	 *
+	 */
 	private class SettingsPanel extends JPanel
 	{
 
 		PanelSettings panelsettings = new PanelSettings("Reglage", "Reglage");
 
-		
+
 		JButton button = new JButton("Changer le mot de passe");
 		JPanel grid = new JPanel();
 		JPanel flow = new JPanel();
-		
 
+
+		/**
+		 * Constructeur de la classe SettingsPanel
+		 * 
+		 * -Définit la taille du panel
+		 * -Ajout du bouton pour changer le mot de passe
+		 * -Ajout de deux panel pour le design 
+		 * 
+		 * @author Loris
+		 */
 
 		public SettingsPanel() 
 		{
@@ -328,33 +392,39 @@ public class Frame extends JFrame
 
 			flow.setLayout(new FlowLayout(40, 10, 10));
 			flow.add(button);
-			
+
 			button.setPreferredSize(new Dimension(459, 55));
 			button.setBackground(Color.WHITE);
 			button.setFont(new Font("2.TimesRoman ",Font.BOLD,25));
 			button.addMouseListener(new Movement());
-			
+
 			button.setBackground(Color.GRAY);
 			button.addActionListener(new ClickChange());
-			
+
 			grid.setLayout(new GridLayout(4, 1));
 			grid.add(flow);
 
 			this.add(panelsettings, BorderLayout.NORTH);
 			this.add(grid, BorderLayout.CENTER);
 		}
-		
-		
-		class Movement implements MouseListener
+
+		/**
+		 * Classe qui va gérer le mouvement de la souris sur le bouton changer
+		 * 
+		 * @author Loris
+		 *
+		 */
+
+		private	class Movement implements MouseListener
 		{
-					//On récupère la variable du bouton survolé
 			
-		
+
+
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent arg0)
 			{
@@ -376,12 +446,18 @@ public class Frame extends JFrame
 			public void mouseReleased(MouseEvent arg0)
 			{
 			}
-			
+
 		}
 	}
-	
-	 
 
+
+	/**
+	 * Classe qui va gérer le panel du changement du mot de passe
+	 * 
+	 * @author Loris
+	 *
+	 */
+	
 	private class changePswdPanel extends JPanel
 	{
 
@@ -402,6 +478,16 @@ public class Frame extends JFrame
 		JButton button = new JButton("Change");
 
 
+
+		/**
+		 * Contructeur de la class ChangePswdPanel
+		 * 
+		 * @param changePsw : récupération des valeurs de PasswordPanel
+		 * @param frame : récupération des valeurs de la frame
+		 * 
+		 * @author Loris
+		 */
+		
 		public changePswdPanel(PasswordPanel changePsw, Frame frame) 
 		{
 
@@ -410,16 +496,17 @@ public class Frame extends JFrame
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 
+			//Design du bouton
 			button.setBackground(Color.WHITE);
 			button.setFont(new Font("2.TimesRoman ",Font.BOLD,30));
 			button.addMouseListener(new MouseMouvement());
-			
+
 			grid.setLayout(new FlowLayout(50, 70, 50));
 
 			ecrire.setPreferredSize(new Dimension(360, 20));
 			ecrire2.setPreferredSize(new Dimension(360, 20));
 
-
+			//Design des labels
 			label1.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 			label2.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 			ancienIncorrect.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
@@ -427,9 +514,6 @@ public class Frame extends JFrame
 			//Ancien mot de passe
 			grid.add(label1);
 			grid.add(ecrire);
-
-
-
 
 
 			//nouveau mot de passe
@@ -443,12 +527,14 @@ public class Frame extends JFrame
 			this.add(grid, BorderLayout.CENTER);
 
 
+			//Ajout de l'action listener sur le bouton changer
+			
 			button.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-
+					//Vérification de la saisie
 					if(ecrire.getText().equals(changePsw.lecturePswd()))
 					{
 
@@ -470,7 +556,7 @@ public class Frame extends JFrame
 						System.out.println("ancien mot de passe incorrect ");
 						ecrire.setText(null);
 						ecrire2.setText(null);
-						
+
 						grid.add(ancienIncorrect);
 					}
 				}
@@ -480,17 +566,22 @@ public class Frame extends JFrame
 
 
 		}
-		
-		
-		
-		class MouseMouvement implements MouseListener
+
+
+		/**
+		 * Classe qui va gérer le design du bouton avec le mouvement de la souris
+		 * 
+		 * @author Loris
+		 *
+		 */
+		private class MouseMouvement implements MouseListener
 		{
 
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent arg0)
 			{
@@ -512,9 +603,16 @@ public class Frame extends JFrame
 			public void mouseReleased(MouseEvent arg0)
 			{
 			}
-			
+
 		}
 	}
+	
+	/**
+	 * Classe qui va gérer le bouton change au moment du clique (on change de panel)
+	 * 
+	 * @author Loris
+	 *
+	 */
 	private class ClickChange implements ActionListener
 	{
 
@@ -528,6 +626,13 @@ public class Frame extends JFrame
 		}
 
 	}
+	
+	/**
+	 * Classe VerrouPanel qui contient L'image du lock avec l'heure et la date
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	private class VerrouPanel extends JPanel
 	{
@@ -549,6 +654,16 @@ public class Frame extends JFrame
 		final private DateFormat DATEFORMATHEURE = new SimpleDateFormat("HH:mm");
 		private Timer timer = new Timer(0, new CurrentTime());
 
+		
+		/**
+		 * Constructeur de la classe VerrouPanel
+		 * 
+		 * -Définit la size du verrouPanel
+		 * -Ajout de l'heure et de la date 
+		 * 
+		 * @author Loris
+		 */
+		
 		public VerrouPanel() 
 		{
 
@@ -572,14 +687,14 @@ public class Frame extends JFrame
 
 			// Heure
 			timer.start();
-			imagefond.add(heure, BorderLayout.NORTH);
+			imagefond.add(heure, BorderLayout.CENTER);
 			heure.setHorizontalAlignment(JLabel.CENTER);
 			heure.setForeground(Color.WHITE);
 			heure.setFont(new Font("Montserrat", Font.BOLD, 70));
 
 			// Date
 			timerDate.start();
-			imagefond.add(date, BorderLayout.CENTER);
+			imagefond.add(date, BorderLayout.NORTH);
 			date.setHorizontalAlignment(JLabel.CENTER);
 			date.setForeground(Color.WHITE);
 			date.setFont(new Font("Montserrat", Font.BOLD, 30));
@@ -597,27 +712,33 @@ public class Frame extends JFrame
 
 
 
-
+		/**
+		 * Classe qui va gérer le moment du Click sur le lock
+		 * 
+		 * @author Loris
+		 *
+		 */
 
 		private class ClickLock implements ActionListener
 		{
 
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-
-
-
 				cardLayout.show(triPanel, "psw");
-
-
-
 
 			}
 
 		}
 
+		
+		/**
+		 * Classe qui va gérer La date du moment 
+		 * 
+		 * @author Loris
+		 *
+		 */
+		
 		private class CurrentDate implements ActionListener
 		{
 			@Override
@@ -628,6 +749,14 @@ public class Frame extends JFrame
 			}
 		}
 
+		
+		/**
+		 * Classe qui va gérer L'heure du moment
+		 * 
+		 * @author Loris
+		 *
+		 */
+		
 		private class CurrentTime implements ActionListener
 		{
 			@Override
@@ -641,7 +770,12 @@ public class Frame extends JFrame
 	}
 
 
-	//Quand on clique sur l'icon contacts
+	/**
+	 * Classe qui va gérer le moment du click sur l'icone contact
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	private class ClickContact implements ActionListener{
 
@@ -655,7 +789,12 @@ public class Frame extends JFrame
 
 	}
 
-	//Quand on clique sur l'icon gallery
+	/**
+	 * Classe qui va gérer le moment du clique sur la galerie
+	 * 
+	 * @author Loris
+	 *
+	 */
 
 	private class ClickGallery implements ActionListener{
 

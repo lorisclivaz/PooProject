@@ -1,8 +1,6 @@
 /*
- * PanelGallery
- * Author: Clivaz Loris
- * Date creation: 30 avr. 2018
- * 
+ * Author : Vivian Bridy & Loris Clivaz
+ * Date creation : 14 mai 2018
  */
 
 package GalerieApp;
@@ -35,15 +33,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Images.IconBase;
 import Images.ImageFond;
 
-
-
-
 /**
- * explication
+ * Classe qui va gérer toute l'application Galerie
  * 
- * @author Loris_Clivaz
+ * @author Loris
  *
  */
+
 public class GalleryPanel extends JPanel 
 {
 
@@ -64,11 +60,17 @@ public class GalleryPanel extends JPanel
 	//pour le scroll
 	JScrollPane scroll = new  JScrollPane(center);
 
+
 	/**
 	 * Constructeur de la classe GalleryPanel
 	 * 
+	 * - Définit la taille du panel ainsi que son layout
+	 * -Ajoute le panel avec le nom de l'application
+	 * -Actualise la galerie en actualisant l'application
+	 * 
 	 * @author Loris_Clivaz
 	 */
+
 	public GalleryPanel()
 	{
 
@@ -81,7 +83,7 @@ public class GalleryPanel extends JPanel
 		center.setLayout(new GridLayout(2,2,10,10));
 
 
-		
+
 		//Ajout du panel center à galleryPanel
 		this.add(triPanel2, BorderLayout.CENTER);
 
@@ -94,20 +96,28 @@ public class GalleryPanel extends JPanel
 	}
 
 
-	
 
 
-	// Création des "boutons photos", miniatures
+	/**
+	 *  Création des "boutons photos", miniatures
+	 * 
+	 * @author Loris_Clivaz
+	 *
+	 */
+
 	private class minipicture extends JButton {
 
 		private Picture pic;
 
+
+
 		/**
-		 * EXPLICTATION
+		 * Constructeur de la classe miniPicture
 		 * 
-		 * @param path : le chemin de la mini
-		 * @author Loris_Clivaz
+		 * @param path : Récupération du chemin de l'image
+		 * @author Loris
 		 */
+
 		public minipicture(String path) 
 		{
 
@@ -131,15 +141,17 @@ public class GalleryPanel extends JPanel
 			int nW = img.getWidth() / (img.getHeight() / 100);
 			this.setPreferredSize(new Dimension(nW, 100));
 
+			//Affichage du panel de l'image au moment du clique
 			this.addActionListener(new ClickPhoto());
-			
+
 			//Ajout de la minipicture dans le panel center
-			
 			center.add(this);
-			
+
+
 			listImg.add(pic);
 
 		}
+
 
 		@Override
 		public void paintComponent(Graphics g) 
@@ -151,7 +163,14 @@ public class GalleryPanel extends JPanel
 
 	}
 
-	//Action sur la clique de l'image dans la gallery
+
+
+	/**
+	 * Classe qui va gérer le clique sur le bouton image de la galerie
+	 * 
+	 * @author Loris_Clivaz
+	 *
+	 */
 	class ClickPhoto implements ActionListener
 	{
 
@@ -159,9 +178,11 @@ public class GalleryPanel extends JPanel
 		public void actionPerformed(ActionEvent e)
 		{
 
+
 			panelgallery.setVisible(false);
 			cardLayout.show(getTriPanel2(), "photo");
 
+			//On va chercher la source du clique de l'image
 			minipicture minsource = (minipicture) e.getSource();
 			System.out.println(e.getSource());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
@@ -180,42 +201,55 @@ public class GalleryPanel extends JPanel
 	}
 
 
+	/**
+	 * Classe qui va gérer le panel au moment du clique sur le bouton image
+	 * 
+	 * @author Loris_Clivaz
+	 *
+	 */
+
 	public  class PhotoPanel extends JPanel {
 
 		private ImageFond imageFond ;
-
 		private GalleryPanel photo;
 		private  Picture image;
 		private MouseAdapter ma;
 		private String changeImage;
 
-		
-
 
 		JPanel up = new JPanel();
-
 		IconBase previous = new IconBase("images/icones/left-arrow.png",40,40);
-	
 		IconBase delete = new IconBase("images/icones/delete.png",40,40);
 
-		
+
+		/**
+		 * Constructeur de la classe PhotoPanel
+		 * 
+		 * @param photo : Récupération de la photo de la galerie
+		 * @param image : Récupération de la miniPicture
+		 * @author Loris
+		 */
+
 		public PhotoPanel(GalleryPanel photo, Picture image) {
 
 			this.photo = photo;
 			this.image = image;
 
 			BorderLayout fl = new BorderLayout();
+
 			this.setLayout(fl);
 			this.setBackground(Color.BLACK);
 
+			//Ajout du panel up en haut
 			up.setLayout(new BorderLayout());
 			up.setBackground(Color.BLACK);
 			this.add(up, BorderLayout.NORTH);
 
+			//Ajout des deux images pour revenir sur la galerie ou supprimer l'image
 			up.add(previous, BorderLayout.WEST);
 			up.add(delete, BorderLayout.EAST);
 
-			
+			//On ajout les actions sur les images au moment du clique
 			previous.addActionListener(new ClickPrevious());
 			delete.addActionListener(new ClickDelete());
 
@@ -226,7 +260,7 @@ public class GalleryPanel extends JPanel
 				@Override
 				public void mousePressed(MouseEvent e) {
 					origin = new Point(e.getPoint());
-					
+
 				}
 
 				@Override
@@ -248,14 +282,20 @@ public class GalleryPanel extends JPanel
 					}
 				}
 
-				
+
 			};
 
-			
+
 			this.addMouseListener(ma);
 			this.addMouseMotionListener(ma);
 
 		}
+
+		/**
+		 * Méthode qui permet le swipe d'image par rapport au tableau d'objet
+		 * 
+		 * @param i : La position dans le tableau
+		 */
 		private void changeImg(int i) {
 
 			int idImg = photo.getVoisin(image)+i;
@@ -269,15 +309,24 @@ public class GalleryPanel extends JPanel
 			image = list.get(idImg);
 			PhotoPanel.this.revalidate();
 			PhotoPanel.this.repaint();
-			
+
 		}
-		
-		
-	
+
+
+
 
 		public String getChangeImage() {
-		return changeImage;
-	}
+			return changeImage;
+		}
+
+
+		/**
+		 * 
+		 * Classe qui va permettre de delete une image 
+		 * 
+		 * @author loris
+		 *
+		 */
 
 		class ClickDelete implements ActionListener
 		{
@@ -293,7 +342,14 @@ public class GalleryPanel extends JPanel
 			}
 		}
 
-		//On remove la minipicture dans la gallery
+
+		/**
+		 * Méthode qui va réactualiser la galerie en ayant supprmié l'image
+		 * 
+		 * @param mail : le mail à vérifier
+		 * @return : on retourne si oui ou non le mail est verifié
+		 */	
+
 		private void removeChild(JPanel PaneltoRemove) {
 
 			panelgallery.setVisible(true);
@@ -305,6 +361,15 @@ public class GalleryPanel extends JPanel
 			this.repaint();
 
 		}
+
+
+		/**
+		 * 
+		 * Classe qui va permettre de revenir sur le panel de la galerie
+		 * 
+		 * @author loris
+		 *
+		 */
 
 		class ClickPrevious implements ActionListener
 		{
@@ -324,11 +389,11 @@ public class GalleryPanel extends JPanel
 		public void paintComponent(Graphics g) 
 		{
 			super.paintComponent(g);
-			
+
 			BufferedImage pic = image.getPicture();
-			
+
 			int nH = (int) (pic.getHeight() / ((double) pic.getWidth() / getWidth()));
-			
+
 			if (nH > getHeight()) 
 			{
 				int nW = (int) (pic.getWidth() / ((double) pic.getHeight() / getHeight()));
@@ -343,20 +408,23 @@ public class GalleryPanel extends JPanel
 			}
 
 		}
-		
-		
+
+
 	}
 
 
+	/**
+	 * Méthode qui va actualiser à chaque fois les images enregistrés
+	 * 
+	 */	
 
-
-	//Méthode qui va actualiser à chaque fois les images enregistrés
-	private void actualisePhoto() {
+	private void actualisePhoto() 
+	{
 
 		//Après problème de suppression, remove all actualise à chaque fois la gallery
 		center.removeAll();
 		listImg.clear();
-		
+
 		//On va chercher dans le fichier
 		File folder = new File("imagesgallery");
 		if (!folder.exists()) 
@@ -367,14 +435,22 @@ public class GalleryPanel extends JPanel
 		File[] photos = folder.listFiles();
 		for (File photo : photos) 
 		{
-			
+
 			new minipicture(photo.getAbsolutePath());
 		}
 
-		//photos.length;
+		
 	}
+	
+	
+	/**
+	 * 
+	 * Classe PanelGallery qui va gérer le panel du haut de la galerie
+	 * 
+	 * @author loris
+	 *
+	 */
 
-	//Panel du haut dans la gallery avec le bouton d'ajout
 	private class PanelGallery extends JPanel{
 
 
@@ -385,7 +461,15 @@ public class GalleryPanel extends JPanel
 
 		private String nomPhoto;
 
-		//Constructeur
+		/**
+		 * Constructeur de la classe PanelGallery
+		 * 
+		 * @param titre : titre en gtas
+		 * @param nomClass : nom de la classe
+		 * 
+		 * @author Loris
+		 */
+		
 		public PanelGallery(String titre, String nomClass)
 		{
 
@@ -395,7 +479,7 @@ public class GalleryPanel extends JPanel
 			this.setPreferredSize(new Dimension(480, 78));
 			this.setBackground(Color.decode("#DFDFDF"));
 			this.setLayout(new FlowLayout(FlowLayout.CENTER,10,8)); 
-			
+
 			if(nomClass.equals("ContactPanel")) 
 			{
 
@@ -412,21 +496,23 @@ public class GalleryPanel extends JPanel
 
 
 			//On met un listener sur le bouton
-			create.addActionListener(new ClickCreate(nomClass));
+			create.addActionListener(new ClickCreate());
 
 		}
 
 
-		//quand on clique sur le bouton create
+		/**
+		 * 
+		 * Classe ClickCreate qui va gérer l'ajout de l'image
+		 * 
+		 * @author loris
+		 *
+		 */
+		
 		class ClickCreate implements ActionListener
 		{
 
-			String nomClass;
 
-			public ClickCreate(String nomClass) 
-			{
-				this.nomClass = nomClass;
-			}
 
 			@Override
 			public void actionPerformed(ActionEvent e) 
@@ -450,6 +536,7 @@ public class GalleryPanel extends JPanel
 			}
 		}
 	}
+
 	
 	public JPanel getTriPanel2() {
 		return triPanel2;
@@ -460,10 +547,10 @@ public class GalleryPanel extends JPanel
 	public ArrayList<Picture> getListImg() {
 		return listImg;
 	}
-	
+
 	public int getVoisin(Picture actu){
 		return listImg.indexOf(actu);
 	}
-	
-	
+
+
 }

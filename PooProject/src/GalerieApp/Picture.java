@@ -1,9 +1,8 @@
 /*
- * Picture
- * Author: Clivaz Loris
- * Date creation: 30 avr. 2018
- * 
- */
+* Author : Vivian Bridy & Loris Clivaz
+* Date creation : 14 mai 2018
+*/
+
 package GalerieApp;
 
 import java.awt.image.BufferedImage;
@@ -16,23 +15,44 @@ import java.nio.file.StandardCopyOption;
 
 
 /**
+ * Classe qui va gérer la picture de la galerie
+ * 
  * @author Loris
- * @version 1.0
+ *
  */
+
+
 public class Picture {
 
 	private String path ;
 	private BufferedImage picture ;
 
-	//Constructeur qui va récupérer le path
+	/**
+	 * Contructeur  qui va récupérer le path
+	 * 
+	 * @param path : récupération du path
+	 * @param picture: l'image dans la galerie
+	 * 
+	 * @author Loris
+	 */
+	
+	
+	
 	public Picture (String path, BufferedImage picture)
 	{
 		this.path = path ;
 		this.picture = picture ;
 
 	}
+	
 
-	//Bouton supprimer, obliger de flush image, sinon elle disparait seulement à la fermeture du programme
+	/**
+	 * 
+	 * Méthode qui supprime, obliger de flush l'image sinon elle disparait seulement à la fermeture du programme
+	 * 
+	 * @author Loris
+	 */
+	
 	public void delete()
 	{
 		picture.flush();
@@ -41,7 +61,12 @@ public class Picture {
 
 	}
 
-	//On va copier 
+	/**
+	 * 
+	 * Méthode qui copie l'image dans le folder imagesgallery
+	 * 
+	 * @author Loris
+	 */
 	public static void copy(File file)
 	{
 		Path path2 = Paths.get("imagesgallery/"+file.getName());
@@ -53,7 +78,7 @@ public class Picture {
 	}
 
 
-	//Getters et setters
+	
 	public String getPath() {
 		return path;
 	}
