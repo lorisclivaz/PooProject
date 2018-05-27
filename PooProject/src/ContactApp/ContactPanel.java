@@ -1309,9 +1309,18 @@ public class ContactPanel extends JPanel
 															imageContact.getUrl());
 					//On supprime l'ancien contact
 					System.out.println("suppression contact "+contact.getId());
+					
+					
 					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
-					filedeleted.delete();
+					
+					
+					delete(filedeleted);
+					
+					
 					this.serializeObject(contactEnCreation);
+					
+					
+
 					
 					//On actualise la liste des contact et on affiche cette dernière
 					actualiseContact();
@@ -1319,6 +1328,19 @@ public class ContactPanel extends JPanel
 					menuh1panel.setVisible(true);
 					System.out.println("Modification effectuée");
 					
+				}
+				
+				
+				/**
+				 * Méthode permettant de delete un fichier
+				 * 
+				 * @param url : chemin du fichier
+				 * obliger d'ordonner en methode sinon la suppression bug
+				 * @author Loris
+				 */
+				public void delete(File url)
+				{
+					url.delete();
 				}
 				
 				/**
