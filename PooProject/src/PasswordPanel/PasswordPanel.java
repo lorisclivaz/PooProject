@@ -252,9 +252,7 @@ public class PasswordPanel extends JPanel
 	{
 		
 		String reponse = ecrire.getText();
-		
-		System.out.println(reponse);
-		
+				
 		return reponse;
 	}
 	
