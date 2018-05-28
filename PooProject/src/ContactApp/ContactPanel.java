@@ -186,9 +186,6 @@ public class ContactPanel extends JPanel
 			}
 			scroll = new JScrollPane(allContact);
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-
-			
-			System.out.println("nombreFichier "+nombreFichier);
 			
 			triPanel.add(scroll, "scroll");
 			
@@ -421,7 +418,6 @@ public class ContactPanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				System.out.println("contact "+contact.getNom()+" "+contact.getPrenom()+" cliqué");
 				//j'ai accès au contact cliqué je dois donc afficher le panel modifcontact avec pour paramètre ce contact
 				ModifContact modifcontact = new ModifContact(contact);
 				triPanel.add(modifcontact,"modifcontact");
@@ -738,7 +734,6 @@ public class ContactPanel extends JPanel
 					
 					if(e.getKeyCode() == 10)
 					{
-						System.out.println("touche ENTER");
 						enregistrement.doClick();
 					}
 					    
@@ -792,13 +787,11 @@ public class ContactPanel extends JPanel
 						if (li.hasNext())
 						{
 								imageContact.setUrl((String)li.next()); 	//On caste en String
-								System.out.println("image cliqué");
 						}else 
 						{
 							for(int i=0;i<listImage.size();i++)
 							{
 								imageContact.setUrl((String)li.previous());	//on revient au début
-								System.out.println("on revient au début");
 							}
 						}
 
@@ -830,7 +823,6 @@ public class ContactPanel extends JPanel
 					//Check du nom
 					if(nomSaisi.equals("") || nomSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textNom.setText("ERREUR");
 						
 						return;
@@ -839,7 +831,6 @@ public class ContactPanel extends JPanel
 					//Check du prenom
 					if(prenomSaisi.equals("") || prenomSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textPrenom.setText("ERREUR");
 						
 						return;
@@ -848,7 +839,6 @@ public class ContactPanel extends JPanel
 					//Check de l'adresse
 					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR") || adresseSaisi.length()>18)
 					{
-						System.out.println("un champ est vide ou trop long");
 						textAdresse.setText("ERREUR");
 						
 						return;
@@ -857,7 +847,6 @@ public class ContactPanel extends JPanel
 					//Check de la localité
 					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR") || localiteSaisi.length()>18)
 					{
-						System.out.println("un champ est vide ou trop long");
 						textLocalite.setText("ERREUR");
 						
 						return;
@@ -866,7 +855,6 @@ public class ContactPanel extends JPanel
 					//Check du mail
 					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR") || mailSaisi.length()>18)
 					{
-						System.out.println("problème dans la saisie du mail ou trop long");
 						textMail.setText("ERREUR");
 						
 						return;
@@ -875,7 +863,6 @@ public class ContactPanel extends JPanel
 					//Check du phone
 					if(!checkPhone(phoneSaisi) || phoneSaisi.equals("ERREUR"))
 					{
-						System.out.println("problème dans la saisie du téléphone");
 						textPhone.setText("ERREUR");
 						
 						return;
@@ -886,7 +873,6 @@ public class ContactPanel extends JPanel
 					//Check longueur nom/prénom
 					if(checklongeur.length() > 12)
 					{
-						System.out.println("problème de longueur de la châine");
 						textNom.setText("TROP LONG");
 						textPrenom.setText("TROP LONG");
 						
@@ -900,7 +886,6 @@ public class ContactPanel extends JPanel
 															mailSaisi,
 															phoneSaisi,
 															imageContact.getUrl());
-					System.out.println(imageContact.getUrl());
 					//On remet tout à zérp
 					textNom.setText("");
 					textPrenom.setText("");
@@ -914,9 +899,7 @@ public class ContactPanel extends JPanel
 					//On actualise la liste des contact et on affiche cette dernière
 					actualiseContact();
 					cardLayout.show(triPanel,"scroll");
-					menuh1panel.setVisible(true);
-					System.out.println("Sérialisation effectuée");
-					
+					menuh1panel.setVisible(true);					
 				}
 				
 				/**
@@ -987,9 +970,6 @@ public class ContactPanel extends JPanel
 			}
 			scroll = new JScrollPane(allContact);
 			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-
-			
-			System.out.println("nombreFichier "+nombreFichier);
 			
 			triPanel.add(scroll, "scroll");
 			
@@ -1128,7 +1108,6 @@ public class ContactPanel extends JPanel
 					
 					if(e.getKeyCode() == 10)
 					{
-						System.out.println("touche ENTER");
 						enregistrement.doClick();
 					}
 					    
@@ -1181,11 +1160,9 @@ public class ContactPanel extends JPanel
 				{
 						if (li.hasNext()) {
 								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
-								System.out.println("image cliqué");
 						}else {
 							for(int i=0;i<listImage.size();i++) {
 								imageContact.setUrl((String)li.previous());	//on revient au début
-								System.out.println("on revient au début");
 							}
 						}
 
@@ -1234,7 +1211,6 @@ public class ContactPanel extends JPanel
 					//Check du nom
 					if(nomSaisi.equals("") || nomSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textNom.setText("ERREUR");
 						
 						return;
@@ -1243,7 +1219,6 @@ public class ContactPanel extends JPanel
 					//Check du prenom
 					if(prenomSaisi.equals("") || prenomSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textPrenom.setText("ERREUR");
 						
 						return;
@@ -1252,7 +1227,6 @@ public class ContactPanel extends JPanel
 					//Check de l'adresse
 					if(adresseSaisi.equals("") || adresseSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textAdresse.setText("ERREUR");
 						
 						return;
@@ -1261,7 +1235,6 @@ public class ContactPanel extends JPanel
 					//Check de la localité
 					if(localiteSaisi.equals("") || localiteSaisi.equals("ERREUR"))
 					{
-						System.out.println("un champ est vide");
 						textLocalite.setText("ERREUR");
 						
 						return;
@@ -1270,7 +1243,6 @@ public class ContactPanel extends JPanel
 					//Check du mail
 					if(!checkMail(mailSaisi) || mailSaisi.equals("ERREUR"))
 					{
-						System.out.println("problème dans la saisie du mail");
 						textMail.setText("ERREUR");
 						
 						return;
@@ -1279,7 +1251,6 @@ public class ContactPanel extends JPanel
 					//Check du phone
 					if(!checkPhone(phoneSaisi) || phoneSaisi.equals("ERREUR"))
 					{
-						System.out.println("problème dans la saisie du téléphone");
 						textPhone.setText("ERREUR");
 						
 						return;
@@ -1290,7 +1261,6 @@ public class ContactPanel extends JPanel
 					//Check longueur nom/prénom
 					if(checklongeur.length() > 12)
 					{
-						System.out.println("problème de longueur de la châine");
 						textNom.setText("TROP LONG");
 						textPrenom.setText("TROP LONG");
 						
@@ -1307,9 +1277,7 @@ public class ContactPanel extends JPanel
 															mailSaisi,
 															phoneSaisi,
 															imageContact.getUrl());
-					//On supprime l'ancien contact
-					System.out.println("suppression contact "+contact.getId());
-					
+					//On supprime l'ancien contact					
 					
 					File filedeleted = new File("serialisation\\contact-"+contact.getId()+".ser");
 					
@@ -1326,7 +1294,6 @@ public class ContactPanel extends JPanel
 					actualiseContact();
 					getCardLayout().show(getTriPanel(), "scroll");
 					menuh1panel.setVisible(true);
-					System.out.println("Modification effectuée");
 					
 				}
 				
@@ -1515,7 +1482,6 @@ public class ContactPanel extends JPanel
 				{
 					cardLayout.show(triPanel, "newcontact");
 					menuh1panel.setVisible(false);
-					System.out.println("create cliqué");
 				}
 			}
 			
@@ -1554,7 +1520,6 @@ public class ContactPanel extends JPanel
 					actualiseContact();
 					cardLayout.show(triPanel, "scroll");
 					menuh1panel.setVisible(true);
-					System.out.println("delete cliqué");
 				}
 			}
 		}			
