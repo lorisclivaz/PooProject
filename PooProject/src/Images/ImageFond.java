@@ -132,7 +132,6 @@ public class ImageFond extends JPanel
 		
 		resultat = resultat.substring(1,resultat.length());
 		
-		System.out.println(resultat);
 		
 		return resultat;
 		

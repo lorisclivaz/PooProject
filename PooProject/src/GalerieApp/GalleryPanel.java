@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Images.IconBase;
 import Images.ImageFond;
+import MainFrame.Frame;
 import MainFrame.Frame.SettingsPanel;
 
 /**
@@ -63,6 +64,7 @@ public class GalleryPanel extends JPanel
 
 	ImageFond fond;
 	SettingsPanel bool;
+	Frame frame;
 
 	/**
 	 * Constructeur de la classe GalleryPanel
@@ -74,11 +76,13 @@ public class GalleryPanel extends JPanel
 	 * @author Loris_Clivaz
 	 */
 
-	public GalleryPanel(ImageFond fond, SettingsPanel bool)
+	public GalleryPanel(ImageFond fond, SettingsPanel bool, Frame frame)
 	{
 
 		this.fond = fond;
 		this.bool = bool;
+		this.frame = frame;
+		
 		
 	
 		
@@ -203,10 +207,10 @@ public class GalleryPanel extends JPanel
 		{
 			if(bool.isReglage() == true)
 			{
-				System.out.println("fond ecran"+ path );
 				bool.setReglage(false);
 				fond.setUrl(path);
 				
+				frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
 				
 			}
 

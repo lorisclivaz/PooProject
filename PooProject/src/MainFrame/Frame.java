@@ -72,7 +72,7 @@ public class Frame extends JFrame
 	ContactPanel contactpanel = new ContactPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
 	SettingsPanel settingspanel = new SettingsPanel(imagefond, this);
-	GalleryPanel gallerypanel = new GalleryPanel(imagefond, settingspanel);
+	GalleryPanel gallerypanel = new GalleryPanel(imagefond, settingspanel, this);
 
 
 	Calculette calculette = new Calculette();
