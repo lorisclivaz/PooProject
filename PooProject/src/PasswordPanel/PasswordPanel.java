@@ -31,7 +31,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Reader;
+import java.security.Key;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -157,6 +160,7 @@ public class PasswordPanel extends JPanel
 			e.printStackTrace();
 		}
 		
+		resultat = decrypt(resultat);
 		
 		return resultat;
 		
@@ -173,6 +177,7 @@ public class PasswordPanel extends JPanel
 		
 		File fichier = new File(dossier,"loris.txt");
 	
+		reponse = encrypt(reponse);
 		
 		try {
 			fichier.createNewFile();
@@ -256,12 +261,34 @@ public class PasswordPanel extends JPanel
 		return reponse;
 	}
 	
-	public void setResultat(String resultat) {
+	public void setResultat(String resultat) 
+	{
 		this.resultat = resultat;
 	}
 	
-	public JTextField getEcrire() {
+	public JTextField getEcrire()
+	{
 		return ecrire;
 	}
+	
+	 public String encrypt(String password)
+	 {
+	        String crypte= "";
+	        for (int i=0; i<password.length();i++)  {
+	            int c=password.charAt(i)^48;  
+	            crypte=crypte+(char)c; 
+	        }
+	        return crypte;
+    }
+	
+	 public String decrypt(String password)
+	 {
+	        String aCrypter= "";
+	        for (int i=0; i<password.length();i++)  {
+	            int c=password.charAt(i)^48;  
+	            aCrypter=aCrypter+(char)c; 
+	        }
+	        return aCrypter;
+    }
 
 }
