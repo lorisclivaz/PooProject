@@ -184,7 +184,6 @@ public class GalleryPanel extends JPanel
 
 			//On va chercher la source du clique de l'image
 			MiniPhoto minsource = (MiniPhoto) e.getSource();
-			System.out.println(e.getSource());
 			PhotoPanel photoPanel = new PhotoPanel(GalleryPanel.this, minsource.pic);
 
 			//Création d'un panel pour la photo en grand
