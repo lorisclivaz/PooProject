@@ -1,12 +1,8 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
+* Author: Clivaz Loris & Vivian Bridy
 * Date creation: 21 mai 2018
 * 
 */
-/**
- * 
- */
 package PasswordPanel;
 
 import java.awt.BorderLayout;
@@ -45,7 +41,9 @@ import MainFrame.Frame;
 
 
 /**
- * @author Loris_Clivaz
+ * Classe responsable du PassWord
+ * 
+ * @author Vivian
  *
  */
 public class PasswordPanel extends JPanel
@@ -63,6 +61,13 @@ public class PasswordPanel extends JPanel
 
 	
 	Frame frame;
+	
+	/**
+	 * Le constructeur de la classe PasswordPanel
+	 * 
+	 * @param frame : la frame qui est protégée par mot de passe
+	 * @author Vivian
+	 */
 	
 	public PasswordPanel(Frame frame) 
 	{
@@ -104,6 +109,13 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	/**
+	 * KeyListener qui est activé lorsqu'on appuie sur la touche ENTER
+	 * 
+	 * @author Vivian
+	 *
+	 */
+	
 	public class PressedEnter implements KeyListener
 	{
 
@@ -142,6 +154,12 @@ public class PasswordPanel extends JPanel
 		
 	}
 
+	/**
+	 * Méthode qui va lire le contenu du fichier loris.txt
+	 * 
+	 * @return : le mot de passe
+	 * @author Vivian
+	 */
 	public String lecturePswd()
 	{
 		File dossier = new File("password");
@@ -166,6 +184,12 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	/**
+	 * Méthode qui va encrypté le mot de passe
+	 * 
+	 * @param reponse : mdp entré par l'utilisateur
+	 * @author Vivian
+	 */
 	
 	public void fichier(String reponse)
 	{
@@ -197,6 +221,13 @@ public class PasswordPanel extends JPanel
 		
 	}
 	
+	/**
+	 * MouseListener sur le bouton enregistrer le mot de passe
+	 * 
+	 * @author Vivian
+	 *
+	 */
+	
 	class Button implements MouseListener
 	{
 		@Override
@@ -226,6 +257,13 @@ public class PasswordPanel extends JPanel
 		{
 		}
 	}
+	
+	/**
+	 * ActionListener qui va s'activer lors du click sur le bouton d'entrée
+	 * 
+	 * @author Vivian
+	 *
+	 */
 	
 	class ClickEnter implements ActionListener
 	{
@@ -271,7 +309,15 @@ public class PasswordPanel extends JPanel
 		return ecrire;
 	}
 	
-	 public String encrypt(String password)
+	/**
+	 * Méthode d'encryptage du mot de passe
+	 * 
+	 * @param password : le mot de passe qui va être crypté
+	 * @return : le mot de passe crypté
+	 * @author Vivian
+	 */
+	
+	public String encrypt(String password)
 	 {
 	        String crypte= "";
 	        for (int i=0; i<password.length();i++)  {
@@ -281,7 +327,14 @@ public class PasswordPanel extends JPanel
 	        return crypte;
     }
 	
-	 public String decrypt(String password)
+	/**
+	 * Méthode de décryptage du mot de passe
+	 * 
+	 * @param password : le mot de passe qui va être décrypté
+	 * @return : le mot de passe decrypté
+	 * @author Vivian
+	 */
+	public String decrypt(String password)
 	 {
 	        String aCrypter= "";
 	        for (int i=0; i<password.length();i++)  {
