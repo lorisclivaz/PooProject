@@ -156,10 +156,11 @@ public class Frame extends JFrame
 
 		mainpanel.setLayout(new BorderLayout());
 		mainpanel.setPreferredSize(new Dimension(480, 40));
+
 		mainpanel.add(imagefond, BorderLayout.CENTER);
 
 		imagefond.setLayout(new FlowLayout(30,50,70));
-
+		
 		imagefond.add(icongallery);
 		imagefond.add(iconsettings);
 		imagefond.add(iconcalculette);
@@ -755,6 +756,10 @@ public class Frame extends JFrame
 
 		ImageFond imagefond = new ImageFond();
 		ImageFond imagefond2 = new ImageFond();
+		
+		
+		
+		
 		IconBase lock = new IconBase("images/icones/fingerprint.png", 70,70);
 
 		JPanel boutonlock = new JPanel();
@@ -783,6 +788,8 @@ public class Frame extends JFrame
 		public VerrouPanel() 
 		{
 
+			imagefond.setUrl("images/background/imagefond.jpg", true); 		//on force le background du verrou
+			imagefond2.setUrl("images/background/imagefond.jpg", true);
 
 			this.setPreferredSize(new Dimension(480, 40));
 
