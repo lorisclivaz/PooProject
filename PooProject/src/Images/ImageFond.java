@@ -26,7 +26,7 @@ import javax.swing.JPanel;
  */
 public class ImageFond extends JPanel
 {
-	String changeImage=lecture();
+	String changeImage="imagesgallery/"+lecture();
 
 	/**
 	 * Constructeur avec aucun paramètre de la classe ImageFond
@@ -85,7 +85,7 @@ public class ImageFond extends JPanel
 	
 	private void ecriture(String changeImage)
 	{
-		
+		String[] decoupe = changeImage.split("imagesgallery");
 		
 		File dossier = new File("background");
 		dossier.mkdir();
@@ -99,7 +99,7 @@ public class ImageFond extends JPanel
 			
 			FileWriter ecriture = new FileWriter(fichier);
 			BufferedWriter bfwrite = new BufferedWriter(ecriture);
-			bfwrite.write(changeImage); 
+			bfwrite.write(decoupe[1]); 
 			bfwrite.close();
 		
 			
@@ -130,6 +130,9 @@ public class ImageFond extends JPanel
 			e.printStackTrace();
 		}
 		
+		resultat = resultat.substring(1,resultat.length());
+		
+		System.out.println(resultat);
 		
 		return resultat;
 		
