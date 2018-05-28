@@ -347,7 +347,7 @@ public class Frame extends JFrame
 	public class SettingsPanel extends JPanel
 	{
 
-		PanelSettings panelsettings = new PanelSettings("Reglage", "Reglage");
+		PanelSettings panelsettings = new PanelSettings("Réglage", "Réglage");
 
 
 		JButton button = new JButton("Changer le mot de passe");
@@ -418,6 +418,12 @@ public class Frame extends JFrame
 			this.add(grid, BorderLayout.CENTER);
 		}
 
+		/**
+		 * Classe qui va nous emmener vers le panel galerie
+		 * 
+		 * @author Loris
+		 *
+		 */
 		
 		private class ClickFond implements ActionListener
 		{

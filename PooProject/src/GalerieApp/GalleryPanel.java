@@ -163,9 +163,7 @@ public class GalleryPanel extends JPanel
 		}
 
 
-		public String getPath() {
-			return path;
-		}
+		
 
 
 		@Override
@@ -181,7 +179,7 @@ public class GalleryPanel extends JPanel
 
 
 	/**
-	 * Classe qui va gérer le clique sur le bouton image de la galerie
+	 * Classe qui va gérer le clique sur le bouton image de la galerie ainsi que le chagement du fond d'ecran selon le boolean
 	 * 
 	 * @author Loris_Clivaz
 	 *
