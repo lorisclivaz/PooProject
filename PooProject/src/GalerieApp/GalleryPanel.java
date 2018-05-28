@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import Images.IconBase;
 import Images.ImageFond;
+import MainFrame.Frame.SettingsPanel;
 
 /**
  * Classe qui va gérer toute l'application Galerie
@@ -60,6 +61,8 @@ public class GalleryPanel extends JPanel
 	//pour le scroll
 	JScrollPane scroll = new  JScrollPane(center);
 
+	ImageFond fond;
+	SettingsPanel bool;
 
 	/**
 	 * Constructeur de la classe GalleryPanel
@@ -71,9 +74,14 @@ public class GalleryPanel extends JPanel
 	 * @author Loris_Clivaz
 	 */
 
-	public GalleryPanel()
+	public GalleryPanel(ImageFond fond, SettingsPanel bool)
 	{
 
+		this.fond = fond;
+		this.bool = bool;
+		
+	
+		
 		//Choix du layout et de la dimension du panel
 		this.setPreferredSize(new Dimension(480, 40));
 		this.setLayout(new BorderLayout());
@@ -109,6 +117,7 @@ public class GalleryPanel extends JPanel
 
 		private Picture pic;
 
+		private String path;
 
 
 		/**
@@ -122,6 +131,7 @@ public class GalleryPanel extends JPanel
 		{
 
 			super();
+			this.path = path;
 			this.setIcon(new ImageIcon(path));
 			this.setOpaque(false);
 			this.setBorderPainted(false);
@@ -142,7 +152,7 @@ public class GalleryPanel extends JPanel
 			this.setPreferredSize(new Dimension(nW, 100));
 
 			//Affichage du panel de l'image au moment du clique
-			this.addActionListener(new ClickPhoto());
+			this.addActionListener(new ClickPhoto(path));
 
 			//Ajout de la minipicture dans le panel center
 			center.add(this);
@@ -150,6 +160,11 @@ public class GalleryPanel extends JPanel
 
 			listImg.add(pic);
 
+		}
+
+
+		public String getPath() {
+			return path;
 		}
 
 
@@ -174,11 +189,31 @@ public class GalleryPanel extends JPanel
 	class ClickPhoto implements ActionListener
 	{
 
+		/**
+		 * @param path
+		 */
+		
+		String path;
+		public ClickPhoto(String path) 
+		{
+
+			this.path = path;
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
+			if(bool.isReglage() == true)
+			{
+				System.out.println("fond ecran"+ path );
+				bool.setReglage(false);
+				fond.setUrl(path);
+				
+				
+			}
 
-
+			else
+			{
 			panelgallery.setVisible(false);
 			cardLayout.show(getTriPanel2(), "photo");
 
@@ -194,6 +229,7 @@ public class GalleryPanel extends JPanel
 			photo.add(photoPanel, BorderLayout.CENTER);
 
 
+			}
 		}
 
 

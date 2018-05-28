@@ -64,18 +64,24 @@ import PasswordPanel.PasswordPanel;
 
 public class Frame extends JFrame
 {
+	
+	ImageFond imagefond = new ImageFond();
+
+	
 	//Ajout des panelss
 	ContactPanel contactpanel = new ContactPanel();
-	GalleryPanel gallerypanel = new GalleryPanel();
 	VerrouPanel verroupanel = new VerrouPanel();
-	SettingsPanel settingspanel = new SettingsPanel();
+	SettingsPanel settingspanel = new SettingsPanel(imagefond, this);
+	GalleryPanel gallerypanel = new GalleryPanel(imagefond, settingspanel);
+
 
 	Calculette calculette = new Calculette();
 	HorlogePanel horlogepanel = new HorlogePanel();
 	JPanel backpanel = new JPanel();
 	JPanel mainpanel = new JPanel();
 	UpPanel uppanel = new UpPanel();
-	ImageFond imagefond = new ImageFond();
+	
+
 	//CameraPanel camera = new CameraPanel();
 	PasswordPanel psw = new PasswordPanel(this);
 	changePswdPanel changepswdpanel = new changePswdPanel(psw, this);
@@ -191,7 +197,6 @@ public class Frame extends JFrame
 
 		//On ajout le smartphone à la frame
 		this.add(smartphone);
-
 
 
 	}
@@ -339,16 +344,27 @@ public class Frame extends JFrame
 	 * @author Loris
 	 *
 	 */
-	private class SettingsPanel extends JPanel
+	public class SettingsPanel extends JPanel
 	{
 
 		PanelSettings panelsettings = new PanelSettings("Reglage", "Reglage");
 
 
 		JButton button = new JButton("Changer le mot de passe");
+		JButton button2 = new JButton("Changer le fond d'écran");
+		
 		JPanel grid = new JPanel();
 		JPanel flow = new JPanel();
+		JPanel flow2 = new JPanel();
 
+		ImageFond changeWallpaper;
+		
+		Frame frame;
+		
+		
+		boolean isReglage = false;
+		
+		
 
 		/**
 		 * Constructeur de la classe SettingsPanel
@@ -360,30 +376,106 @@ public class Frame extends JFrame
 		 * @author Loris
 		 */
 
-		public SettingsPanel() 
+		public SettingsPanel(ImageFond changeWallpaper, Frame frame) 
 		{
 
+			this.frame = frame;
+			this.changeWallpaper = changeWallpaper;
 			this.setPreferredSize(new Dimension(480, 40));
 			this.setLayout(new BorderLayout());
 
 			flow.setLayout(new FlowLayout(40, 10, 10));
 			flow.add(button);
+			
+			flow2.setLayout(new FlowLayout(40, 10, 10));
+			flow2.add(button2);
+			
+			
+			
 
 			button.setPreferredSize(new Dimension(459, 55));
 			button.setBackground(Color.WHITE);
 			button.setFont(new Font("2.TimesRoman ",Font.BOLD,25));
 			button.addMouseListener(new Movement());
+			
+			button2.setPreferredSize(new Dimension(459, 55));
+			button2.setBackground(Color.WHITE);
+			button2.setFont(new Font("2.TimesRoman ",Font.BOLD,25));
+			button2.addMouseListener(new Movement2());
 
-			button.setBackground(Color.GRAY);
+
+			
 			button.addActionListener(new ClickChange());
+			button2.addActionListener(new ClickFond());
 
+			
 			grid.setLayout(new GridLayout(4, 1));
+			
 			grid.add(flow);
-
+			grid.add(flow2);
+			
 			this.add(panelsettings, BorderLayout.NORTH);
 			this.add(grid, BorderLayout.CENTER);
 		}
 
+		
+		private class ClickFond implements ActionListener
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+
+				frame.getCardLayout().show(frame.getTriPanel(), "gallerypanel");
+				
+				isReglage = true;
+				
+			}
+			
+		}
+		
+		/**
+		 * Classe qui va gérer le mouvement de la souris sur le bouton changer
+		 * 
+		 * @author Loris
+		 *
+		 */
+
+		private	class Movement2 implements MouseListener
+		{
+			
+
+
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0)
+			{
+				button2.setBackground(Color.LIGHT_GRAY);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0)
+			{
+				button2.setBackground(Color.WHITE);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0)
+			{
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0)
+			{
+			}
+
+		}
+		
+		
 		/**
 		 * Classe qui va gérer le mouvement de la souris sur le bouton changer
 		 * 
@@ -423,6 +515,13 @@ public class Frame extends JFrame
 			{
 			}
 
+		}
+		
+		public boolean isReglage() {
+			return isReglage;
+		}
+		public void setReglage(boolean isReglage) {
+			this.isReglage = isReglage;
 		}
 	}
 
