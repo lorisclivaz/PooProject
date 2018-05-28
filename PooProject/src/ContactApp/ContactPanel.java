@@ -71,16 +71,16 @@ public class ContactPanel extends JPanel
 		JPanel allContact = new JPanel();
 	
 		//Gestion des panels dans les contacts
-		public   CardLayout cardLayout = new CardLayout();
-		public  JPanel triPanel = new JPanel(cardLayout);
+		private   CardLayout cardLayout = new CardLayout();
+		private  JPanel triPanel = new JPanel(cardLayout);
 		
-		public CardLayout getCardLayout()
+		private CardLayout getCardLayout()
 		{
 			return cardLayout;
 		}
 
 
-		public JPanel getTriPanel()
+		private JPanel getTriPanel()
 		{
 			return triPanel;
 		}
@@ -129,7 +129,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 */
 		
-		public void setNombreFichier(int nombreFichier) {
+		private void setNombreFichier(int nombreFichier) {
 			this.nombreFichier = nombreFichier;
 		}
 
@@ -140,7 +140,7 @@ public class ContactPanel extends JPanel
 		 * @return : le nombre de fichier
 		 * @author Vivian
 		 */
-		public int getNombreFichier() {
+		private int getNombreFichier() {
 			return nombreFichier;
 		}
 
@@ -155,7 +155,7 @@ public class ContactPanel extends JPanel
 		 */
 		
 		
-		public void actualise()
+		private void actualise()
 		{
 			//On calcule le nombre de contact dans le dossier serialisation
 			File dossier = new File("serialisation");
@@ -203,7 +203,7 @@ public class ContactPanel extends JPanel
 		 */
 		
 		
-		public Contact deSerializeObject(String path)
+		private Contact deSerializeObject(String path)
 		{
 
 			try {
@@ -224,7 +224,7 @@ public class ContactPanel extends JPanel
 			}
 		}
 		
-		public String lecture()
+		private String lecture()
 		{
 			String resultat="";
 			File dossier = new File("src/ContactApp");
@@ -247,7 +247,6 @@ public class ContactPanel extends JPanel
 			return resultat;
 			
 		}
-//		private int id=0;	//Variable qui va stocker le numéro du contact en création
 
 		private int id=Integer.parseInt(lecture());	//Variable qui va stocker le numéro du contact en création
 		
@@ -266,7 +265,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 */
 		
-		public class Contact implements Serializable 
+		private class Contact implements Serializable 
 		{
 			private String nom,prenom,adresse,localite,telephone,mail,urlImage;
 			
@@ -282,7 +281,7 @@ public class ContactPanel extends JPanel
 				setUrlImage(urlImage);
 			}
 			
-			public void ecriture(int id)
+			private void ecriture(int id)
 			{
 				
 				
@@ -400,7 +399,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 *
 		 */
-		public class ClickContact implements ActionListener
+		private class ClickContact implements ActionListener
 		{
 
 			Contact contact;
@@ -529,7 +528,7 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		public class ChampLabel extends JLabel
+		private class ChampLabel extends JLabel
 		{
 			
 			Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
@@ -560,7 +559,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 *
 		 */
-		public class ChampTextField extends JTextField
+		private class ChampTextField extends JTextField
 		{
 			
 			Font globalFontH2 = new Font("2.TimesRoman ",Font.BOLD,20);
@@ -588,7 +587,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 */
 		
-		public void fillImg(ArrayList<String> listImage)
+		private void fillImg(ArrayList<String> listImage)
 		{
 			//On calcule le nombre d'image dans le dossier imagesgallery
 			File dossier = new File("imagesgallery");
@@ -612,7 +611,7 @@ public class ContactPanel extends JPanel
 		 * @param phone : le numéro de téléphone à vérifier
 		 * @return : on retourne si oui ou non le numéro est vérifié
 		 */
-		public boolean checkPhone(String phone)
+		private boolean checkPhone(String phone)
 		{
 			if(Pattern.matches("[0-9]{10}", phone)==true)
 				return true;
@@ -626,7 +625,7 @@ public class ContactPanel extends JPanel
 		 * @return : on retourne si oui ou non le mail est verifié
 		 */
 		
-		public boolean checkMail(String mail)
+		private boolean checkMail(String mail)
 		{
 			if(Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail)==true)
 				return true;
@@ -641,7 +640,7 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		public class NewContact extends JPanel 
+		private class NewContact extends JPanel 
 		{	
 			private ArrayList<String> listImage = new ArrayList<String>();
 			
@@ -720,7 +719,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			public class PressedEnter implements KeyListener
+			private class PressedEnter implements KeyListener
 			{
 				SaveButton enregistrement;
 				public PressedEnter(SaveButton enregistrement)
@@ -762,7 +761,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			class ClickImage implements ActionListener
+			private class ClickImage implements ActionListener
 			{
 
 				ListIterator li;
@@ -807,7 +806,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			class ClickEnregistrement implements ActionListener
+			private class ClickEnregistrement implements ActionListener
 			{
 
 				@Override
@@ -910,7 +909,7 @@ public class ContactPanel extends JPanel
 				 * @author Vivian
 				 */
 				
-				public void serializeObject(Contact contactEnCreation)
+				private void serializeObject(Contact contactEnCreation)
 				{
 					try
 					{
@@ -935,7 +934,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 */
 		
-		public void actualiseContact() 
+		private void actualiseContact() 
 		{	
 			//On calcule le nombre de contact dans le dossier serialisation
 			allContact.removeAll();
@@ -1000,12 +999,12 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		public class ModifContact extends JPanel
+		private class ModifContact extends JPanel
 		{
 			private ArrayList<String> listImage = new ArrayList<String>();
 			private JPanel infosContact = new JPanel();
-			public   CardLayout cardLayout;
-			public  JPanel triPanel;
+			private CardLayout cardLayout;
+			private JPanel triPanel;
 			private SaveButton enregistrement = new SaveButton("Modifier le contact !");
 			
 			//Champ du formulaire
@@ -1094,7 +1093,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			public class PressedEnter implements KeyListener
+			private class PressedEnter implements KeyListener
 			{
 				SaveButton enregistrement;
 				public PressedEnter(SaveButton enregistrement)
@@ -1135,7 +1134,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			class ClickImage implements ActionListener
+			private class ClickImage implements ActionListener
 			{
 
 				ListIterator li;
@@ -1177,7 +1176,7 @@ public class ContactPanel extends JPanel
 			 *
 			 */
 			
-			class ClickEnregistrement implements ActionListener
+			private class ClickEnregistrement implements ActionListener
 			{
 				Contact contact;
 				IconBase imageContact;
@@ -1342,7 +1341,7 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		public class MenuH1PanelContact extends JPanel
+		private class MenuH1PanelContact extends JPanel
 		{
 
 			//Définit un titre sur le panel avec une couleurs
