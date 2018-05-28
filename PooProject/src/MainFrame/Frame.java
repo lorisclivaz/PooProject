@@ -306,8 +306,6 @@ public class Frame extends JFrame
 				cardLayout.show(triPanel, "mainpanel");
 
 			}
-			System.out.println("clique bouton milieu");
-
 
 		}
 
@@ -518,9 +516,6 @@ public class Frame extends JFrame
 
 						nouveau = ecrire2.getText();
 
-						System.out.println(nouveau);
-
-
 						ecrire2.setText(null);
 						ecrire.setText(null);
 
@@ -531,7 +526,6 @@ public class Frame extends JFrame
 
 					}else
 					{
-						System.out.println("ancien mot de passe incorrect ");
 						ecrire.setText(null);
 						ecrire2.setText(null);
 
@@ -564,7 +558,6 @@ public class Frame extends JFrame
 				
 				if(e.getKeyCode() == 10)
 				{
-					System.out.println("touche ENTER");
 					enregistrement.doClick();
 				}
 				    
@@ -801,7 +794,6 @@ public class Frame extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			System.out.println("cliqué");
 			cardLayout.show(triPanel, "contactpanel");
 		}
 
