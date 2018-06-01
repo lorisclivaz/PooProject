@@ -54,9 +54,7 @@ public class ImageFond extends JPanel
 	}
 
 	public void paintComponent(Graphics g)
-	{
-		
-		
+	{		
 		try
 		{
 
@@ -94,6 +92,13 @@ public class ImageFond extends JPanel
 		this.changeImage = changeImage;
 	}
 	
+	/**
+	 * Méthode qui va écrire l'url de l'image du background dans un fichier
+	 * 
+	 * @param changeImage : l'url de l'image qu va être écrite
+	 * @author Vivian
+	 */
+	
 	private void ecriture(String changeImage)
 	{
 		String[] decoupe = changeImage.split("imagesgallery");
@@ -120,6 +125,13 @@ public class ImageFond extends JPanel
 		
 		
 	}
+	
+	/**
+	 * Méthode qui va lire le contenu du fichier url.txt et retourner son contenu
+	 * 
+	 * @return : l'url de l'image écrite dans le fichier
+	 * @author Vivian
+	 */
 	
 	public String lecture()
 	{
