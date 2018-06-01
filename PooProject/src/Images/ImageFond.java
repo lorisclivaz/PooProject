@@ -72,7 +72,6 @@ public class ImageFond extends JPanel
 				e1.printStackTrace();
 			}
 			
-			System.out.println("imageBackground de base !");
 		}                
 
 	}

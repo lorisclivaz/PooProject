@@ -165,7 +165,7 @@ public class PasswordPanel extends JPanel
 		File dossier = new File("password");
 		dossier.mkdir();
 		
-		File fichier = new File(dossier,"loris.txt");
+		File fichier = new File(dossier,"mdp.txt");
 		
 		try {
 		
