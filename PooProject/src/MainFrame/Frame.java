@@ -125,6 +125,8 @@ public class Frame extends JFrame
 
 	public Frame() 
 	{
+		
+		
 
 		// Paramètres de la frame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

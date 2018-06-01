@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -27,6 +30,7 @@ import javax.swing.JPanel;
 public class ImageFond extends JPanel
 {
 	String changeImage="imagesgallery/"+lecture();
+	String backgroundBase = "images/background/imagefond.jpg";
 
 	/**
 	 * Constructeur avec aucun paramètre de la classe ImageFond
@@ -49,21 +53,28 @@ public class ImageFond extends JPanel
 		this.changeImage=changeImage;
 	}
 
-
-
 	public void paintComponent(Graphics g)
 	{
+		
+		
 		try
 		{
 
 			Image img = ImageIO.read(new File(changeImage));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-
+			
 		} 
 		catch (IOException e) 
 		{
+			Image img;
+			try {
+				img = ImageIO.read(new File(backgroundBase));
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			
-			e.printStackTrace();
+			System.out.println("imageBackground de base !");
 		}                
 
 	}
@@ -91,7 +102,6 @@ public class ImageFond extends JPanel
 		dossier.mkdir();
 		
 		File fichier = new File(dossier,"url.txt");
-	
 		
 		try {
 			fichier.createNewFile();
