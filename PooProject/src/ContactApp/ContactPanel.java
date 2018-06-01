@@ -448,7 +448,7 @@ public class ContactPanel extends JPanel
 				IconBase miniPhoto = new IconBase(contact.getUrlImage(), 100, 100);
 				miniPhoto.addActionListener(new ClickContact(contact));
 				miniPhoto.addMouseListener(new MouseMovement(this));
-				
+							
 				//text
 				JLabel text = new JLabel();
 				text.setSize(new Dimension(300,100));

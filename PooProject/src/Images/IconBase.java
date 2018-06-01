@@ -27,6 +27,7 @@ public class IconBase extends JButton
 	private String url;
 	private int width;
 	private int heigth;
+	private String urlImageBase = "images/photos/contact-1.png";
 	
 	/**
 	 * Constructeur de la classe IconBase
@@ -67,7 +68,14 @@ public class IconBase extends JButton
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			
+			Image img;
+			try {
+				img = ImageIO.read(new File(urlImageBase));
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}                
 
 	}   
