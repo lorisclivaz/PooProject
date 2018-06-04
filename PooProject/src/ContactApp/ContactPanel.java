@@ -10,17 +10,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,22 +31,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.regex.Pattern;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
-import GalerieApp.GalleryPanel;
-import GalerieApp.Picture;
-import GalerieApp.GalleryPanel.PhotoPanel;
 import Images.IconBase;
-import Images.ImageContact;
-import Images.ImageFond;
-import MainFrame.Frame;
 /**
  * Classe qui va gérer toute l'application Contact
  * 
@@ -140,6 +127,7 @@ public class ContactPanel extends JPanel
 		 * @return : le nombre de fichier
 		 * @author Vivian
 		 */
+		
 		private int getNombreFichier() {
 			return nombreFichier;
 		}
@@ -403,6 +391,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 *
 		 */
+		
 		private class ClickContact implements ActionListener
 		{
 
@@ -414,6 +403,7 @@ public class ContactPanel extends JPanel
 			 * @param contact : le contact clické
 			 * @author Vivian
 			 */
+			
 			public ClickContact(Contact contact)
 			{
 				this.contact = contact;
@@ -480,6 +470,7 @@ public class ContactPanel extends JPanel
 		 * @author Vivian
 		 *
 		 */
+		
 		public class MouseMovement implements MouseListener
 		{
 			FlatButton bouton; 			//On récupère la variable du bouton survolé
@@ -777,6 +768,7 @@ public class ContactPanel extends JPanel
 				 * @param li : la liste des images 
 				 * @author Vivian
 				 */
+				
 				public ClickImage(ListIterator li)
 				{
 					// TODO Auto-generated constructor stub

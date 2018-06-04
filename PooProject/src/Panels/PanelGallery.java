@@ -6,15 +6,6 @@
 package Panels;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-
 import Images.IconBase;
 
 /**
@@ -35,6 +26,7 @@ public class PanelGallery extends PanelSettings{
 	 * @param nomClass : le nom de la classe précédente
 	 * @author Vivian
 	 */
+	
 	public PanelGallery(String titre, String nomClass)
 
 	{

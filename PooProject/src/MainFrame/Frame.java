@@ -10,9 +10,7 @@ package MainFrame;
  * Date creation: 30 avr. 2018
  * 
  */
-/**
- * 
- */
+
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -30,22 +28,16 @@ import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-
 import BordsSmartphone.PanelSmartphone;
 import Calculette.Calculette;
 import ContactApp.ContactPanel;
-import ContactApp.ContactPanel.FlatButton;
-import ContactApp.ContactPanel.MouseMovement;
-import ContactApp.ContactPanel.SaveButton;
 import GalerieApp.GalleryPanel;
 import Horloge.HorlogePanel;
 import Images.IconBase;
@@ -327,7 +319,7 @@ public class Frame extends JFrame
 	 *
 	 */
 
-	class ClickPower implements ActionListener{
+	private class ClickPower implements ActionListener{
 
 
 

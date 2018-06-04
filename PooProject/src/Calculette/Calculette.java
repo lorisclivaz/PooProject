@@ -6,7 +6,6 @@
 package Calculette;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -79,7 +78,7 @@ public class Calculette extends JPanel
 	 * 
 	 * - définit la taille du Panel et son layout
 	 * - ajoute et affiche les différents panels
-	 * -ajoute les coposants de la calculette
+	 * -ajoute les composants de la calculette
 	 * 
 	 * @author Loris
 	 */

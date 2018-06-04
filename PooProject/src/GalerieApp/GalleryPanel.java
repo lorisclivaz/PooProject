@@ -501,7 +501,7 @@ public class GalleryPanel extends JPanel
 		/**
 		 * Constructeur de la classe PanelGallery
 		 * 
-		 * @param titre : titre en gtas
+		 * @param titre : titre en gras
 		 * @param nomClass : nom de la classe
 		 * 
 		 * @author Loris

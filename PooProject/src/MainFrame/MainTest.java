@@ -1,12 +1,7 @@
 package MainFrame;
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
-* Date creation: 30 avr. 2018
-* 
-*/
-/**
- * 
+ * Author : Vivian Bridy & Loris Clivaz
+ * Date creation : 14 mai 2018
  */
 
 
