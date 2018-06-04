@@ -210,6 +210,8 @@ public class ContactPanel extends JPanel
 				FileInputStream fichier = new FileInputStream(path);
 				ObjectInputStream ois = new ObjectInputStream(fichier);
 				Contact cs = (Contact)ois.readObject();
+				fichier.close();
+				ois.close();
 				return cs;
 			}
 			catch (java.io.IOException e)
@@ -237,6 +239,8 @@ public class ContactPanel extends JPanel
 				FileReader read = new FileReader(fichier);
 				BufferedReader bfread = new BufferedReader(read);
 				resultat = bfread.readLine();
+				read.close();
+				bfread.close();
 				
 			} catch (IOException e) {
 
@@ -918,6 +922,7 @@ public class ContactPanel extends JPanel
 						oos.writeObject(contactEnCreation);
 						oos.flush();
 						oos.close();
+						fichier.close();
 					}
 					catch (java.io.IOException e)
 					{
@@ -1325,6 +1330,7 @@ public class ContactPanel extends JPanel
 						oos.writeObject(contactEnCreation);
 						oos.flush();
 						oos.close();
+						fichier.close();
 					}
 					catch (java.io.IOException e) 
 					{
