@@ -368,6 +368,8 @@ public class Frame extends JFrame
 		 * -Ajout du bouton pour changer le mot de passe
 		 * -Ajout de deux panel pour le design 
 		 * 
+		 * @param changeWallpaper le fond d'écran changé
+		 * @param frame la frame qui est utilisée
 		 * @author Loris
 		 */
 

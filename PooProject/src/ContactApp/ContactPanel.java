@@ -112,7 +112,7 @@ public class ContactPanel extends JPanel
 		/**
 		 * Setter qui définit le nombre de fichier contenu dans le dossier serialisation
 		 * 
-		 * @return : le nombre de fichier
+		 * @param nombreFichier le nombre de fichier
 		 * @author Vivian
 		 */
 		
@@ -434,6 +434,7 @@ public class ContactPanel extends JPanel
 			/**
 			 * Constructeur de la class FlatButton
 			 * 
+			 * @param contact le contact qui va être affiché dans le bouton
 			 * @author Vivian
 			 */
 			public FlatButton(Contact contact) 

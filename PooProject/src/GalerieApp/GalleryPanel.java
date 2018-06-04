@@ -73,6 +73,9 @@ public class GalleryPanel extends JPanel
 	 * -Ajoute le panel avec le nom de l'application
 	 * -Actualise la galerie en actualisant l'application
 	 * 
+	 * @param fond l'image de fond de la galerie
+	 * @param bool boolean du panel réglage
+	 * @param frame variables de frame
 	 * @author Loris_Clivaz
 	 */
 
@@ -190,10 +193,6 @@ public class GalleryPanel extends JPanel
 	 */
 	class ClickPhoto implements ActionListener
 	{
-
-		/**
-		 * @param path
-		 */
 		
 		String path;
 		public ClickPhoto(String path) 
@@ -383,8 +382,8 @@ public class GalleryPanel extends JPanel
 		/**
 		 * Méthode qui va réactualiser la galerie en ayant supprmié l'image
 		 * 
-		 * @param mail : le mail à vérifier
-		 * @return : on retourne si oui ou non le mail est verifié
+		 * @param PaneltoRemove le panel utilisé
+		 * @author Vivian et Loris
 		 */	
 
 		private void removeChild(JPanel PaneltoRemove) {

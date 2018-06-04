@@ -65,6 +65,7 @@ public class Picture {
 	 * 
 	 * Méthode qui copie l'image dans le folder imagesgallery
 	 * 
+	 * @param file le fichier copié
 	 * @author Loris
 	 */
 	public static void copy(File file)

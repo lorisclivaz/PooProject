@@ -29,7 +29,7 @@ import Panels.PanelSettings;
  * 
  * @author Loris_Clivaz
  *
- *@lienInternet : https://openclassrooms.com/courses/apprenez-a-programmer-en-java/tp-une-calculatrice
+ * {@link} https://openclassrooms.com/courses/apprenez-a-programmer-en-java/tp-une-calculatrice
  */
 
 public class Calculette extends JPanel
