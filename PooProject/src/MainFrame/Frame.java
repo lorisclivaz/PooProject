@@ -626,7 +626,8 @@ public class Frame extends JFrame
 						changePsw.fichier(nouveau);
 						changePsw.lecturePswd();
 
-					}else
+					}
+					else
 					{
 						ecrire.setText(null);
 						ecrire2.setText(null);
