@@ -144,7 +144,7 @@ public class PasswordPanel extends JPanel
 	}
 
 	/**
-	 * Méthode qui va lire le contenu du fichier loris.txt
+	 * Méthode qui va lire le contenu du fichier mdp.txt
 	 * 
 	 * @return : le mot de passe
 	 * @author Vivian
