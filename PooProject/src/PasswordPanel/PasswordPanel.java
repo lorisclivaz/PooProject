@@ -25,6 +25,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import MainFrame.Frame;
 
@@ -43,7 +44,8 @@ public class PasswordPanel extends JPanel
 	
 	
 	JLabel label = new JLabel("Entrer le mot de passe:");
-	JTextField ecrire = new JTextField();
+//	JTextField ecrire = new JTextField();
+	JPasswordField ecrire = new JPasswordField();
 	JPanel texteLabel = new JPanel();
 	JButton button = new JButton("Enter");
 	JLabel faux = new JLabel("Mot de passe incorrect");

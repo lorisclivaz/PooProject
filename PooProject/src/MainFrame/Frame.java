@@ -32,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
@@ -545,8 +546,8 @@ public class Frame extends JFrame
 		PanelSettings change = new PanelSettings("Mot de passe", "Mot de passe");
 
 		JPanel grid = new JPanel();
-		JTextField ecrire = new JTextField();
-		JTextField ecrire2 = new JTextField();
+		JPasswordField ecrire = new JPasswordField();
+		JPasswordField ecrire2 = new JPasswordField();
 
 		JLabel label1 = new JLabel("Entrer l'ancien mot de passe :");
 		JLabel label2 = new JLabel("Entrer le nouveau mot de passe : ");
