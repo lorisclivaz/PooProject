@@ -8,8 +8,5 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/opencv/build/java/x64"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jarFiles/activation.jar"/>
-	<classpathentry kind="lib" path="jarFiles/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Loris_Clivaz/git/PooProject/PooProject/jarFiles/opencv/build/java/opencv-341.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
