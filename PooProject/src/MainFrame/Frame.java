@@ -120,6 +120,7 @@ public class Frame extends JFrame
 	{
 		
 		
+		
 
 		// Paramètres de la frame
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -212,6 +213,7 @@ public class Frame extends JFrame
 		public void actionPerformed(ActionEvent e) 
 		{
 
+			
 			cardLayout.show(triPanel, "settingspanel");
 		}
 

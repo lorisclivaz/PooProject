@@ -100,9 +100,9 @@ public class ImageFond extends JPanel
 		
 		File dossier = new File("background");
 		dossier.mkdir();
-	
 		
 		File fichier = new File(dossier,"url.txt");
+
 		
 		try {
 			fichier.createNewFile();
