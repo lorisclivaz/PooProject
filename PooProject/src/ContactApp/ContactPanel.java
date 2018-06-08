@@ -38,7 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import Images.IconBase;
-/**
+/***
  * Classe qui va gérer toute l'application Contact
  * 
  * @author Vivian
