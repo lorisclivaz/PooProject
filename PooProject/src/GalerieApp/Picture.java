@@ -8,13 +8,12 @@ package GalerieApp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 /**
@@ -25,7 +24,7 @@ import java.util.Date;
  */
 
 
-public class Picture {
+public class Picture implements Serializable{
 
 	private String path ;
 	private BufferedImage picture ;

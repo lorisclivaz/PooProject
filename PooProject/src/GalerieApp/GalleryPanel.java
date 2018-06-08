@@ -32,6 +32,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import ContactApp.ContactPanel;
 import Images.IconBase;
 import Images.ImageFond;
 import MainFrame.Frame;
@@ -67,7 +69,8 @@ public class GalleryPanel extends JPanel
 	ImageFond fond;
 	SettingsPanel bool;
 	Frame frame;
-
+	ContactPanel contactpanel;
+	
 	/**
 	 * Constructeur de la classe GalleryPanel
 	 * 
@@ -81,9 +84,10 @@ public class GalleryPanel extends JPanel
 	 * @author Loris_Clivaz
 	 */
 
-	public GalleryPanel(ImageFond fond, SettingsPanel bool, Frame frame)
+	public GalleryPanel(ImageFond fond, SettingsPanel bool, Frame frame, ContactPanel contactpanel)
 	{
 
+		this.contactpanel = contactpanel;
 		this.fond = fond;
 		this.bool = bool;
 		this.frame = frame;
@@ -206,6 +210,23 @@ public class GalleryPanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
+			if(contactpanel.getIsModifContact()==true)
+			{
+				contactpanel.setIsModifContact(false);
+				contactpanel.getModifcontact().getImageContact().setUrl(path);
+				
+				frame.getCardLayout().show(frame.getTriPanel(), "contactpanel");
+				
+			}
+			if(contactpanel.getIsContact()==true)
+			{
+				contactpanel.setIsContact(false);
+				contactpanel.getNewcontact().getImageContact().setUrl(path);
+				
+				frame.getCardLayout().show(frame.getTriPanel(), "contactpanel");
+				
+			}
+			
 			if(bool.isReglage() == true)
 			{
 				bool.setReglage(false);

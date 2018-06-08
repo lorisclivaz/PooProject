@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import Images.IconBase;
+import MainFrame.Frame;
 /***
  * Classe qui va gérer toute l'application Contact
  * 
@@ -47,6 +48,35 @@ import Images.IconBase;
 
 public class ContactPanel extends JPanel
 {
+		Frame frame;
+		Boolean isContact;
+		Boolean isModifContact = false;
+		ModifContact modifcontact;
+		
+		
+		public Boolean getIsModifContact() {
+			return isModifContact;
+		}
+
+		public void setIsModifContact(Boolean isModifContact) {
+			this.isModifContact = isModifContact;
+		}
+
+
+
+		public void setModifcontact(ModifContact modifcontact) {
+			this.modifcontact = modifcontact;
+		}
+
+		public Boolean getIsContact() {
+			return isContact;
+		}
+
+
+		public void setIsContact(Boolean isContact) {
+			this.isContact = isContact;
+		}
+
 		//Création du tableau de contact
 		private ArrayList<Contact> listContact = new ArrayList<Contact>();
 
@@ -61,13 +91,13 @@ public class ContactPanel extends JPanel
 		private   CardLayout cardLayout = new CardLayout();
 		private  JPanel triPanel = new JPanel(cardLayout);
 		
-		private CardLayout getCardLayout()
+		public CardLayout getCardLayout()
 		{
 			return cardLayout;
 		}
 
 
-		private JPanel getTriPanel()
+		public JPanel getTriPanel()
 		{
 			return triPanel;
 		}
@@ -85,8 +115,10 @@ public class ContactPanel extends JPanel
 		 * 
 		 * @author Vivian
 		 */
-		public ContactPanel()
+		public ContactPanel(Frame frame, boolean isContact)
 		{
+			this.frame = frame;
+			this.isContact = isContact;
 			//Choix du layout et de la dimension du panel
 
 			this.setPreferredSize(new Dimension(480, 40));
@@ -214,174 +246,7 @@ public class ContactPanel extends JPanel
 			}
 		}
 		
-		private String lecture()
-		{
-			String resultat="";
-			File dossier = new File("src/ContactApp");
-			dossier.mkdir();
-			
-			File fichier = new File(dossier,"id.txt");
-			
-			try {
-			
-				FileReader read = new FileReader(fichier);
-				BufferedReader bfread = new BufferedReader(read);
-				resultat = bfread.readLine();
-				read.close();
-				bfread.close();
-				
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-			
-			
-			return resultat;
-			
-		}
-
-		private int id=Integer.parseInt(lecture());	//Variable qui va stocker le numéro du contact en création
 		
-		/**
-		 * Classe contact qui sera sérialisée et qui contient les variables suivantes
-		 * - nom
-		 * - prénom
-		 * - adresse
-		 * - localite
-		 * - telephone
-		 * - mail
-		 * - urlImage
-		 * 
-		 * Chaque variable possède son getter et setter
-		 * 
-		 * @author Vivian
-		 */
-		
-		private class Contact implements Serializable 
-		{
-			private String nom,prenom,adresse,localite,telephone,mail,urlImage;
-			
-			public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage)
-			{
-				setId();
-				setNom(nom);
-				setPrenom(prenom);
-				setAdresse(adresse);
-				setLocalite(localite);
-				setTelephone(telephone);
-				setMail(mail);
-				setUrlImage(urlImage);
-			}
-			
-			private void ecriture(int id)
-			{
-				
-				
-				File dossier = new File("src/ContactApp");
-				dossier.mkdir();
-				
-				File fichier = new File(dossier,"id.txt");
-			
-				
-				try {
-					fichier.createNewFile();
-					
-					
-					FileWriter ecriture = new FileWriter(fichier);
-					BufferedWriter bfwrite = new BufferedWriter(ecriture);
-					bfwrite.write(Integer.toString(id)); 
-					bfwrite.close();
-				
-					
-				} catch (IOException e) {
-
-					e.printStackTrace();
-				}
-				
-				
-			}
-			
-			public int getId()
-			{
-				return id;
-			}
-			
-			public void setId()
-			{
-				id++;
-				this.ecriture(id);
-			}
-
-			public String getNom()
-			{
-				return nom;
-			}
-
-			public void setNom(String nom)
-			{
-				this.nom = nom;
-			}
-			
-			public String getUrlImage()
-			{
-				return urlImage;
-			}
-
-			public void setUrlImage(String urlImage)
-			{
-				this.urlImage = urlImage;
-			}
-
-			public String getPrenom()
-			{
-				return prenom;
-			}
-
-			public void setPrenom(String prenom)
-			{
-				this.prenom = prenom;
-			}
-
-			public String getAdresse()
-			{
-				return adresse;
-			}
-
-			public void setAdresse(String adresse)
-			{
-				this.adresse = adresse;
-			}
-			
-			public String getLocalite()
-			{
-				return localite;
-			}
-
-			public void setLocalite(String localite)
-			{
-				this.localite = localite;
-			}
-
-			public String getTelephone()
-			{
-				return telephone;
-			}
-
-			public void setTelephone(String telephone)
-			{
-				this.telephone = telephone;
-			}
-
-			public String getMail()
-			{
-				return mail;
-			}
-
-			public void setMail(String mail)
-			{
-				this.mail = mail;
-			}
-		}
 		
 		/**
 		 * 
@@ -396,7 +261,7 @@ public class ContactPanel extends JPanel
 		{
 
 			Contact contact;
-			
+		
 			/**
 			 * Contructeur de la class ClickContact
 			 * 
@@ -413,10 +278,13 @@ public class ContactPanel extends JPanel
 			{
 				//j'ai accès au contact cliqué je dois donc afficher le panel modifcontact avec pour paramètre ce contact
 				ModifContact modifcontact = new ModifContact(contact);
+				setModifcontact(modifcontact);
 				triPanel.add(modifcontact,"modifcontact");
 				cardLayout.show(triPanel, "modifcontact");
 				menuh1panel.setVisible(false);
 			}
+			
+			
 			
 		}
 		
@@ -628,6 +496,13 @@ public class ContactPanel extends JPanel
 			return false;
 		}
 		
+		
+		
+		public NewContact getNewcontact() {
+			return newcontact;
+		}
+
+
 		/**
 		 * 
 		 * Classe qui est appelée lors de la création d'un nouveau contact
@@ -636,7 +511,7 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		private class NewContact extends JPanel 
+		public class NewContact extends JPanel 
 		{	
 			private ArrayList<String> listImage = new ArrayList<String>();
 			
@@ -663,6 +538,10 @@ public class ContactPanel extends JPanel
 			
 			private SaveButton enregistrement = new SaveButton("Sauver le contact !");
 			
+			public IconBase getImageContact() {
+				return imageContact;
+			}
+
 			/**
 			 * Constructeur de la classe NewContact
 			 * 
@@ -779,18 +658,10 @@ public class ContactPanel extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent arg0)
 				{
-					// TODO Auto-generated method stub
-						if (li.hasNext())
-						{
-								imageContact.setUrl((String)li.next()); 	//On caste en String
-						}else 
-						{
-							for(int i=0;i<listImage.size();i++)
-							{
-								imageContact.setUrl((String)li.previous());	//on revient au début
-							}
-						}
-
+					
+					frame.getCardLayout().show(frame.getTriPanel(),"gallerypanel");
+					isContact = true;
+					
 				}
 				
 			}
@@ -989,6 +860,10 @@ public class ContactPanel extends JPanel
 				setBackground(Color.LIGHT_GRAY);
 			}
 		}
+		
+		public ModifContact getModifcontact() {
+			return modifcontact;
+		}
 
 		/**
 		 * Classe responsable d'afficher un contact et de permettre sa modification
@@ -997,17 +872,23 @@ public class ContactPanel extends JPanel
 		 *
 		 */
 		
-		private class ModifContact extends JPanel
+		public class ModifContact extends JPanel
 		{
 			private ArrayList<String> listImage = new ArrayList<String>();
 			private JPanel infosContact = new JPanel();
 			private CardLayout cardLayout;
 			private JPanel triPanel;
 			private SaveButton enregistrement = new SaveButton("Modifier le contact !");
-			
+
 			//Champ du formulaire
 			private ChampTextField textNom,textPrenom,textAdresse,textLocalite,textMail,textPhone;
 			
+			IconBase imageContact;
+			
+			public IconBase getImageContact() {
+				return imageContact;
+			}
+
 			/**
 			 * 
 			 * Constructeur de la classe ModifContact
@@ -1026,7 +907,9 @@ public class ContactPanel extends JPanel
 				
 				//On affiche l'image courante du contact
 				String urlImage = contact.getUrlImage();
-				IconBase imageContact = new IconBase(urlImage,480,300);
+				imageContact = new IconBase(urlImage,480,300);
+				
+				
 				
 				//On remplit le menuh1
 				MenuH1PanelContact menuh1panel2 = new MenuH1PanelContact(contact.getPrenom(), getClass().getSimpleName(),contact);
@@ -1083,6 +966,8 @@ public class ContactPanel extends JPanel
 				//On affiche les infos
 				this.add(infosContact);
 			}
+			
+			
 			
 			/**
 			 * KeyListener qui est activé lorsque l'on touche ENTER
@@ -1155,13 +1040,15 @@ public class ContactPanel extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent arg0)
 				{
-						if (li.hasNext()) {
-								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
-						}else {
-							for(int i=0;i<listImage.size();i++) {
-								imageContact.setUrl((String)li.previous());	//on revient au début
-							}
-						}
+//						if (li.hasNext()) {
+//								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
+//						}else {
+//							for(int i=0;i<listImage.size();i++) {
+//								imageContact.setUrl((String)li.previous());	//on revient au début
+//							}
+//						}
+					frame.getCardLayout().show(frame.getTriPanel(),"gallerypanel");
+					isModifContact = true;
 
 				}
 				

@@ -62,10 +62,10 @@ public class Frame extends JFrame
 
 	
 	//Ajout des panelss
-	ContactPanel contactpanel = new ContactPanel();
+	ContactPanel contactpanel = new ContactPanel(this,false);
 	VerrouPanel verroupanel = new VerrouPanel();
 	SettingsPanel settingspanel = new SettingsPanel(imagefond, this);
-	GalleryPanel gallerypanel = new GalleryPanel(imagefond, settingspanel, this);
+	GalleryPanel gallerypanel = new GalleryPanel(imagefond, settingspanel, this, contactpanel);
 
 
 	Calculette calculette = new Calculette();
