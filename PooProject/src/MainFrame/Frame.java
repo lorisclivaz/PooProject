@@ -906,6 +906,7 @@ public class Frame extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
+			
 			cardLayout.show(triPanel, "contactpanel");
 		}
 

@@ -12,6 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -68,14 +71,21 @@ public class Picture {
 	 * @param file le fichier copié
 	 * @author Loris
 	 */
-	public static void copy(File file)
+	public static String copy(File file)
 	{
-		Path path2 = Paths.get("imagesgallery/"+file.getName());
+		
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+		String newName = file.getName()+" "+timestamp.getTime();
+		
+		Path path2 = Paths.get("imagesgallery/"+newName);
 		try {
 			Files.copy(file.toPath(),path2,StandardCopyOption.REPLACE_EXISTING );
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return newName;
 	}
 
 

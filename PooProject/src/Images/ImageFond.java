@@ -96,7 +96,7 @@ public class ImageFond extends JPanel
 	
 	private void ecriture(String changeImage)
 	{
-		String[] decoupe = changeImage.split("imagesGallery");
+		String[] decoupe = changeImage.split("imagesgallery");
 		
 		File dossier = new File("background");
 		dossier.mkdir();

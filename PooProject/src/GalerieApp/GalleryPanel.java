@@ -19,7 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -535,7 +537,33 @@ public class GalleryPanel extends JPanel
 			create.addActionListener(new ClickCreate());
 
 		}
+		
+		private String lecture()
+		{
+			String resultat="";
+			File dossier = new File("src/ContactApp");
+			dossier.mkdir();
+			
+			File fichier = new File(dossier,"id.txt");
+			
+			try {
+			
+				FileReader read = new FileReader(fichier);
+				BufferedReader bfread = new BufferedReader(read);
+				resultat = bfread.readLine();
+				read.close();
+				bfread.close();
+				
+			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+			
+			
+			return resultat;
+			
+		}
+		
 
 		/**
 		 * 
@@ -564,8 +592,16 @@ public class GalleryPanel extends JPanel
 				if (returnVal == JFileChooser.APPROVE_OPTION)
 				{
 					File file = choisir.getSelectedFile();
-					Picture.copy(file);
-					MiniPhoto newpic = new MiniPhoto("imagesGallery/" + file.getName());
+					String temp = file.getName();
+					
+//					String tabTemp[] = temp.split("\\.");
+//				
+//					
+//					File destination = new File("imagesgallery/"+tabTemp[0]+"-"+lecture()+"."+tabTemp[1]);
+//					file.renameTo(destination);
+					String newName = Picture.copy(file);
+					
+					MiniPhoto newpic = new MiniPhoto("imagesgallery/"+newName);
 					revalidate();
 					repaint();
 				}
