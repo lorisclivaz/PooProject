@@ -61,10 +61,7 @@ public class MenuH1PanelContact extends PanelSettings{
 
 	}
 	
-	public void setCardLayout(CardLayout cardlayout, JPanel triPanel) {
-		this.cardlayout = cardlayout;
-		this.triPanel = triPanel;
-	}
+	
 	
 
 	/**
@@ -101,6 +98,11 @@ public class MenuH1PanelContact extends PanelSettings{
 
 			System.out.println("create cliqué");
 		}
+	}
+	
+	public void setCardLayout(CardLayout cardlayout, JPanel triPanel) {
+		this.cardlayout = cardlayout;
+		this.triPanel = triPanel;
 	}
 
 }

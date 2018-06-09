@@ -1,12 +1,8 @@
 /*
-* Exercise W2Q3 - 2
-* Author: Clivaz Loris
-* Date creation: 8 juin 2018
-* 
+* Author : Vivian Bridy & Loris Clivaz
+* Date creation : 14 mai 2018
 */
-/**
- * 
- */
+
 package ContactApp;
 
 import java.io.BufferedReader;
@@ -17,8 +13,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
-/**
- * @author Loris_Clivaz
+/***
+ * Classe qui va gérer la sérialization de contact
+ * 
+ * @author Vivian
  *
  */
 public class Contact implements Serializable 
@@ -26,6 +24,19 @@ public class Contact implements Serializable
 	private String nom,prenom,adresse,localite,telephone,mail,urlImage;
 	int id=Integer.parseInt(lecture()); //Variable qui va stocker le numéro du contact en création
 	
+	/**
+	 * Constructeur de la classe Contact
+	 *
+	 *@param nom le nom du contact
+	 *@param prenom le prenom du contact
+	 *@param adresse l'adresse du contact
+	 *@param localite la localite du contact
+	 *@param mail le mail du contact
+	 *@param telephone le num du contact
+	 *@param urlImage l'image du contact
+	 * 
+	 * @author Loris
+	 */
 	public Contact(String nom,String prenom,String adresse,String localite,String mail,String telephone,String urlImage)
 	{
 		setId();
@@ -37,6 +48,14 @@ public class Contact implements Serializable
 		setMail(mail);
 		setUrlImage(urlImage);
 	}
+	
+	
+	/**
+	 * Méthode permettant de lire le fichier contactapp
+	 * 
+	 * @return resultat une chaine de caractère
+	 * @author Loris
+	 */
 	
 	private String lecture()
 	{
@@ -63,6 +82,13 @@ public class Contact implements Serializable
 		return resultat;
 		
 	}
+	
+	/**
+	 * Méthode permettant d'écrire dans le fichier contactapp
+	 * 
+	 * @param id id de contact
+	 * @author Loris
+	 */
 	
 	private void ecriture(int id)
 	{

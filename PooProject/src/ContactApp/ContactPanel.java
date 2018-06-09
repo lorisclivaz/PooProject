@@ -53,29 +53,6 @@ public class ContactPanel extends JPanel
 		Boolean isModifContact = false;
 		ModifContact modifcontact;
 		
-		
-		public Boolean getIsModifContact() {
-			return isModifContact;
-		}
-
-		public void setIsModifContact(Boolean isModifContact) {
-			this.isModifContact = isModifContact;
-		}
-
-
-
-		public void setModifcontact(ModifContact modifcontact) {
-			this.modifcontact = modifcontact;
-		}
-
-		public Boolean getIsContact() {
-			return isContact;
-		}
-
-
-		public void setIsContact(Boolean isContact) {
-			this.isContact = isContact;
-		}
 
 		//Création du tableau de contact
 		private ArrayList<Contact> listContact = new ArrayList<Contact>();
@@ -91,16 +68,7 @@ public class ContactPanel extends JPanel
 		private   CardLayout cardLayout = new CardLayout();
 		private  JPanel triPanel = new JPanel(cardLayout);
 		
-		public CardLayout getCardLayout()
-		{
-			return cardLayout;
-		}
-
-
-		public JPanel getTriPanel()
-		{
-			return triPanel;
-		}
+		
 
 		//Création panel poue new contact
 		NewContact newcontact = new NewContact();
@@ -113,6 +81,9 @@ public class ContactPanel extends JPanel
 		 * - définit la taille du Panel et son layout
 		 * - ajoute et affiche les différents panels
 		 * 
+		 * 
+		 * @param frame récupération variable
+		 * @param isContact boolean pour des tests
 		 * @author Vivian
 		 */
 		public ContactPanel(Frame frame, boolean isContact)
@@ -140,30 +111,7 @@ public class ContactPanel extends JPanel
 		}
 		
 		private int nombreFichier = 0;
-		
-		/**
-		 * Setter qui définit le nombre de fichier contenu dans le dossier serialisation
-		 * 
-		 * @param nombreFichier le nombre de fichier
-		 * @author Vivian
-		 */
-		
-		private void setNombreFichier(int nombreFichier) {
-			this.nombreFichier = nombreFichier;
-		}
-
-
-		/**
-		 * Getter qui retourne le nombre de fichier contenu dans le dossier serialisation
-		 * 
-		 * @return : le nombre de fichier
-		 * @author Vivian
-		 */
-		
-		private int getNombreFichier() {
-			return nombreFichier;
-		}
-
+	
 
 		/**
 		 * Permet d'actualiser la liste des contacts :
@@ -861,9 +809,7 @@ public class ContactPanel extends JPanel
 			}
 		}
 		
-		public ModifContact getModifcontact() {
-			return modifcontact;
-		}
+		
 
 		/**
 		 * Classe responsable d'afficher un contact et de permettre sa modification
@@ -1040,13 +986,7 @@ public class ContactPanel extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent arg0)
 				{
-//						if (li.hasNext()) {
-//								imageContact.setUrl((String)li.next()); 	//j'essaie de caster en force
-//						}else {
-//							for(int i=0;i<listImage.size();i++) {
-//								imageContact.setUrl((String)li.previous());	//on revient au début
-//							}
-//						}
+//						
 					frame.getCardLayout().show(frame.getTriPanel(),"gallerypanel");
 					isModifContact = true;
 
@@ -1407,5 +1347,68 @@ public class ContactPanel extends JPanel
 					menuh1panel.setVisible(true);
 				}
 			}
-		}			
+		}		
+		
+		
+		/**
+		 * Setter qui définit le nombre de fichier contenu dans le dossier serialisation
+		 * 
+		 * @param nombreFichier le nombre de fichier
+		 * @author Vivian
+		 */
+		
+		private void setNombreFichier(int nombreFichier) {
+			this.nombreFichier = nombreFichier;
+		}
+
+
+		/**
+		 * Getter qui retourne le nombre de fichier contenu dans le dossier serialisation
+		 * 
+		 * @return : le nombre de fichier
+		 * @author Vivian
+		 */
+		
+		private int getNombreFichier() {
+			return nombreFichier;
+		}
+
+		
+		public Boolean getIsModifContact() {
+			return isModifContact;
+		}
+
+		public void setIsModifContact(Boolean isModifContact) {
+			this.isModifContact = isModifContact;
+		}
+
+
+
+		public void setModifcontact(ModifContact modifcontact) {
+			this.modifcontact = modifcontact;
+		}
+
+		public Boolean getIsContact() {
+			return isContact;
+		}
+
+
+		public void setIsContact(Boolean isContact) {
+			this.isContact = isContact;
+		}
+		
+		public CardLayout getCardLayout()
+		{
+			return cardLayout;
+		}
+
+
+		public JPanel getTriPanel()
+		{
+			return triPanel;
+		}
+		
+		public ModifContact getModifcontact() {
+			return modifcontact;
+		}
 }

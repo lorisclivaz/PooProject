@@ -1,15 +1,15 @@
 /*
-* Author: Clivaz Loris & Vivian Bridy
-* Date creation: 21 mai 2018
-* 
-*/
+ * Author: Clivaz Loris & Vivian Bridy
+ * Date creation: 21 mai 2018
+ * 
+ */
 package PasswordPanel;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import MainFrame.Frame;
 
 
+
 /**
  * Classe responsable du PassWord
  * 
@@ -38,75 +39,67 @@ import MainFrame.Frame;
  */
 public class PasswordPanel extends JPanel
 {
-
 	String resultat ;
 
-	
-	
 	JLabel label = new JLabel("Entrer le mot de passe:");
-//	JTextField ecrire = new JTextField();
 	JPasswordField ecrire = new JPasswordField();
+	
 	JPanel texteLabel = new JPanel();
 	JButton button = new JButton("Enter");
 	JLabel faux = new JLabel("Mot de passe incorrect");
 
-	
 	Frame frame;
-	
+
 	/**
 	 * Le constructeur de la classe PasswordPanel
 	 * 
 	 * @param frame : la frame qui est protégée par mot de passe
 	 * @author Vivian
 	 */
-	
+
 	public PasswordPanel(Frame frame) 
 	{
-		
 
-		
 		lecturePswd();
-		
+
 		this.frame = frame;
-		
+
 		this.setPreferredSize(new Dimension(480, 40));
-		this.setLayout(new BorderLayout());
-		
-		
-		
+		this.setLayout(new GridLayout(2,1));
+
 		label.setFont(new Font("Arial", Font.BOLD, 35));
 		ecrire.setPreferredSize(new Dimension(360, 20));
 		ecrire.addKeyListener(new PressedEnter());
-		
+
 		texteLabel.setLayout(new FlowLayout(50, 70, 50));
-		
-		
+
 		button.setBackground(Color.WHITE);
 		button.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
 		button.addActionListener(new ClickEnter());
 		button.addMouseListener(new Button());
-		
+
 		faux.setVisible(false);
 		faux.setFont(new Font("2.TimesRoman ",Font.BOLD,20));
-		
+
 		texteLabel.add(label);
 		texteLabel.add(ecrire);
 		texteLabel.add(button);
 		texteLabel.add(faux);
-		
-		
-		this.add(texteLabel, BorderLayout.CENTER);
-		
-		
+
+
+
+		this.add(texteLabel);
+
+
 	}
-	
+
 	/**
 	 * KeyListener qui est activé lorsqu'on appuie sur la touche ENTER
 	 * 
 	 * @author Vivian
 	 *
 	 */
-	
+
 	public class PressedEnter implements KeyListener
 	{
 
@@ -124,25 +117,25 @@ public class PasswordPanel extends JPanel
 				{
 					faux.setVisible(true);
 				}
-				
+
 				ecrire.setText(null);
 			}
-			    
+
 
 		}
 
 		@Override
 		public void keyReleased(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 
 	/**
@@ -155,77 +148,77 @@ public class PasswordPanel extends JPanel
 	{
 		File dossier = new File("password");
 		dossier.mkdir();
-		
+
 		File fichier = new File(dossier,"mdp.txt");
-		
+
 		try {
-		
+
 			FileReader read = new FileReader(fichier);
 			BufferedReader bfread = new BufferedReader(read);
 			resultat = bfread.readLine();
-			
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		resultat = decrypt(resultat);
-		
+
 		return resultat;
-		
+
 	}
-	
+
 	/**
 	 * Méthode qui va encrypté le mot de passe
 	 * 
 	 * @param reponse : mdp entré par l'utilisateur
 	 * @author Vivian
 	 */
-	
+
 	public void fichier(String reponse)
 	{
-		
+
 		resultat = lecturePswd();
-		
+
 		File dossier = new File("password");
 		dossier.mkdir();
-		
+
 		File fichier = new File(dossier,"mdp.txt");
-	
+
 		reponse = encrypt(reponse);
-		
+
 		try {
 			fichier.createNewFile();
-			
-			
+
+
 			FileWriter ecriture = new FileWriter(fichier);
 			BufferedWriter bfwrite = new BufferedWriter(ecriture);
 			bfwrite.write(reponse); 
 			bfwrite.close();
-		
-			
+
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
-	
+
 	/**
 	 * MouseListener sur le bouton enregistrer le mot de passe
 	 * 
 	 * @author Vivian
 	 *
 	 */
-	
+
 	class Button implements MouseListener
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
 		}
-		
+
 		@Override
 		public void mouseEntered(MouseEvent arg0)
 		{
@@ -248,23 +241,23 @@ public class PasswordPanel extends JPanel
 		{
 		}
 	}
-	
+
 	/**
 	 * ActionListener qui va s'activer lors du click sur le bouton d'entrée
 	 * 
 	 * @author Vivian
 	 *
 	 */
-	
+
 	class ClickEnter implements ActionListener
 	{
 
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
 
-			
+
 			if(getReponse().equals(resultat))
 			{
 				frame.getCardLayout().show(frame.getTriPanel(), "mainpanel");
@@ -274,32 +267,32 @@ public class PasswordPanel extends JPanel
 			{
 				faux.setVisible(true);
 			}
-			
+
 			ecrire.setText(null);
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 	public String getReponse()
 	{
-		
+
 		String reponse = ecrire.getText();
-				
+
 		return reponse;
 	}
-	
+
 	public void setResultat(String resultat) 
 	{
 		this.resultat = resultat;
 	}
-	
+
 	public JTextField getEcrire()
 	{
 		return ecrire;
 	}
-	
+
 	/**
 	 * Méthode d'encryptage du mot de passe
 	 * 
@@ -307,17 +300,17 @@ public class PasswordPanel extends JPanel
 	 * @return : le mot de passe crypté
 	 * @author Vivian
 	 */
-	
+
 	public String encrypt(String password)
-	 {
-	        String crypte= "";
-	        for (int i=0; i<password.length();i++)  {
-	            int c=password.charAt(i)^48;  
-	            crypte=crypte+(char)c; 
-	        }
-	        return crypte;
-    }
-	
+	{
+		String crypte= "";
+		for (int i=0; i<password.length();i++)  {
+			int c=password.charAt(i)^48;  
+			crypte=crypte+(char)c; 
+		}
+		return crypte;
+	}
+
 	/**
 	 * Méthode de décryptage du mot de passe
 	 * 
@@ -326,13 +319,19 @@ public class PasswordPanel extends JPanel
 	 * @author Vivian
 	 */
 	public String decrypt(String password)
-	 {
-	        String aCrypter= "";
-	        for (int i=0; i<password.length();i++)  {
-	            int c=password.charAt(i)^48;  
-	            aCrypter=aCrypter+(char)c; 
-	        }
-	        return aCrypter;
-    }
+	{
+		String aCrypter= "";
+		for (int i=0; i<password.length();i++)  {
+			int c=password.charAt(i)^48;  
+			aCrypter=aCrypter+(char)c; 
+		}
+		return aCrypter;
+	}
+
+	
+	public void setEcrire2(String resultat2) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

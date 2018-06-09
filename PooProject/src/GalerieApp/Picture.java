@@ -23,7 +23,6 @@ import java.sql.Timestamp;
  *
  */
 
-
 public class Picture implements Serializable{
 
 	private String path ;
@@ -68,6 +67,7 @@ public class Picture implements Serializable{
 	 * Méthode qui copie l'image dans le folder imagesgallery
 	 * 
 	 * @param file le fichier copié
+	 * @return newName renommer l'image
 	 * @author Loris
 	 */
 	public static String copy(File file)

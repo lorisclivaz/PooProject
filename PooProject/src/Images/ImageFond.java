@@ -35,7 +35,7 @@ public class ImageFond extends JPanel
 	 */
 	public ImageFond()
 	{
-		
+
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ImageFond extends JPanel
 
 			Image img = ImageIO.read(new File(changeImage));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-			
+
 		} 
 		catch (IOException e) 
 		{
@@ -67,11 +67,81 @@ public class ImageFond extends JPanel
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
+
 		}                
 
 	}
 
+
+	
+
+	/**
+	 * Méthode qui va écrire l'url de l'image du background dans un fichier
+	 * 
+	 * @param changeImage : l'url de l'image qu va être écrite
+	 * @author Vivian
+	 */
+
+	private void ecriture(String changeImage)
+	{
+		String[] decoupe = changeImage.split("imagesgallery");
+
+		File dossier = new File("background");
+		dossier.mkdir();
+
+		File fichier = new File(dossier,"url.txt");
+
+
+		try {
+			fichier.createNewFile();
+
+
+			FileWriter ecriture = new FileWriter(fichier);
+			BufferedWriter bfwrite = new BufferedWriter(ecriture);
+			bfwrite.write(decoupe[1]); 
+			bfwrite.close();
+
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+
+	}
+
+	/**
+	 * Méthode qui va lire le contenu du fichier url.txt et retourner son contenu
+	 * 
+	 * @return : l'url de l'image écrite dans le fichier
+	 * @author Vivian
+	 */
+
+	public String lecture()
+	{
+		String resultat="";
+		File dossier = new File("background");
+		dossier.mkdir();
+
+		File fichier = new File(dossier,"url.txt");
+
+		try {
+
+			FileReader read = new FileReader(fichier);
+			BufferedReader bfread = new BufferedReader(read);
+			resultat = bfread.readLine();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		resultat = resultat.substring(1,resultat.length());
+
+
+		return resultat;
+
+	}
 
 	/**
 	 * @param changeImage : l'url de l'image changée
@@ -82,80 +152,10 @@ public class ImageFond extends JPanel
 		ecriture(changeImage);
 		this.changeImage = changeImage;
 	}
-	
+
 	public void setUrl(String changeImage, boolean check) {
 		this.changeImage = changeImage;
 	}
-	
-	/**
-	 * Méthode qui va écrire l'url de l'image du background dans un fichier
-	 * 
-	 * @param changeImage : l'url de l'image qu va être écrite
-	 * @author Vivian
-	 */
-	
-	private void ecriture(String changeImage)
-	{
-		String[] decoupe = changeImage.split("imagesgallery");
-		
-		File dossier = new File("background");
-		dossier.mkdir();
-		
-		File fichier = new File(dossier,"url.txt");
 
-		
-		try {
-			fichier.createNewFile();
-			
-			
-			FileWriter ecriture = new FileWriter(fichier);
-			BufferedWriter bfwrite = new BufferedWriter(ecriture);
-			bfwrite.write(decoupe[1]); 
-			bfwrite.close();
-		
-			
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	/**
-	 * Méthode qui va lire le contenu du fichier url.txt et retourner son contenu
-	 * 
-	 * @return : l'url de l'image écrite dans le fichier
-	 * @author Vivian
-	 */
-	
-	public String lecture()
-	{
-		String resultat="";
-		File dossier = new File("background");
-		dossier.mkdir();
-		
-		File fichier = new File(dossier,"url.txt");
-		
-		try {
-		
-			FileReader read = new FileReader(fichier);
-			BufferedReader bfread = new BufferedReader(read);
-			resultat = bfread.readLine();
-			
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		
-		resultat = resultat.substring(1,resultat.length());
-		
-		
-		return resultat;
-		
-	}
-
-	
-	
 
 }

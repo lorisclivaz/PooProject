@@ -31,13 +31,13 @@ public class HorlogePanel extends JPanel
 {
 
 	PanelSettings panelhorloge = new PanelSettings ("Horloge", "Horloge");
-	
+
 	JPanel center = new JPanel ();
 
 	//Heures
-		private JLabel heure = new JLabel();
-		final private DateFormat DATEFORMAT = new SimpleDateFormat("     HH:mm:ss");
-		private Timer timer = new Timer(0, new CurrentTime());
+	private JLabel heure = new JLabel();
+	final private DateFormat DATEFORMAT = new SimpleDateFormat("     HH:mm:ss");
+	private Timer timer = new Timer(0, new CurrentTime());
 
 	/**
 	 * Constructeur de la classe HorlogePanel
@@ -52,37 +52,37 @@ public class HorlogePanel extends JPanel
 		this.setLayout(new BorderLayout());
 		center.setLayout(new BorderLayout());
 		center.setBackground(Color.DARK_GRAY);
-		
+
 		timer.start();
 		heure.setForeground(Color.WHITE);
 		heure.setFont(new Font("Arial", Font.BOLD, 70));
-		
-		
+
+
 		center.add(heure);
-		
+
 		this.add(panelhorloge, BorderLayout.NORTH);
 		this.add(center, BorderLayout.CENTER);
 
-		
+
 	}
-	
+
 	/**
 	 * ActionListener qui affiche l'heure actuelle dans le panel
 	 * 
 	 * @author Vivian
 	 *
 	 */
-	
+
 	class CurrentTime implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
 			Calendar now = Calendar.getInstance();
-			
-            heure.setText(DATEFORMAT.format(now.getTime()));
-            
-            
+
+			heure.setText(DATEFORMAT.format(now.getTime()));
+
+
 		}
 	}
 }

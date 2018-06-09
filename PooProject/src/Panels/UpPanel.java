@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.Kernel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +20,8 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import Batterie.Kernel32;
 import Images.IconBase;
 
 
@@ -30,13 +33,18 @@ import Images.IconBase;
  */
 public class UpPanel extends JPanel{
 
-	//Création de l'heure avec le nom swisscom
+	//Création de l'heure avec le nom swisscom et la batterie
+	
+	Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
+	
 	Date madate = new Date();
 	JLabel date = new JLabel();
 	DateFormat formatHeure = new SimpleDateFormat("HH:mm");
 	JLabel fourni = new JLabel("    Swisscom");
 	IconBase son = new IconBase("images/icones/son.JPG", 170,40);
 	JPanel flow = new JPanel();
+	JPanel flow2 = new JPanel();
+	JPanel flow3 = new JPanel();
 
 
 	// Heure
@@ -44,22 +52,32 @@ public class UpPanel extends JPanel{
 	final private DateFormat DATEFORMATHEURE = new SimpleDateFormat("HH:mm");
 	private Timer timer = new Timer(0, new CurrentTime());
 
-	//Constructeur qui définit la taille du panel ou il y aura la batterie l'heures ect...
+	
 	/**
 	 * Constructeur de la classe UpPanel
 	 * 
+	 * Constructeur qui définit la taille du panel ou il y aura la batterie l'heures ect...
 	 * @author Vivian
 	 * 
 	 */
 	public UpPanel() 
 	{
+		
+		Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
+		IconBase iconBatterie = new IconBase(batteryStatus.getBatterystate(), 30,20);
+		
+
+		
 		this.setLayout(new BorderLayout(2,1));
 		this.setPreferredSize(new Dimension(480, 50));
 		this.setOpaque(false);
-
-		flow.setLayout(new FlowLayout(20,60,5));
+		
+		flow.setLayout(new FlowLayout(15, 40, 5));
+		
 		flow.setOpaque(false);
 		flow.add(son);
+		
+		
 		//heure
 		Calendar now = Calendar.getInstance();
 
@@ -74,10 +92,22 @@ public class UpPanel extends JPanel{
 
 		fourni.setForeground(Color.WHITE);
 		fourni.setFont(new Font("Arial", Font.BOLD, 15));
-		this.add(fourni, BorderLayout.WEST);
+		
+		flow2.setLayout(new FlowLayout(5, 5, 20));
+		flow2.add(heure);
+		flow2.add(iconBatterie);
+		flow2.setOpaque(false);
+		
+		flow3.setLayout(new FlowLayout(5, 5, 20));
+		flow3.add(fourni);
+		flow3.setOpaque(false);
+		
+		this.add(flow3, BorderLayout.WEST);
 		this.add(flow, BorderLayout.CENTER);
-		this.add(heure, BorderLayout.EAST);
+		this.add(flow2, BorderLayout.EAST);
+	
 	}
+	
 	/**
 	 * ActionListener qui va afficher l'heure actuelle
 	 * 
@@ -90,7 +120,8 @@ public class UpPanel extends JPanel{
 		public void actionPerformed(ActionEvent e) 
 		{
 			Calendar now = Calendar.getInstance();
-			heure.setText("      4G     "+DATEFORMATHEURE.format(now.getTime())+"    ");		}
+			heure.setText("      4G     "+DATEFORMATHEURE.format(now.getTime())+"    ");	
+		}
 	}
 
 

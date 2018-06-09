@@ -52,13 +52,7 @@ public class IconBase extends JButton
 		this.heigth = heigth;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
 	
-	public String getUrl() {
-		return url;
-	}
 
 	public void paintComponent(Graphics g){
 
@@ -79,4 +73,12 @@ public class IconBase extends JButton
 		}                
 
 	}   
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
 }

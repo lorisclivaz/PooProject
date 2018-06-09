@@ -81,6 +81,7 @@ public class GalleryPanel extends JPanel
 	 * @param fond l'image de fond de la galerie
 	 * @param bool boolean du panel réglage
 	 * @param frame variables de frame
+	 * @param contactpanel récupération variable
 	 * @author Loris_Clivaz
 	 */
 
@@ -615,11 +616,7 @@ public class GalleryPanel extends JPanel
 					File file = choisir.getSelectedFile();
 					String temp = file.getName();
 					
-//					String tabTemp[] = temp.split("\\.");
-//				
-//					
-//					File destination = new File("imagesgallery/"+tabTemp[0]+"-"+lecture()+"."+tabTemp[1]);
-//					file.renameTo(destination);
+
 					String newName = Picture.copy(file);
 					
 					MiniPhoto newpic = new MiniPhoto("imagesgallery/"+newName);
